@@ -1,6 +1,6 @@
 import React from 'react';
-import {Map, Marker, GoogleApiWrapper, Overlay} from 'google-maps-react';
-import { Polygon } from "google-maps-react";
+import {Map, Marker, GoogleApiWrapper, USGSOverlay} from 'google-maps-react';
+import {  Polygon } from "google-maps-react";
 //import Mask from './Mask.js'; Static entry in index.html
 
 
@@ -9,10 +9,10 @@ class InteractiveQuiltMap extends React.Component {
     super(props);
     this.state = {
         color: "red",
-        origin: { lat: 37.76906625350, lng: -122.45864076433 },
-        center: { lat: 37.76906625350, lng: -122.45864076433 },
-        pitchright: { lat: 0.54e-4, lng: 0.9e-4 },
-        pitchdown: { lat: 0.81e-4, lng: 5.0e-5 },
+        origin: new this.props.google.maps.LatLng(37.76906625350, -122.45864076433 ),
+        center: new this.props.google.maps.LatLng(37.76906625350, -122.45864076433 ),
+        pitchright: new this.props.google.maps.LatLng(0.54e-4,  0.9e-4 ),
+        pitchdown: new this.props.google.maps.LatLng(0.81e-4,  5.0e-5 ),
         initialZoom: 19
     }
     this.initMap = this.initMap.bind(this);
@@ -26,6 +26,22 @@ class InteractiveQuiltMap extends React.Component {
     let origin = this.state.origin;
     let pitchright = this.state.pitchright;
     let pitchdown = this.state.pitchdown;
+
+    var testBounds = new this.props.google.maps.LatLngBounds(
+        new this.props.google.maps.LatLng(62.281819, -150.287132),
+        new this.props.google.maps.LatLng(62.400471, -150.005608));
+
+    // The photograph is courtesy of the U.S. Geological Survey.
+    var testImage = 'https://developers.google.com/maps/documentation/' +
+        'javascript/examples/full/images/talkeetna.png';
+
+    // The custom USGSOverlay object contains the USGS image,
+    // the bounds of the image, and a reference to the map.
+    this.setState((state, props) => {
+        return {quiltgrid: quiltgrid, testBounds: testBounds, testImage: testImage}; // + this.props.configData.screenWidth/2};
+    });
+
+
     const outerCoords = [ 
     
    { lat: origin.lat, lng: origin.lng },
@@ -135,7 +151,10 @@ class InteractiveQuiltMap extends React.Component {
 
             <Marker onClick={this.onMarkerClick}
                 name={'Current location'} />
-            <Overlay />
+            <USGSOverlay  
+                bounds={this.state.testBounds}  
+                srcImage={this.state.testImage} 
+            />
        
         </Map>
     );
