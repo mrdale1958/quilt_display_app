@@ -1,6 +1,8 @@
 import React from 'react';
-import {Map, Marker, GoogleApiWrapper, USGSOverlay} from 'google-maps-react';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import {  Polygon } from "google-maps-react";
+import  QuiltOverlay  from './QuiltOverlay.js';
+
 //import Mask from './Mask.js'; Static entry in index.html
 
 
@@ -59,15 +61,16 @@ class InteractiveQuiltMap extends React.Component {
   var col = 0;
   for (row = 0; row<10; row++) {
       for (col = 0; col <6; col++) {
-    quiltgrid.push([
-      { lat: origin.lat+row*pitchright.lat-col*pitchdown.lat, lng: origin.lng+row*pitchright.lng+col*pitchdown.lng },
-      { lat: origin.lat+(row+1)*pitchright.lat-col*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+col*pitchdown.lng },
-  
-      { lat:origin.lat+(row+1)*pitchright.lat-(col+1)*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+(col+1)*pitchdown.lng },
-  
-      { lat: origin.lat - (col+1)*pitchdown.lat+row*pitchright.lat, lng: origin.lng + (col+1)*pitchdown.lng+row*pitchright.lng },
-  
-    ]);
+        let bounds = [
+          { lat: origin.lat+row*pitchright.lat-col*pitchdown.lat, lng: origin.lng+row*pitchright.lng+col*pitchdown.lng },
+          { lat: origin.lat+(row+1)*pitchright.lat-col*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+col*pitchdown.lng },
+      
+          { lat:origin.lat+(row+1)*pitchright.lat-(col+1)*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+(col+1)*pitchdown.lng },
+      
+          { lat: origin.lat - (col+1)*pitchdown.lat+row*pitchright.lat, lng: origin.lng + (col+1)*pitchdown.lng+row*pitchright.lng },
+      
+        ];
+    quiltgrid.push(bounds);
     }
   }
   for (row = 10; row<11; row++) {
@@ -128,6 +131,14 @@ class InteractiveQuiltMap extends React.Component {
       width: '1080px',
       height: '1080px'
     }
+    const getBlockImage = (blockNum) => {
+      const blockLibrary = "https://quilt.utdallas.edu/quiltdata/pyramids6000/";
+      const blockImageName = String(blockNum).padStart(5,'0') + "_files/0/0_0.jpeg";
+      return blockLibrary + blockImageName;
+    }
+    const blocksOverlay = this.state.quiltgrid.map((bounds, index) => 
+      <QuiltOverlay bounds={bounds} blockImage={getBlockImage(index+1)} />
+    );
     return (
         <Map className='quilt-map' 
                     containerStyle={containerStyle}
@@ -151,10 +162,7 @@ class InteractiveQuiltMap extends React.Component {
 
             <Marker onClick={this.onMarkerClick}
                 name={'Current location'} />
-            <USGSOverlay  
-                bounds={this.state.testBounds}  
-                srcImage={this.state.testImage} 
-            />
+            {blocksOverlay}
        
         </Map>
     );

@@ -1,26 +1,23 @@
-const bounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(62.281819, -150.287132),
-    new google.maps.LatLng(62.400471, -150.005608)
-);
+import { OverlayView } from 'google-maps-react';
+
+
 // The photograph is courtesy of the National AIDS Memorial.
-const srcImage =
-    "https://quilt.utdallas.edu/quiltdata/pyramids6000/00001_files/0/0_0.jpeg";
 
 // The custom QuiltOverlay object contains the Quilt block image,
 // the bounds of the image, and a reference to the map.
-export default class QuiltOverlay extends google.maps.OverlayView {
+class QuiltOverlay extends OverlayView {
     bounds_;
     image_;
     div_;
-    constructor(bounds, image) {
-    super();
-    // Initialize all properties.
-    this.bounds_ = bounds;
-    this.image_ = image;
-    // Define a property to hold the image's div. We'll
-    // actually create this div upon receipt of the onAdd()
-    // method so we'll leave it null for now.
-    this.div_ = null;
+    constructor(map, bounds, image) {
+        super();
+        // Initialize all properties.
+        this.bounds_ = bounds;
+        this.image_ = image;
+        // Define a property to hold the image's div. We'll
+        // actually create this div upon receipt of the onAdd()
+        // method so we'll leave it null for now.
+        this.div_ = null;
     }
     /**
      * onAdd is called when the map's panes are ready and the overlay has been
@@ -81,3 +78,4 @@ export default class QuiltOverlay extends google.maps.OverlayView {
     }
 }
 
+export default  QuiltOverlay;
