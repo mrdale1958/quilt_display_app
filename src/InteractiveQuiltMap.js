@@ -1,12 +1,188 @@
-import React from 'react';
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
-import {  Polygon } from "google-maps-react";
-import  QuiltOverlay  from './QuiltOverlay.js';
+import React, { Component } from 'react';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GroundOverlay, Polygon } from '@react-google-maps/api';
+
+const containerStyle = {
+  width: '1334px',
+  height: '740px'
+};
+
+const center = {
+  lat: 37.76906625350, 
+  lng: -122.45864076433 
+};
+const origin = { lat: 37.76906625350, lng: -122.45864076433 };
+const pitchright = { lat: 0.54e-4,  lng: 0.9e-4 };
+const pitchdown = { lat: 0.81e-4,  lng: 5.0e-5 };
+const row=0;
+const col = 0;
+const bounds = 
+  { south: origin.lat+row*pitchright.lat-col*pitchdown.lat, 
+    west: origin.lng+row*pitchright.lng+col*pitchdown.lng ,
+    north: origin.lat+(row+1)*pitchright.lat-col*pitchdown.lat, 
+    east: origin.lng + (col+1)*pitchdown.lng+row*pitchright.lng };
+
+const getBlockImage = (blockNum) => {
+  const blockLibrary = "https://quilt.utdallas.edu/quiltdata/pyramids6000/";
+  const blockImageName = String(blockNum).padStart(5,'0') + "_files/0/0_0.jpeg";
+  return blockLibrary + blockImageName;
+}
+
+const paths = [
+  { lat: origin.lat+row*pitchright.lat-col*pitchdown.lat, lng: origin.lng+row*pitchright.lng+col*pitchdown.lng },
+        { lat: origin.lat+(row+1)*pitchright.lat-col*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+col*pitchdown.lng },
+    
+        { lat:origin.lat+(row+1)*pitchright.lat-(col+1)*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+(col+1)*pitchdown.lng },
+    
+        { lat: origin.lat - (col+1)*pitchdown.lat+row*pitchright.lat, lng: origin.lng + (col+1)*pitchdown.lng+row*pitchright.lng },
+    ]
+
+const options = {
+  fillColor: "lightblue",
+  fillOpacity: 1,
+  strokeColor: "red",
+  strokeOpacity: 1,
+  strokeWeight: 2,
+  clickable: false,
+  draggable: false,
+  editable: false,
+  geodesic: false,
+  zIndex: 1
+}
+
 
 //import Mask from './Mask.js'; Static entry in index.html
+const   initQuiltDisplay = () => {
+    
+  let origin = this.state.origin;
+  let pitchright = this.state.pitchright;
+  let pitchdown = this.state.pitchdown;
+
+  var testBounds = new this.props.google.maps.LatLngBounds(
+      new this.props.google.maps.LatLng(62.281819, -150.287132),
+      new this.props.google.maps.LatLng(62.400471, -150.005608));
+
+  // The photograph is courtesy of the U.S. Geological Survey.
+  var testImage = 'https://developers.google.com/maps/documentation/' +
+      'javascript/examples/full/images/talkeetna.png';
+
+  // The custom USGSOverlay object contains the USGS image,
+  // the bounds of the image, and a reference to the map.
+  this.setState((state, props) => {
+      return {quiltgrid: quiltgrid, testBounds: testBounds, testImage: testImage}; // + this.props.configData.screenWidth/2};
+  });
 
 
-class InteractiveQuiltMap extends React.Component {
+  const outerCoords = [ 
+  
+ { lat: origin.lat, lng: origin.lng },
+    { lat: origin.lat+26*pitchright.lat, lng: origin.lng+26*pitchright.lng},
+
+    { lat:origin.lat+26*pitchright.lat-6*pitchdown.lat, lng: origin.lng+26*pitchright.lng+6*pitchdown.lng },
+
+    { lat: origin.lat - 6*pitchdown.lat, lng: origin.lng +6*pitchdown.lng},
+
+  ];
+
+  let quiltgrid = [ outerCoords ];
+  
+var row = 0;
+var col = 0;
+for (row = 0; row<10; row++) {
+    for (col = 0; col <6; col++) {
+      let bounds = [
+        { lat: origin.lat+row*pitchright.lat-col*pitchdown.lat, lng: origin.lng+row*pitchright.lng+col*pitchdown.lng },
+        { lat: origin.lat+(row+1)*pitchright.lat-col*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+col*pitchdown.lng },
+    
+        { lat:origin.lat+(row+1)*pitchright.lat-(col+1)*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+(col+1)*pitchdown.lng },
+    
+        { lat: origin.lat - (col+1)*pitchdown.lat+row*pitchright.lat, lng: origin.lng + (col+1)*pitchdown.lng+row*pitchright.lng },
+    
+      ];
+  quiltgrid.push(bounds);
+  }
+}
+for (row = 10; row<11; row++) {
+    for (col = 1; col <5; col++) {
+  quiltgrid.push([
+    { lat: origin.lat+row*pitchright.lat-col*pitchdown.lat, lng: origin.lng+row*pitchright.lng+col*pitchdown.lng },
+    { lat: origin.lat+(row+1)*pitchright.lat-col*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+col*pitchdown.lng },
+
+    { lat:origin.lat+(row+1)*pitchright.lat-(col+1)*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+(col+1)*pitchdown.lng },
+
+    { lat: origin.lat - (col+1)*pitchdown.lat+row*pitchright.lat, lng: origin.lng + (col+1)*pitchdown.lng+row*pitchright.lng },
+
+  ]);
+  }
+}
+
+for (row = 11; row<12; row++) {
+    for (col = 2; col <4; col++) {
+  quiltgrid.push([
+    { lat: origin.lat+row*pitchright.lat-col*pitchdown.lat, lng: origin.lng+row*pitchright.lng+col*pitchdown.lng },
+    { lat: origin.lat+(row+1)*pitchright.lat-col*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+col*pitchdown.lng },
+
+    { lat:origin.lat+(row+1)*pitchright.lat-(col+1)*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+(col+1)*pitchdown.lng },
+
+    { lat: origin.lat - (col+1)*pitchdown.lat+row*pitchright.lat, lng: origin.lng + (col+1)*pitchdown.lng+row*pitchright.lng },
+
+  ]);
+  }
+}
+
+for (row =15; row<26; row++) {
+    for (col = 2; col <4; col++) {
+  quiltgrid.push([
+    { lat: origin.lat+row*pitchright.lat-col*pitchdown.lat, lng: origin.lng+row*pitchright.lng+col*pitchdown.lng },
+    { lat: origin.lat+(row+1)*pitchright.lat-col*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+col*pitchdown.lng },
+
+    { lat:origin.lat+(row+1)*pitchright.lat-(col+1)*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+(col+1)*pitchdown.lng },
+
+    { lat: origin.lat - (col+1)*pitchdown.lat+row*pitchright.lat, lng: origin.lng + (col+1)*pitchdown.lng+row*pitchright.lng },
+
+  ]);
+  }
+}
+this.setState((state, props) => {
+  return {quiltgrid: quiltgrid}; // + this.props.configData.screenWidth/2};
+});
+ }
+
+const getPixelPositionOffset = (width, height) => ({
+  x: -(width / 2),
+  y: -(height / 2),
+})
+
+  function InteractiveQuiltMap() {
+    //initQuiltDisplay();
+    return (
+      <LoadScript
+        googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+      >
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={19}
+        >
+          { /* Child components, such as markers, info windows, etc. */ }
+
+          <Polygon
+          paths={paths}
+          options={options}
+        />
+          <GroundOverlay
+            key={'url'}
+            url={getBlockImage(1)}
+            bounds={bounds}
+          />
+          <></>
+        </GoogleMap>
+      </LoadScript>
+    )
+  }
+  
+export default React.memo(InteractiveQuiltMap);
+/*class InteractiveQuiltMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,103 +198,9 @@ class InteractiveQuiltMap extends React.Component {
   componentDidMount() {
     this.initMap();
     
-  }
-  initMap() {
-    
-    let origin = this.state.origin;
-    let pitchright = this.state.pitchright;
-    let pitchdown = this.state.pitchdown;
+  }*/
 
-    var testBounds = new this.props.google.maps.LatLngBounds(
-        new this.props.google.maps.LatLng(62.281819, -150.287132),
-        new this.props.google.maps.LatLng(62.400471, -150.005608));
-
-    // The photograph is courtesy of the U.S. Geological Survey.
-    var testImage = 'https://developers.google.com/maps/documentation/' +
-        'javascript/examples/full/images/talkeetna.png';
-
-    // The custom USGSOverlay object contains the USGS image,
-    // the bounds of the image, and a reference to the map.
-    this.setState((state, props) => {
-        return {quiltgrid: quiltgrid, testBounds: testBounds, testImage: testImage}; // + this.props.configData.screenWidth/2};
-    });
-
-
-    const outerCoords = [ 
-    
-   { lat: origin.lat, lng: origin.lng },
-      { lat: origin.lat+26*pitchright.lat, lng: origin.lng+26*pitchright.lng},
-  
-      { lat:origin.lat+26*pitchright.lat-6*pitchdown.lat, lng: origin.lng+26*pitchright.lng+6*pitchdown.lng },
-  
-      { lat: origin.lat - 6*pitchdown.lat, lng: origin.lng +6*pitchdown.lng},
-  
-    ];
-  
-    let quiltgrid = [ outerCoords ];
-    
-  var row = 0;
-  var col = 0;
-  for (row = 0; row<10; row++) {
-      for (col = 0; col <6; col++) {
-        let bounds = [
-          { lat: origin.lat+row*pitchright.lat-col*pitchdown.lat, lng: origin.lng+row*pitchright.lng+col*pitchdown.lng },
-          { lat: origin.lat+(row+1)*pitchright.lat-col*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+col*pitchdown.lng },
-      
-          { lat:origin.lat+(row+1)*pitchright.lat-(col+1)*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+(col+1)*pitchdown.lng },
-      
-          { lat: origin.lat - (col+1)*pitchdown.lat+row*pitchright.lat, lng: origin.lng + (col+1)*pitchdown.lng+row*pitchright.lng },
-      
-        ];
-    quiltgrid.push(bounds);
-    }
-  }
-  for (row = 10; row<11; row++) {
-      for (col = 1; col <5; col++) {
-    quiltgrid.push([
-      { lat: origin.lat+row*pitchright.lat-col*pitchdown.lat, lng: origin.lng+row*pitchright.lng+col*pitchdown.lng },
-      { lat: origin.lat+(row+1)*pitchright.lat-col*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+col*pitchdown.lng },
-  
-      { lat:origin.lat+(row+1)*pitchright.lat-(col+1)*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+(col+1)*pitchdown.lng },
-  
-      { lat: origin.lat - (col+1)*pitchdown.lat+row*pitchright.lat, lng: origin.lng + (col+1)*pitchdown.lng+row*pitchright.lng },
-  
-    ]);
-    }
-  }
-  
-  for (row = 11; row<12; row++) {
-      for (col = 2; col <4; col++) {
-    quiltgrid.push([
-      { lat: origin.lat+row*pitchright.lat-col*pitchdown.lat, lng: origin.lng+row*pitchright.lng+col*pitchdown.lng },
-      { lat: origin.lat+(row+1)*pitchright.lat-col*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+col*pitchdown.lng },
-  
-      { lat:origin.lat+(row+1)*pitchright.lat-(col+1)*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+(col+1)*pitchdown.lng },
-  
-      { lat: origin.lat - (col+1)*pitchdown.lat+row*pitchright.lat, lng: origin.lng + (col+1)*pitchdown.lng+row*pitchright.lng },
-  
-    ]);
-    }
-  }
-  
-  for (row =15; row<26; row++) {
-      for (col = 2; col <4; col++) {
-    quiltgrid.push([
-      { lat: origin.lat+row*pitchright.lat-col*pitchdown.lat, lng: origin.lng+row*pitchright.lng+col*pitchdown.lng },
-      { lat: origin.lat+(row+1)*pitchright.lat-col*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+col*pitchdown.lng },
-  
-      { lat:origin.lat+(row+1)*pitchright.lat-(col+1)*pitchdown.lat, lng: origin.lng+(row+1)*pitchright.lng+(col+1)*pitchdown.lng },
-  
-      { lat: origin.lat - (col+1)*pitchdown.lat+row*pitchright.lat, lng: origin.lng + (col+1)*pitchdown.lng+row*pitchright.lng },
-  
-    ]);
-    }
-  }
-  this.setState((state, props) => {
-    return {quiltgrid: quiltgrid}; // + this.props.configData.screenWidth/2};
-  });
-   }
-
+/*
   render() {
       const triangleCoords = [
         {lat: 25.774, lng: -80.190},
@@ -171,6 +253,6 @@ class InteractiveQuiltMap extends React.Component {
 export default GoogleApiWrapper({
   apiKey: (process.env.REACT_APP_GOOGLE_MAPS_API_KEY),
   version: 'beta'
-})(InteractiveQuiltMap);
+})(InteractiveQuiltMap); */
 // This example uses the Google Maps JavaScript API's Data layer
 // to create a rectangular polygon with 2 holes in it.
