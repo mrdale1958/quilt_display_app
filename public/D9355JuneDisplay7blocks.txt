@@ -1,0 +1,8 @@
+Block #	DE Notes	Promised	column	row	position
+1	Sign Language - Deaf	AFAM 1st panels	1	1	a
+2		ÊGert 1st panels	1	1	b
+3		ÊGert Tom Waddell	1	1	c
+4			1	1	d
+5		ÊGert 1st panels	1	2	a
+6	"Jewish, 40stories"	Marvin Cleve Panel	1	2	b
+7		ÊGert 1st panels	1	2	c

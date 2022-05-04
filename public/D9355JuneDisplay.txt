@@ -1,0 +1,353 @@
+Block #	DE Notes	Promised	column	row	position
+1	Sign Language - Deaf	AFAM 1st panels	1	1	a
+2		 Gert 1st panels	1	1	b
+3		 Gert Tom Waddell	1	1	c
+4			1	1	d
+5		 Gert 1st panels	1	2	a
+6	"Jewish, 40stories"	Marvin Cleve Panel	1	2	b
+7		 Gert 1st panels	1	2	c
+8	SCAD - Lyon	 Gert* Activist	1	2	d
+9		 Gert 1st panels	1	3	a
+10		Gert 1st panels	1	3	b
+11		 Gert 1st panels	1	3	c
+12		*Open Table United Church of Christ	1	3	d
+14		 Gert 1st panels	1	4	a
+15	SCAD - Miller	 Gert 1st panels	1	4	b
+16		 Gert 1st panels	1	4	c
+19		 Gert 1st panels	1	4	d
+20	Liberace	Liberace Celebrity	1	5	a
+24	International	International	1	5	b
+41	women	Gert*	1	5	c
+54	Rock Hudson	Rock Hudson/Celebrity	1	5	d
+59		"*Terri DeSalvo, *Kevin Imhof"	1	6	a
+65		Gert 35 years	1	6	b
+78		Gert 35 years	1	6	c
+98		Gert* 35 years	1	6	d
+104	famous - Roy Cohn	Roy Cohn/Celebrity	2	1	a
+175	International	Asian Symbols	2	1	b
+215		Gert* 35 years	2	1	c
+220	NHSQP;child	 Gert Child	2	1	d
+231	Religious	Gert* 35 years	2	2	a
+233		Gert* 35 years	2	2	b
+237	Latino 	 Gert* 35 years/Latino	2	2	c
+239	"African American, Women"	AFAM/Women	2	2	d
+241	LARGE-Shipping Challenge	Gert GMChorus	2	3	a
+242	LARGE - Shipping Challenge	Gert GMChorus	2	3	b
+243	Asians LARGE - Oversized	Gert GMChorus	2	3	c
+244		Gert GMChorus	2	3	d
+251	famous - Roy Cohn	Roy Cohn/Celebrity	2	4	a
+256		*Barbara Douglass	2	4	b
+258	HBCU	Gert 35 years HBCU	2	4	c
+273	women	 Gert35 years women	2	4	d
+311	"Harvard, Hemophilia - John Politano"	Hemophilia	2	5	a
+335	International	 Gert Roger Lyon Activist	2	5	b
+378	"NHSQP; Women; Children; Baby of 0095, Youth"	*Gert* Women/Child	2	5	c
+387	African American 	AFAM	2	5	d
+395	"Women, Mickey Mouse"	Gert Women	2	6	a
+571	International	International	2	6	b
+612		Gert 35 years	2	6	c
+617	"Latino, International, Medical"	International/Latino	2	6	d
+629	"Latin, International"	International/Latino	3	1	a
+655		*Emilia Hughes	3	1	b
+661		*PM Request-Peckerman	3	1	c
+668	"African American, International, Architect"	AFAM	3	1	d
+709	"African American Latino; Photo; Women, College Age, sign language"	AFAM/Latino/Women	3	2	a
+723	"African American, Symbol - Star of David"	 AFAM	3	2	b
+726		Gert** 35 years	3	2	c
+792	Native American	NA/API	3	2	d
+811	African American	AFAM	3	3	a
+819	International	International	3	3	b
+927	African American	AFAM/Celebrity	3	3	c
+933	African American	AFAM	3	3	d
+980	Military	Gert 35 years/Veteran	3	4	a
+1017		 Gert 35 yearts	3	4	b
+1053	International	International	3	4	c
+1056	"women, Religious, teen (17), Hemophilia"	Hemophilia	3	4	d
+1057	Lawyer	*Doug DeVlieger	3	5	a
+1069	International	International	3	5	b
+1081		Gert 35 years	3	5	c
+1089	"women, African American"	AFAM	3	5	d
+1090	"NHSQP, African American, Women; College Age (25)"	AFAM/Women	3	6	a
+1091	40stories	Gert* 35 years	3	6	b
+1092	African American  Max Robinson	AFAM/Celebrity	3	6	c
+1102		 Gert 35 years	3	6	d
+1105	"African American, Asian"	AFAM	4	1	a
+1130	NHSQP	*PM Request -Michael Borden	4	1	b
+1134		Gert 35 years	4	1	c
+1139		Gert 35 years	4	1	d
+1150	HBCU	*Rachel Biale	4	2	a
+1188	"College Age (26), Prisoner"	Prisoner	4	2	b
+1216	"African American,  Asian"	 AFAM/Asian	4	2	c
+1246	women	 Gert Women	4	2	d
+1259	African American	AFAM	4	3	a
+1268		Gert Activist	4	3	b
+1287	"International, Child (1), Mickey Mouse, College Age (25)"	International/Child	4	3	c
+1289	Theatrical	*Janice Davis	4	3	d
+1292	"African American, Women"	AFAM/Women	4	4	a
+1309		*request by niece 	4	4	b
+1315		*request by niece 	4	4	c
+1323	International 	International	4	4	d
+1342	African American	AFAM	4	5	a
+1345	African American	AFAM	4	5	b
+1364		Gert* 35 years	4	5	c
+1373	"teen (13), Hemophilia"	Hemophilia/Child	4	5	d
+1388		Gert 35 years	4	6	a
+1392		 Gert 35 years	4	6	b
+1393	"NHSQP, African American, Twin Towers"	AFAM	4	6	c
+1395		 Gert 35 years	4	6	d
+1416	"Asian; all Hawaii, 40stories-API"	NA/API	5	1	a
+1444		Gert 35 years	5	1	b
+1451	"Theatrical, Latino"	 Gert**Panelmaker	5	1	c
+1477		Gert 35 years	5	1	d
+1494	International	International	5	2	a
+1517	"African American, Religious, Foster Children"	AFAM	5	2	b
+1539	"Latino or African American, women"	"AFAM, Latino/Women"	5	2	c
+1557	native american	NA/API	5	2	d
+1561	"African American, International, Latino"	"AFAM, Latino"	5	3	a
+1595	"African American,  Women,Jewish"	"AFAM, Jewish"	5	3	b
+1612	"College Age, Hemophilia"	Hemophilia	5	3	c
+1664		Gert 35 years	5	3	d
+1680	"NSQP, African American, Latino "	AFAM/Latino	5	4	a
+1720	peppers	Gert* 35 years	5	4	b
+1738	"African American, Latino"	"AFAM, Latino"	5	4	c
+1747	" American, Women"	Gert* Women	5	4	d
+1753	"Women, Medical, African American"	Gert* Women	5	5	a
+1758	College Age	Gert 35 years	5	5	b
+1763	"NSQP, African American, Women"	AFAM/Women	5	5	c
+1790	Activist	Activist	5	5	d
+1795		Gert 35 years	5	6	a
+1828	"African American, International, Latino"	"AFAM, Latino"	5	6	b
+1845		 Gert 35 years	5	6	c
+1905	African American	AFAM	5	6	d
+1939	Asians	 Gert* 35 years/Asian	6	1	a
+1946	"International, Hemophilia"	Hemophilia	6	1	b
+1951	African American	AFAM	6	1	c
+1984	African American	AFAM	6	1	d
+1989	Hemophilia	Hemophilia	6	2	a
+1997	"African American, Women"	AFAM/Women	6	2	b
+1999	"Theatrical, women, International"	International/Women	6	2	c
+2000	International	International	6	2	d
+2004	African American	AFAM	6	3	a
+2053		*Brent Barnes	6	3	b
+2057	Hemophiliac	Hemophilia	6	3	c
+2060	"International, women,Senior, Alamo- Rent a Car"	International	6	3	d
+2139	"Yale, Hemophilia (Michael Kevin Shea)"	Hemophilia	6	4	a
+2145	"African American, Women, teen (19), College Age (19)"	AFAM/Women	6	4	b
+2171	"women, International, Veteran"	Veteran/Women	6	4	c
+2187		*David Schwab	6	4	d
+2198		 Gert 35 years	6	5	a
+2237	"Native American, Federal Express, College Age (21)"	NA/API	6	5	b
+2277	"Latino, African American"	AFAM/Latino	6	5	c
+2291	"Latino, International"	International/Latino	6	5	d
+2313	"Military, Senior photo, Latino, Doctor, Mickey Mouse, Activist"	Activist/Latino/Veteran	6	6	a
+2323	Christmas tree	Gert 35 years	6	6	b
+2326	"Moby Dick Records, Theatrical"	Gert**Panelmaker	6	6	c
+2355	African American	AFAM	6	6	d
+2372	"International, women, jewish"	International/Women	7	1	a
+2457	"African American, Musical"	AFAM	7	1	b
+2468	"women, child photo"	*Carmela Ciminna	7	1	c
+2470		*Barbara Douglass	7	1	d
+2482		Gert* 35 years	7	2	a
+2490	"Leather, pretty, painted"	Leather	7	2	b
+2542	"women, child, African American, Theatrical, Jewish"	AFAM/Women/Child	7	2	c
+2755	"Medical, Hemophilia"	Hemophilia	7	2	d
+2773	"child, International, Latino, 40stories-Latin, Activist"	Activist/Latino	7	3	a
+2780	"Sign Language, Prisoners"	Prisoner	7	3	b
+2801		*West Hughes	7	3	c
+2803	"NHSQP, International"	International	7	3	d
+2841	"NHSQP;International, child, women"	International/Women	7	4	a
+2859	HEAVY	 Gert* 35 years	7	4	b
+2882	"Latino, African American, Women"	AFAM/Latino/Women	7	4	c
+2884		Gert 35 years	7	4	d
+2888		*Savannah O'Callaghan 	7	5	a
+2907	"NHSQP**,International, Congressman, Ryan White "	International/Government	7	5	b
+2925	"Theatrical, International, Asian"	Asian	7	5	c
+2936	"African American, Military"	AFAM/Veteran	7	5	d
+2944	International	International	7	6	a
+3000	"Latino, Irish"	 Gert 35 years/Latino	7	6	b
+3035	"Latino, Women"	Prisoner/Women/Latino	7	6	c
+3039	"African American, Max Robinson"	AFAM/Celebrity	7	6	d
+3041	"child;women, International, Military"	Gert* Child/Women/Veteran	8	1	a
+3045	"Latino, Leather"	Leather	8	1	b
+3054	"Asian, African American, Hawaiiian, Quilting"	AFAM/API	8	1	c
+3060	"Latino, Women, African American, child"	Latino/Women	8	1	d
+3129	"African American, Women, Latino"	AFAM/Women/Latino	8	2	a
+3207	"women photo, Religious, rape victim w/ article"	*Duff Axsom	8	2	b
+3240	"Women, Prisoner"	Prisoner	8	2	c
+3245	"Hemophilia, Military, African American, College Age"	Hemophilia/AFAM/Veteran	8	2	d
+3247	"Hemophilia, really nice panels"	Hemophilia	8	3	a
+3256	Hemophilia x3	Hemophilia	8	3	b
+3278	Leather 	Leather	8	3	c
+3296	SCAD - Bryson	Gert 35 years	8	3	d
+3303	International	International	8	4	a
+3321		*Katie Strauss	8	4	b
+3332	prison	 Prisoner	8	4	c
+3348	"International, Hemophilia"	Hemophilia	8	4	d
+3372	SCAD - McKinley	 Gert* 35 years	8	5	a
+3397	"NHSQP**, child (4), Donald Duck, Disney, African American"	AFAM/Child	8	5	b
+3400	"NHSQP, African American, Prisoner, College Age (21), "	 Prisoner/Women	8	5	c
+3412	"NHSQP, teen (14)"	Gert/Child	8	5	d
+3426	women	*Russell King	8	6	a
+3456	women  Lots of Weight	Gert* women	8	6	b
+3563		*Jay Charles	8	6	c
+3574	"women, Latino, Hemophilia, Rebel Flag"	Hemophilia/Couple/Women/Latino	8	6	d
+3587	Hemophilia	Hemophilia	9	1	a
+3609	Chevron Co. co-workers 12 x 12	*Kevin - Chevron	9	1	b
+3616		 Gert* 35 years	9	1	c
+3620	women;Asian-Buddhist	*Patricia Dabis	9	1	d
+3663		*SatRattan Khalsa	9	2	a
+3676	"Women, Prisoner"	 Prisoner/Women	9	2	b
+3755	"Mickey Mouse, African American, International"	International/AFAM	9	2	c
+3760	"NSQP, African American, Military "	AFAM/Veteran	9	2	d
+3815	"International, child, Latino"	International/Latino	9	3	a
+3833	"motorcycle, Sign Language - Deaf, Hemophilia"	Hemophilia	9	3	b
+3863	Asian; South Africa; Children; International SEE	International	9	3	c
+3893	International  	International	9	3	d
+3959	"Latino, International "	International	9	4	a
+3976	"Hemophilia, Senior"	Hemophilia	9	4	b
+4011	Hemophilia	Hemophilia	9	4	c
+4026	"African American,  3 Latino SEE"	Latino/ AFAM	9	4	d
+4035	International	International	9	5	a
+4091	"African American, Child (6)"	AFAM Child	9	5	b
+4099	"Hemophilia, Women, Senior, Religious, nice block"	Hemophilia/Women/Couple	9	5	c
+4134		Gert 35 years	9	5	d
+4154		*Clay Ray West	9	6	a
+4166	College Age (26)	*Joe Sobiesiak	9	6	b
+4174	"Prisoner, Latino"	Prisoner	9	6	c
+4200		Gert* 35 years	9	6	d
+4210	International	International	10	1	a
+4217	"NHSQP**; African American, International, pretty block"	AFAM/ Stunning	10	1	b
+4232	"mickey mouse, African American, Latino"	Latino/ AFAM	10	1	c
+4249		Gert 35 years	10	1	d
+4309	"Latino, Military, International"	International/Latino/Veteran	10	2	a
+4328	"Women, African American"	AFAM/ Women	10	2	b
+4340		Leather	10	2	c
+4346	"NHSQP** African American, Theatrical, Latin"	Latino/AFAM	10	2	d
+4355	Religious	*Joe Iacocca	10	3	a
+4360	"Theatrical, Transgender???"	Trans	10	3	b
+4391	US Department of Housing & Urban Development	Government	10	3	c
+4405	"NSQP; Women; College Age (20), Leather"	Leather/Women	10	3	d
+4409		*Susan Korzetz	10	4	a
+4418	International	International/Government	10	4	b
+4421	Native American 	NA/API	10	4	c
+4433	"African American, child, Women"	Child/Women/AFAM	10	4	d
+4460	"Asian & Pacific Islander, Native American"	NA/API	10	5	a
+4586	"International, Transgender"	Trans	10	5	b
+4589	"child, Transgender (panels 1/6)"	Trans	10	5	c
+4598	"Hemophilia, Religious, Women, US Court of Appeals"	Hemophilia/Women	10	5	d
+4618	"NHSQP, Latin"	*AnnMarie McCarthy	10	6	a
+4633	"African American Couple, Women"	AFAM/Couple/Women	10	6	b
+4656	Transgender - All	Trans	10	6	c
+4659	"Latino; All Women; Tenderloin Girls, Transgender - All, 40stories-Trans"	Trans	10	6	d
+4660		*Joe Sobiesiak	11	2	a
+4663	"Sisters of Perpetual Indulgence, 40stories-Sisters"	Gert Sisters	11	2	b
+4664	"Sisters of Perpetual Indulgence, 40stories-Sisters"	Gert Sisters	11	2	c
+4665	"Sisters of Perpetual Indulgence, 40stories-Sisters"	Gert Sisters	11	2	d
+4666	"Sisters of Perpetual Indulgence, 40stories-Sisters"	Gert Sisters	11	3	a
+4680	"NHSQP, African American, 40stories-Randy Shilts"	Gert*Celebrity AFAM	11	3	b
+4699	NHSQP; Native American	NA/API	11	3	c
+4734	"International, Theatrical, Asian"	Asian Symbols	11	3	d
+4737	"Native American, Women"	NA/API/Women	11	4	a
+4759	"African American, Women, SCAD - Jacobs"	AFAM/ Women	11	4	b
+4775		"*Terri DeSalvo, *Leigh Ausiello, *Khalilah Alston,"	11	4	c
+4776	"Beautiful, Latino photo"	 Latino	11	4	d
+4804		*PM Request - Judy Chatman	11	5	a
+4821	"African American, Military"	Veteran/AFAM	11	5	b
+4822	"Twin Towers, International"	International	11	5	c
+4833	"Latino, see, Prisoner"	Latino/Prisioner	11	5	d
+4840	All San Francisco	Glen Burke Celebrity	12	3	a
+4845	Transgender (panel 7)	Trans	12	3	b
+4915	"Theatrical, Hemophilia"	Hemophilia	12	3	c
+4950		*Garrett Wilhelm	12	3	d
+4956	"Latino, Women, Activist"	Activist/Women/Latino	12	4	a
+4960	Transgender	Trans	12	4	b
+4961	"Asian, Latino, Women, Transgender (Panels 1/7)"	Trans/Latino	12	4	c
+4986	"NSQP, Women, Native American"	NA/API/Women	12	4	d
+4992	Theatrical	Gert Theatre	15	3	a
+5000		 Gert*	15	3	b
+5022	Hemophilia	Hemophilia	15	3	c
+5037	"Theatrical, Women, African American, Latino"	AFAM/Latin/Women	15	3	d
+5120	"International, Women"	International/Women	15	4	a
+5129	"women, African American, International"	AFAM/Women/Couple	15	4	b
+5214	"women, International, Hemophilia"	Hemophilia/Women	15	4	c
+5247		"*Susan Epstein,"	15	4	d
+5299	International	Leather/International	16	3	a
+5322	"women, International"	International/Women	16	3	b
+5332	Transgender	Trans	16	3	c
+5359	"NSQP EAZY E, Freddy Mercury, African American"	AFAM/Celebrity	16	3	d
+5369	"religious, latino"	 Gert* Latino	16	4	a
+5396	women	Gert **Women	16	4	b
+5403	"African American photo, Latino, Women"	*George Driskell	16	4	c
+5417	Military	Gert 35 years/Veteran	16	4	d
+5426	"Religious, Native American, Hemophilia"	Hemophilia	17	3	a
+5457	Leonard Riley - warehouse manager 	 Gert* Staff	17	3	b
+5461		Gert 35 years	17	3	c
+5464	"Child (8), Latino, Women, African American, College Age (24)"	Latino/AFAM/Women/Child	17	3	d
+5465	"women, International"	Government/Women	17	4	a
+5475	"Military, Women, African American"	*Robyn Russell-Butler	17	4	b
+5509	International	International	17	4	c
+5529	"photographed, amazing block - beautiful"	Beautiful Block	17	4	d
+5542	"women, Native American (Crowe)"	NA/API/Women	18	3	a
+5546	"African American infant, child (6, 4 & 13), women, Religious, all african american, Mickey Mouse, sign language"	AFAM/Child/Women	18	3	b
+5550	"African American man, Hemophilia, International, Latino, women"	Hemophilia/Women/Latino	18	3	c
+5565	"NYPD, International, Latino Women"	Latino/Women	18	3	d
+5566		 Gert 35 years	18	4	a
+5570	"All African American, Women, Musical"	AFAM/Women	18	4	b
+5571	All African American **LARGE BLOCK	AFAM	18	4	c
+5579	"International, Jewish"	Jewish	18	4	d
+5586	"Latino, women, NPF Volunteer, African American *Returned 4/18/03 Changes made, Transgender??? [This block is CHANGING... do NOT rely on PMDB]"	Trans/Women/Latino	19	3	a
+5592	All African American	AFAM	19	3	b
+5607	Chevron Oil-Photos Beautiful SEE	*Kevin - Chevron	19	3	c
+5634	"African American, Women, SEE, beautiful, Jewish"	AFAM/Women	19	3	d
+5651	"Beautiful, International (UK), SCAD - Ozuna"		19	4	a
+5652	Religious	Gert 35 years	19	4	b
+5653	Jewish	 Gert 35 years	19	4	c
+5654	women	 Gert Women	19	4	d
+5655		 Gert	20	3	a
+5656		 Gert	20	3	b
+5657		Gert	20	3	c
+5658	"UCONN/Stamford; women, religious"	 Gert women	20	3	d
+5659	UCONN/Stamford	 Gert	20	4	a
+5666	"International, Asian"	Asian	20	4	b
+5670	"all african american, traditional"	AFAM	20	4	c
+5709	"African American, Religious"	 Gert* AFAM	20	4	d
+5710	"Black(color) block. Puerto Rican, SFFD, leather, cigarettes, International"	 Gert* Leather	21	3	a
+5714	"african american, child, Women, International"	International/Child	21	3	b
+5726	SEE	Gert*	21	3	c
+5727	"SEE, Artistic, awareness, Musical"	Gert*	21	3	d
+5745	"All African American, College Age, women"	AFAM/Women	21	4	a
+5748	"SEE, beautiful poem, beautiful block"	Gert*	21	4	b
+5759	"International, Women  "	Gert* women	21	4	c
+5763	"theatrical, Religious, women, Native American"	NA/API/Women	21	4	d
+5767	"beautiful, sorority, women, All African American, International"	AFAM/Women	22	3	a
+5789	"Students, NRHH/RHA, women, church, theatrical, Jewish"	Gert* women	22	3	b
+5808	POC All African American	AFAM	22	3	c
+5811	 All African American	AFAM	22	3	d
+5831	"African American, Military, Women, SCAD - Cinthia"	Veteran/Women	22	4	a
+5839	"International, Latin, SCAD - Hemphill"	International/Latino	22	4	b
+5866	"all african american sheryl lee ralph block, famous, 40stories, Women"	AFAM CMN/Women	22	4	c
+5873	PM Request	Women	22	4	d
+5875	Airport	Gert*	23	3	a
+5876	"International, SCAD - Matthews"	International	23	3	b
+5888	African American	AFAM	23	3	c
+5897	"Veteran, African American, Women"	Veteran/AFAM/Women	23	3	d
+5898		AFAM CMN	23	4	a
+5910		Glen Burke Celebrity	23	4	b
+5934		Gert	23	4	c
+5936		Gert*	23	4	d
+5954	"SCAD - Layne,"	*Elana Neiner	24	3	a
+5963		*Lani Riedel	24	3	b
+5975	"Call My NAME, African American, Women"	AFAM/CMN/Women	24	3	c
+5976	"Activist, Military, Call My NAME"	Activist/Veteran	24	3	d
+5986	"Call My NAME, African American"	AFAM CMN	24	4	a
+5989	African American/ Women	AFAM/CMN/Women	24	4	b
+5992	Illustrator	*Peter Mattair	24	4	c
+5998	Women	Gert*/Women	24	4	d
+6000		Gert Staff/Volunteers	25	3	a
+6001	"African American, Latino, Military"		25	3	b
+6004	African American	AFAM	25	3	c
+6006	"African American, Women"	AFAM/Women	25	3	d
+6012	Call My Name	Gert  Mary Bowman	25	4	a
+6016		Gert* Panelmaker Angela and Mike Richie	25	4	b
+			25	4	c
+			25	4	d

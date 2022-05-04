@@ -17,6 +17,10 @@ code {
   height: 100%;
 }
 
+.ggp-rotation {
+  transform: rotate(50deg);
+}
+
 /* Optional: Makes the sample page fill the window. */
 html,
 body {
