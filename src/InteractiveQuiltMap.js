@@ -14,7 +14,7 @@ const center = {
 const origin = { lat: 37.76906625350, lng: -122.45864076433 };
 const pitchright = { lat: 0.54e-4, lng: 0.9e-4 };
 const pitchdown = { lat: -0.81e-4, lng: 5.0e-5 };
-const gutterWidth = { lat: -9e-6, lng: 0.3e-4 };
+const gutterWidth = { lat: -9e-6, lng: 0.15e-4 };
 const positionShift = { 
   "a" : { lat: 0, lng: 0},
   "b" : { lat: 0, lng: 0.5},
@@ -32,7 +32,7 @@ const bounds =
 };
 
 const getBlockImage = (blockNum) => {
-  const blockLibrary = "https://atecquilt.utdallas.edu/quiltdata/pyramids6000/";
+  const blockLibrary = "https://quilt.utdallas.edu/quiltdata/pyramids6000/";
   const blockImageName = String(blockNum).padStart(5, '0') + "_files/0/0_0.jpeg";
   return blockLibrary + blockImageName;
 }
@@ -72,17 +72,18 @@ const initQuiltDisplay = (db) => {
         const rowNum = Number(row) - 1;
         const colNum = Number(col) - 1; 
         let blockBounds =  {
-            north: origin.lat + gutters.lat * gutterWidth.lat +
+            north: origin.lat + rowNum * gutterWidth.lat +
                     (rowNum + positionShift[position].lat) * pitchdown.lat * 0.5,
-            south: origin.lat + gutters.lat * gutterWidth.lat +
+            south: origin.lat + rowNum * gutterWidth.lat +
                     (rowNum + 0.5 + positionShift[position].lat) * pitchdown.lat * 0.5,
-            west: origin.lng + gutters.lng * gutterWidth.lng +
+            west: origin.lng + colNum * gutterWidth.lng +
                     (colNum + positionShift[position].lng) * pitchright.lng * 0.5,
-            east: origin.lng + gutters.lng * gutterWidth.lng +
+            east: origin.lng + colNum * gutterWidth.lng +
                     (colNum + 0.5 + positionShift[position].lng) * pitchright.lng * 0.5
           };
         let proposedKey = row + "_" + col + "_" + position;
         console.info(proposedKey);
+        console.info(gutters);
         console.info(blockBounds);
         quiltgrid.push(
         
