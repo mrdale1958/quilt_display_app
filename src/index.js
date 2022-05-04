@@ -12,8 +12,8 @@ let config = {
 	};
 
 
-  //fetch('D9355JuneDisplay.txt')
-  fetch('D9355JuneDisplay7blocks.txt')
+  fetch('D9355JuneDisplay.txt')
+  //fetch('D9355JuneDisplay7blocks.txt')
 	.then((response) => {
     	//response => response.clone.text();
 		//console.log(response);
