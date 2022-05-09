@@ -1,3 +1,4 @@
+import React from 'react';
 var authToken = '51f74aff963eb3151f504eab39ff851def286f11ee919f299445';
 var nameSearchResults = {};
 var loggedIn = false;
@@ -83,10 +84,11 @@ return(blockLink);
 }
 
 export const logIn = ()  => {
+	const auth = process.env.REACT_APP_FMP_AUTH;
 	return new Promise(function(resolve, reject) {
 		var authHeaders = new Headers();
 		authHeaders.append("Content-Type", "application/json");
-		authHeaders.append("Authorization", env.FMP_AUTH);
+		authHeaders.append("Authorization", auth);
 
 		var authRequestOptions = {
 				method: 'POST',
@@ -235,6 +237,8 @@ export const searchPanelListings = (searchTerm='') => {
         
         case 'boolean':
             break;    
+		default:
+			break;
     }
 
     return false; 

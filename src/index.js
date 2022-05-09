@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import React,{ useState }  from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import AQTDisplay from './AQTDisplay';
@@ -39,8 +39,8 @@ const reportStatus = (status) => {
 
 const buildDatabase = (inventory) => {
   let rowData, rowName, positionName, blockNumber;
-  const [namesDB, setNamesList] = useState({});
-  const [spatialDataByRows, setSpatialData] = useState({});
+  //const [namesDB, setNamesList] = useState({});
+  //const [spatialDataByRows, setSpatialData] = useState({});
 
   logIn()
   .then((response) => {
@@ -97,7 +97,7 @@ const getBlockNames = (block_num,noStatusChange=false) => {
               "(" + datum.fieldData["Panel Number"].charAt(datum.fieldData["Panel Number"].length - 1)+ ")</li>";
               return(datum.fieldData["Panel Listing"]);
               });
-              setNamesList({...namesDB,block_num:namesList});
+              //setNamesList({...namesDB,block_num:namesList});
       //clearResultsList()
       
   })
@@ -112,7 +112,7 @@ function runExhibit(displayData) {
   
   ReactDOM.render(
     <React.StrictMode>
-      <AQTDisplay db={spatialDataByRows} configData={config} namesDB={namesDB}/>
+      <AQTDisplay db={spatialDataByRows} configData={config} />
     </React.StrictMode>,
     document.getElementById('root')
   );

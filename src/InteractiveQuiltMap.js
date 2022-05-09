@@ -3,6 +3,8 @@ import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import { GroundOverlay, OverlayView, Polygon, Rectangle } from '@react-google-maps/api';
 //import QuiltOverlay from './QuiltOverlay';
 
+var handleBlockClick;
+
 const containerStyle = {
   width: '1334px',
   height: '740px'
@@ -33,8 +35,7 @@ const bounds =
 };
 
 const getBlockImage = (blockNum) => {
-  const blockLibrary = "https://quilt.utdallas.edu/quiltdata/pyramids6000/";
-  //const blockLibrary = "https://atecquilt.utdallas.edu/quiltdata/pyramids6000/";
+  const blockLibrary = process.env.REACT_APP_BLOCK_SRC;
   const blockImageName = String(blockNum).padStart(5, '0') + "_files/0/0_0.jpeg";
   return blockLibrary + blockImageName;
 }
@@ -63,6 +64,14 @@ const options = {
   zIndex: 1
 }
 
+const onBlockClick = block => {
+  console.log("GroundOverlay onClick block: ", block)
+}
+
+const onRectClick = blockNum => {
+  console.log("GroundOverlay onClick blockNum: ", blockNum);
+  handleBlockClick(blockNum)
+}
 
 //import Mask from './Mask.js'; Static entry in index.html
 const initQuiltDisplay = (db) => {
@@ -105,13 +114,16 @@ const initQuiltDisplay = (db) => {
               south:blockBounds.sw.lat,
               east:blockBounds.ne.lng,
               west:blockBounds.sw.lng}}
+            onClick={onBlockClick}
           /> 
-        <Rectangle
+          <Rectangle
           key={proposedKey+'rect'}
            bounds={{north: blockBounds.ne.lat,
                     south:blockBounds.sw.lat,
                     east:blockBounds.ne.lng,
-                    west:blockBounds.sw.lng}} />
+                    west:blockBounds.sw.lng}} 
+                    onClick={onRectClick.bind(this,db[col][row][position])}
+                    />
         </div>
         );
       }
@@ -142,6 +154,7 @@ const divStyle = {
 
 function InteractiveQuiltMap(props) {
   // props.config
+  handleBlockClick=props.handleBlockClick;
   let blockOverlays = initQuiltDisplay(props.db);
   //console.info(paths);
   return (
@@ -171,3 +184,5 @@ export default React.memo(InteractiveQuiltMap);
           options={options}
         />
         */
+
+        /* */
