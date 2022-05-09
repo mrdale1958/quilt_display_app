@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
-import { GroundOverlay, Polygon } from '@react-google-maps/api';
+import { GroundOverlay, OverlayView, Polygon, Rectangle } from '@react-google-maps/api';
+//import QuiltOverlay from './QuiltOverlay';
 
 const containerStyle = {
   width: '1334px',
@@ -13,7 +14,7 @@ const center = {
 };
 const origin = { lat: 37.76906625350, lng: -122.45864076433 };
 const pitchright = { lat: 0.54e-4, lng: 0.9e-4 };
-const pitchdown = { lat: -0.81e-4, lng: 5.0e-5 };
+const pitchdown = { lat: -0.75e-4, lng: 5.0e-5 };
 const gutterWidth = { lat: -9e-6, lng: 0.15e-4 };
 const positionShift = { 
   "a" : { lat: 0, lng: 0},
@@ -33,6 +34,7 @@ const bounds =
 
 const getBlockImage = (blockNum) => {
   const blockLibrary = "https://quilt.utdallas.edu/quiltdata/pyramids6000/";
+  //const blockLibrary = "https://atecquilt.utdallas.edu/quiltdata/pyramids6000/";
   const blockImageName = String(blockNum).padStart(5, '0') + "_files/0/0_0.jpeg";
   return blockLibrary + blockImageName;
 }
@@ -72,26 +74,45 @@ const initQuiltDisplay = (db) => {
         const rowNum = Number(row) - 1;
         const colNum = Number(col) - 1; 
         let blockBounds =  {
-            north: origin.lat + rowNum * gutterWidth.lat +
-                    (rowNum + positionShift[position].lat) * pitchdown.lat * 0.5,
-            south: origin.lat + rowNum * gutterWidth.lat +
-                    (rowNum + 0.5 + positionShift[position].lat) * pitchdown.lat * 0.5,
-            west: origin.lng + colNum * gutterWidth.lng +
-                    (colNum + positionShift[position].lng) * pitchright.lng * 0.5,
-            east: origin.lng + colNum * gutterWidth.lng +
-                    (colNum + 0.5 + positionShift[position].lng) * pitchright.lng * 0.5
+            ne: {lat: origin.lat + rowNum * gutterWidth.lat +
+                    (rowNum + positionShift[position].lat) * pitchdown.lat * 0.5 +
+                    colNum * pitchright.lat * 0.5,
+                 lng:  origin.lng + colNum * gutterWidth.lng +
+                    (colNum + 0.5 + positionShift[position].lng) * pitchright.lng * 0.5 +
+                    rowNum * pitchdown.lng * 0.5
+            },
+            sw: {lat: origin.lat + rowNum * gutterWidth.lat +
+                    (rowNum + 0.5 + positionShift[position].lat) * pitchdown.lat * 0.5 +
+                    colNum * pitchright.lat * 0.5,
+            lng: origin.lng + colNum * gutterWidth.lng +
+                    (colNum + positionShift[position].lng) * pitchright.lng * 0.5 +
+                    rowNum * pitchdown.lng * 0.5,}
+            
           };
         let proposedKey = row + "_" + col + "_" + position;
-        console.info(proposedKey);
-        console.info(gutters);
-        console.info(blockBounds);
+        //console.info(proposedKey);
+        //console.info(gutters);
+        //console.info(blockBounds);
+        /*
+        "floatPane" | "mapPane" | "markerLayer" | "overlayLayer" | "overlayMouseTarget"
+*/
         quiltgrid.push(
-        
-          <GroundOverlay
-            key={proposedKey}
+          <div key={proposedKey+"div"}>
+           <GroundOverlay
+            key={proposedKey+'gnd'}
             url={getBlockImage(db[col][row][position])}
-            bounds={blockBounds}
-          />
+            bounds={{north: blockBounds.ne.lat,
+              south:blockBounds.sw.lat,
+              east:blockBounds.ne.lng,
+              west:blockBounds.sw.lng}}
+          /> 
+        <Rectangle
+          key={proposedKey+'rect'}
+           bounds={{north: blockBounds.ne.lat,
+                    south:blockBounds.sw.lat,
+                    east:blockBounds.ne.lng,
+                    west:blockBounds.sw.lng}} />
+        </div>
         );
       }
       gutters.lat++;
@@ -107,10 +128,22 @@ const getPixelPositionOffset = (width, height) => ({
   y: -(height / 2),
 })
 
+const onClick = () => {
+  console.info('I have been clicked!')
+};
+
+const divStyle = {
+  background: 'white',
+  border: '1px solid #ccc',
+  padding: 0,
+  transform: 'rotate(25deg'
+};
+
+
 function InteractiveQuiltMap(props) {
   // props.config
   let blockOverlays = initQuiltDisplay(props.db);
-  console.info(paths);
+  //console.info(paths);
   return (
     <LoadScript
       googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
@@ -118,13 +151,13 @@ function InteractiveQuiltMap(props) {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={19}
-        options={{maxZoom:25}}
+        zoom={24}
+        options={{maxZoom:25,minZoom:17}}
       >
         { /* Child components, such as markers, info windows, etc. */}
         {blockOverlays}
 
-        
+     
         <></>
       </GoogleMap>
     </LoadScript>

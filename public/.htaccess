@@ -1,0 +1,19 @@
+######################
+## Handling Options for the CORS
+     RewriteCond %{REQUEST_METHOD} OPTIONS
+     RewriteRule ^(.*)$ $1 [L,R=204]
+
+###################
+## Add custom headers
+    Header always set Access-Control-Max-Age 1728000
+    Header always set Access-Control-Allow-Origin: "*"
+    Header always set Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
+    Header always set Access-Control-Allow-Headers: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,C$
+    Header always set Access-Control-Allow-Credentials true
+
+###################
+### CRA stuff
+Options -MultiViews
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.html [QSA,L]
