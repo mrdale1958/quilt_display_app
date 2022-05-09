@@ -86,7 +86,7 @@ export const logIn = ()  => {
 	return new Promise(function(resolve, reject) {
 		var authHeaders = new Headers();
 		authHeaders.append("Content-Type", "application/json");
-		authHeaders.append("Authorization", "Basic RGF0YUFQSUFjY2VzczpRdWlsdGVyczIwMjAr");
+		authHeaders.append("Authorization", env.FMP_AUTH);
 
 		var authRequestOptions = {
 				method: 'POST',
