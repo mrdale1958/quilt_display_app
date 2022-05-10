@@ -37,6 +37,19 @@ code {
   height: 100%;
   
 }
+
+.search {
+  width: 400px;
+}
+
+.box {
+  text-align: left;
+  border: black ridge 1px;
+  border-radius: 10px;
+  margin: 3px;
+  width: 20rem;
+  padding-left: 10px;
+}
 /* Optional: Makes the sample page fill the window. */
 html,
 body {

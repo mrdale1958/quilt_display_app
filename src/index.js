@@ -9,11 +9,35 @@ import { logIn, find } from './quiltDB.js';
 
 
 let spatialDataByRows = {};
+let blockList = [];
 
+const containerStyle = {
+  width: '1334px',
+  height: '740px'
+};
+
+const center = {
+  lat: 37.76906625350,
+  lng: -122.45864076433
+};
 let config = {
 	incomingURL:window.location.href,
 	displayData : {},
-	};
+  mapContainerStyle:containerStyle,
+  center:center,
+  zoom:19,
+  options:{maxZoom:25,minZoom:17},
+  origin : { lat: 37.76926625350, lng: -122.45865076433 },
+  pitchright : { lat: 0.76e-4, lng: 2.0e-4 },
+  pitchdown : { lat: -1.8e-4, lng: 12.0e-5 },
+  gutterWidth : { lat: -18e-6, lng: 0.3e-4 },
+  positionShift : { 
+    "a" : { lat: 0, lng: 0},
+    "b" : { lat: 0, lng: 0.5},
+    "c" : { lat: 0.5, lng: 0},
+    "d" : { lat: 0.5, lng: 0.5},
+  }
+}	
 
 
 fetch('D9355JuneDisplay.txt')
@@ -49,6 +73,7 @@ const buildDatabase = (inventory) => {
       rowName = rowData["row"];
       positionName = rowData["position"];
       blockNumber = rowData["Block #"];
+      blockList.push(blockNumber);
       if (spatialDataByRows[rowData["column"]]) {
         if (spatialDataByRows[rowData["column"]][rowName]) {
           spatialDataByRows[rowData["column"]][rowName][positionName] =  blockNumber ;
@@ -112,7 +137,7 @@ function runExhibit(displayData) {
   
   ReactDOM.render(
     <React.StrictMode>
-      <AQTDisplay db={spatialDataByRows} configData={config} />
+      <AQTDisplay db={spatialDataByRows} config={config} blockList={blockList} />
     </React.StrictMode>,
     document.getElementById('root')
   );

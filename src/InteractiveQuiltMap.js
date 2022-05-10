@@ -5,34 +5,17 @@ import { GroundOverlay, OverlayView, Polygon, Rectangle } from '@react-google-ma
 
 var handleBlockClick;
 
-const containerStyle = {
-  width: '1334px',
-  height: '740px'
-};
 
-const center = {
-  lat: 37.76906625350,
-  lng: -122.45864076433
-};
-const origin = { lat: 37.76906625350, lng: -122.45864076433 };
-const pitchright = { lat: 0.54e-4, lng: 0.9e-4 };
-const pitchdown = { lat: -0.75e-4, lng: 5.0e-5 };
-const gutterWidth = { lat: -9e-6, lng: 0.15e-4 };
-const positionShift = { 
-  "a" : { lat: 0, lng: 0},
-  "b" : { lat: 0, lng: 0.5},
-  "c" : { lat: 0.5, lng: 0},
-  "d" : { lat: 0.5, lng: 0.5},
-}
+
 const row = 0;
 const col = 0;
-const bounds =
+/*const bounds =
 {
   south: origin.lat + row * pitchright.lat - col * pitchdown.lat,
   west: origin.lng + row * pitchright.lng + col * pitchdown.lng,
   north: origin.lat + (row + 1) * pitchright.lat - col * pitchdown.lat,
   east: origin.lng + (col + 1) * pitchdown.lng + row * pitchright.lng
-};
+};*/
 
 const getBlockImage = (blockNum) => {
   const blockLibrary = process.env.REACT_APP_BLOCK_SRC;
@@ -40,7 +23,7 @@ const getBlockImage = (blockNum) => {
   return blockLibrary + blockImageName;
 }
 
-const paths = [
+/*const paths = [
   {  lat: origin.lat, lng: origin.lng },
   {  lat: origin.lat + pitchright.lat, lng: origin.lng  + pitchright.lng},
   {  lat: origin.lat + pitchright.lat + pitchdown.lat, lng: origin.lng + pitchright.lng + pitchdown.lng },
@@ -49,23 +32,36 @@ const paths = [
   {  lat: origin.lat + pitchright.lat + pitchdown.lat, lng: origin.lng + pitchright.lng + pitchdown.lng },
   {  lat: origin.lat + pitchright.lat + 2*pitchdown.lat, lng: origin.lng + pitchright.lng + 2*pitchdown.lng },
   {  lat: origin.lat + 2*pitchdown.lat, lng: origin.lng  + 2*pitchdown.lng},
-  ];
+  ];*/
 
-const options = {
-  fillColor: "lightblue",
-  fillOpacity: 1,
-  strokeColor: "red",
-  strokeOpacity: 1,
-  strokeWeight: 2,
-  clickable: false,
-  draggable: false,
-  editable: false,
-  geodesic: false,
-  zIndex: 1
-}
-
-const onBlockClick = block => {
-  console.log("GroundOverlay onClick block: ", block)
+  const blockBorderOptions = {
+    fillColor: "lightblue",
+    fillOpacity: 0,
+    strokeColor: "red",
+    strokeOpacity: 1,
+    strokeWeight: 2,
+    clickable: false,
+    draggable: false,
+    editable: false,
+    geodesic: false,
+    zIndex: 1
+  }
+  const selectedBlockBorderOptions = {
+    fillColor: "lightblue",
+    fillOpacity: 0,
+    strokeColor: "lightblue",
+    strokeOpacity: 1,
+    strokeWeight: 2,
+    clickable: false,
+    draggable: false,
+    editable: false,
+    geodesic: false,
+    zIndex: 10
+  }
+    
+const onBlockClick = blockNum => {
+  console.log("GroundOverlay onClick block: ", blockNum)
+  handleBlockClick(blockNum);
 }
 
 const onRectClick = blockNum => {
@@ -74,7 +70,7 @@ const onRectClick = blockNum => {
 }
 
 //import Mask from './Mask.js'; Static entry in index.html
-const initQuiltDisplay = (db) => {
+const initQuiltDisplay = (db, config, selectedBlock) => {
   let quiltgrid = [];
   let gutters = { lat: 0, lng: 0 };
   for (let col in db) {
@@ -83,19 +79,19 @@ const initQuiltDisplay = (db) => {
         const rowNum = Number(row) - 1;
         const colNum = Number(col) - 1; 
         let blockBounds =  {
-            ne: {lat: origin.lat + rowNum * gutterWidth.lat +
-                    (rowNum + positionShift[position].lat) * pitchdown.lat * 0.5 +
-                    colNum * pitchright.lat * 0.5,
-                 lng:  origin.lng + colNum * gutterWidth.lng +
-                    (colNum + 0.5 + positionShift[position].lng) * pitchright.lng * 0.5 +
-                    rowNum * pitchdown.lng * 0.5
+            ne: {lat: config.origin.lat + rowNum * config.gutterWidth.lat +
+                    (rowNum + config.positionShift[position].lat) * config.pitchdown.lat * 0.5 +
+                    colNum * config.pitchright.lat * 0.5,
+                 lng:  config.origin.lng + colNum * config.gutterWidth.lng +
+                    (colNum + 0.5 + config.positionShift[position].lng) * config.pitchright.lng * 0.5 +
+                    rowNum * config.pitchdown.lng * 0.5
             },
-            sw: {lat: origin.lat + rowNum * gutterWidth.lat +
-                    (rowNum + 0.5 + positionShift[position].lat) * pitchdown.lat * 0.5 +
-                    colNum * pitchright.lat * 0.5,
-            lng: origin.lng + colNum * gutterWidth.lng +
-                    (colNum + positionShift[position].lng) * pitchright.lng * 0.5 +
-                    rowNum * pitchdown.lng * 0.5,}
+            sw: {lat: config.origin.lat + rowNum * config.gutterWidth.lat +
+                    (rowNum + 0.5 + config.positionShift[position].lat) * config.pitchdown.lat * 0.5 +
+                    colNum * config.pitchright.lat * 0.5,
+            lng: config.origin.lng + colNum * config.gutterWidth.lng +
+                    (colNum + config.positionShift[position].lng) * config.pitchright.lng * 0.5 +
+                    rowNum * config.pitchdown.lng * 0.5,}
             
           };
         let proposedKey = row + "_" + col + "_" + position;
@@ -105,25 +101,31 @@ const initQuiltDisplay = (db) => {
         /*
         "floatPane" | "mapPane" | "markerLayer" | "overlayLayer" | "overlayMouseTarget"
 */
+          let blockBoundsOnMap = {north: blockBounds.ne.lat,
+            south:blockBounds.sw.lat,
+            east:blockBounds.ne.lng,
+            west:blockBounds.sw.lng};
         quiltgrid.push(
           <div key={proposedKey+"div"}>
            <GroundOverlay
             key={proposedKey+'gnd'}
             url={getBlockImage(db[col][row][position])}
-            bounds={{north: blockBounds.ne.lat,
-              south:blockBounds.sw.lat,
-              east:blockBounds.ne.lng,
-              west:blockBounds.sw.lng}}
+            bounds={blockBoundsOnMap}
             onClick={onBlockClick}
           /> 
-          <Rectangle
-          key={proposedKey+'rect'}
-           bounds={{north: blockBounds.ne.lat,
-                    south:blockBounds.sw.lat,
-                    east:blockBounds.ne.lng,
-                    west:blockBounds.sw.lng}} 
-                    onClick={onRectClick.bind(this,db[col][row][position])}
-                    />
+         
+           <Rectangle
+              key={proposedKey+'rect'}
+              bounds={blockBoundsOnMap} 
+              onClick={onRectClick.bind(this,db[col][row][position])}
+              options={blockBorderOptions}
+                    /> 
+          { selectedBlock ? <Rectangle
+            key={proposedKey+'rect'}
+              bounds={blockBoundsOnMap} 
+              onClick={onRectClick.bind(this,db[col][row][position])}
+              options={selectedBlockBorderOptions}
+              /> : null }
         </div>
         );
       }
@@ -148,24 +150,24 @@ const divStyle = {
   background: 'white',
   border: '1px solid #ccc',
   padding: 0,
-  transform: 'rotate(25deg'
+  transform: 'rotate(25deg)'
 };
 
 
 function InteractiveQuiltMap(props) {
   // props.config
   handleBlockClick=props.handleBlockClick;
-  let blockOverlays = initQuiltDisplay(props.db);
-  //console.info(paths);
+  let blockOverlays = initQuiltDisplay(props.db, props.config, props.selectedBlock);
+  console.info(props.config);
   return (
     <LoadScript
       googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
     >
       <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={24}
-        options={{maxZoom:25,minZoom:17}}
+        mapContainerStyle={props.config.mapContainerStyle}
+        center={props.config.center}
+        zoom={props.config.zoom}
+        options={props.config.options}
       >
         { /* Child components, such as markers, info windows, etc. */}
         {blockOverlays}

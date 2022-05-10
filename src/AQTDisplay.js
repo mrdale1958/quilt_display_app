@@ -11,7 +11,7 @@ function AQTDisplay(props) {
   //const [count, setCount] = useState(0);
   const [query, setQuery] = useState("");
   const [seen, setSeen] = useState(false);
-  const [selectedBlock, setSelection] = useState(0);
+  const [selectedBlock, setSelectedBlock] = useState(0);
 
   React.useEffect(() => { console.log("component updated"); });
   const toggleSeen = () => { 
@@ -20,7 +20,7 @@ function AQTDisplay(props) {
   const handleBlockClick= (blockNum) => {
     setSeen(!seen);
     console.log("block click", blockNum, seen);
-    setSelection(blockNum);
+    setSelectedBlock(blockNum);
   }
 
   var popup = seen ? <PopupBlock toggle={toggleSeen} block={selectedBlock} /> : null;
@@ -31,12 +31,33 @@ function AQTDisplay(props) {
     <div className="AQTDisplay">
     {popup}
     <div>
-      <input placeholder="Search the June 2022 Quilt Display" onChange={event => setQuery(event.target.value)}/>
+      <form onSubmit={(event) => { 
+        console.log("submit search for", event.target.value);
+      setSelectedBlock(event.target.value)}} >
+      <input className="search" placeholder="Search the June 2022 Quilt Display" 
+      onChange={event => setQuery(event.target.value)}
+      />
+      </form>
       
     </div>
-  <InteractiveQuiltmap db={props.db} configData={props.config} handleBlockClick={handleBlockClick}
+    <InteractiveQuiltmap db={props.db} config={props.config} handleBlockClick={handleBlockClick} selectedBlock={selectedBlock}
       
       />
+      {          
+        props.blockList.filter(name => {
+          if (query === "") {
+            //if query is empty
+            return name;
+          } else if (name.toLowerCase().includes(query.toLowerCase())) {
+            //returns filtered array
+            return name;
+          }
+        }).map((block,index) => {
+          <div className="box" key={index}>
+            <p>{block} </p>
+          </div>
+        })
+      }
     </div>
   );
 }
