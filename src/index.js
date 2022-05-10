@@ -17,8 +17,8 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 37.76906625350,
-  lng: -122.45864076433
+  lat: 37.76946625350,
+  lng: -122.45707076433
 };
 let config = {
 	incomingURL:window.location.href,
@@ -26,10 +26,18 @@ let config = {
   mapContainerStyle:containerStyle,
   center:center,
   zoom:19,
-  options:{maxZoom:25,minZoom:17},
-  origin : { lat: 37.76926625350, lng: -122.45865076433 },
-  pitchright : { lat: 0.76e-4, lng: 2.0e-4 },
-  pitchdown : { lat: -1.8e-4, lng: 12.0e-5 },
+  options:{maxZoom:25,
+            minZoom:17,
+            zoomControl: true,
+            mapTypeControl: true,
+            scaleControl: false,
+            streetViewControl: false,
+            rotateControl: false,
+            fullscreenControl: true
+          },
+  origin : { lat: 37.76909625350, lng: -122.45867076433 },
+  pitchright : { lat: 1.1e-4, lng: 1.5e-4 },
+  pitchdown : { lat: -1.5e-4, lng: 12.0e-5 },
   gutterWidth : { lat: -18e-6, lng: 0.3e-4 },
   positionShift : { 
     "a" : { lat: 0, lng: 0},

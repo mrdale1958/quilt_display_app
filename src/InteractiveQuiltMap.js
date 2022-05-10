@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import React from 'react';
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { GroundOverlay, OverlayView, Polygon, Rectangle } from '@react-google-maps/api';
+import { CircularProgress } from '@mui/material';
 //import QuiltOverlay from './QuiltOverlay';
 
 var handleBlockClick;
@@ -156,28 +157,38 @@ const divStyle = {
 
 function InteractiveQuiltMap(props) {
   // props.config
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+  });
   handleBlockClick=props.handleBlockClick;
+  let mapOptions = props.config.options;
   let blockOverlays = initQuiltDisplay(props.db, props.config, props.selectedBlock);
-  console.info(props.config);
-  return (
-    <LoadScript
-      googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
-    >
+  const renderMap = () => {
+      // wrapping to a function is useful in case you want to access `window.google`
+      // to eg. setup options or create latLng object, it won't be available otherwise
+      // feel free to render directly if you don't need that
+    mapOptions['mapTypeId'] = window.google.maps.MapTypeId.HYBRID;
+
+    return (
       <GoogleMap
         mapContainerStyle={props.config.mapContainerStyle}
         center={props.config.center}
         zoom={props.config.zoom}
-        options={props.config.options}
+        tilt={0}
+        options={mapOptions}
       >
         { /* Child components, such as markers, info windows, etc. */}
         {blockOverlays}
+      </GoogleMap>);
+  
+  }
+  if (loadError) {
+    return <div>Map cannot be loaded right now, sorry.</div>
+  }
 
-     
-        <></>
-      </GoogleMap>
-    </LoadScript>
-  )
+  return isLoaded ? renderMap() : <CircularProgress />
 }
+
 
 export default React.memo(InteractiveQuiltMap);
 
