@@ -139,7 +139,7 @@ function AQTDisplay(props) {
    
   React.useEffect(() => { 
     blocksOverlay= initQuiltDisplay();
-    console.log("component updated"); },[blocksOverlay]);
+    console.log("component updated"); });
   const toggleSeen = () => { 
     console.log("toggling block");
     setSeen(!seen)};
