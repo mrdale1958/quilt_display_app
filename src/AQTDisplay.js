@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 //import logo from './logo.svg';
 import './AQTDisplay.css';
+import { Autocomplete } from '@mui/material';
 import InteractiveQuiltmap from './InteractiveQuiltMap.js';
 import PopupBlock from './PopupBlock.js';
 import Data from "./MOCK_DATA.json";
@@ -153,9 +154,18 @@ function AQTDisplay(props) {
   //var names = props.namesDB;
   //if (Object.keys(names).length === 0) names = [{"item": "list"}];
   //console.log("block in db", names.length);
+  // look at https://mui.com/material-ui/react-autocomplete/ for the seearch function
   return (
     <div className="AQTDisplay">
     {popup}
+    <Autocomplete
+      id="grouped-demo"
+      options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+      groupBy={(option) => option.firstLetter}
+      getOptionLabel={(option) => option.title}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="With categories" />}
+    />
     <div>
       <form onSubmit={(event) => { 
         console.log("submit search for", event.target.value);
