@@ -1,11 +1,10 @@
 import React,{ useState }  from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import AQTDisplay from './AQTDisplay';
+import AQTDisplay from './Components/AQTDisplay';
 import reportWebVitals from './reportWebVitals';
-import { readCSVfile }  from './csvreader.js';
+import { readCSVfile }  from './Services/csvreader.js';
 //import registerServiceWorker from './registerServiceWorker';
-import { logIn, find } from './quiltDB.js';
 
 
 let spatialDataByRows = {};
@@ -57,95 +56,19 @@ fetch('D9355JuneDisplay.txt')
 })
 .then((mydata) => {
   //console.log("raw timeline: " + mydata);
-  console.log("logging in to database");
+  console.log("getting display data");
   let displayData = readCSVfile(mydata);
   //console.log("timelineData: " + timelineData);
-  buildDatabase(displayData);
+  runExhibit(displayData);
 
 });
-const reportStatus = (status) => {
-  document.getElementById("status").innerHTML = status;
-  //document.getElementById("status").style.display="block";
-
-}
-
-const buildDatabase = (inventory) => {
-  let rowData, rowName, positionName, blockNumber;
-  //const [namesDB, setNamesList] = useState({});
-  //const [spatialDataByRows, setSpatialData] = useState({});
-
-  logIn()
-  .then((response) => {
-    for (let block in inventory) {
-      rowData = inventory[block];
-      rowName = rowData["row"];
-      positionName = rowData["position"];
-      blockNumber = rowData["Block #"];
-      blockList.push(blockNumber);
-      if (spatialDataByRows[rowData["column"]]) {
-        if (spatialDataByRows[rowData["column"]][rowName]) {
-          spatialDataByRows[rowData["column"]][rowName][positionName] =  blockNumber ;
-        } else {
-          spatialDataByRows[rowData["column"]][rowName] = {[positionName]: blockNumber };
-        }
-      } else {
-        spatialDataByRows[rowData["column"]] = { [rowName] : {[positionName]: blockNumber }};
-        
-      }
-      getBlockNames(String(blockNumber).padStart(5, '0'));
-
-  }
-  runExhibit(spatialDataByRows);
-
-})
-.catch((error) => {
-    console.error('Error:', error);
-    return Promise.reject();
-  })  ;
-  
-}
-
-const getBlockNames = (block_num,noStatusChange=false) => {
-    var namesOnBlockQuery = JSON.stringify({
-            "query":[
-                {"Block #":"=="+[block_num]},
-                {"Panel Listing":"==","omit":"true"}],
-            "limit":"500","offset":"1",
-            "sort":[
-                {"fieldName":"Panel Number","sortOrder":"ascend"},
-                {"fieldName":"Panel Listing","sortOrder":"ascend"}]});
 
 
-    find(namesOnBlockQuery)
-    .then(json => {
-      if (Object.keys(json.response).length === 0) return;
-      if ( ! noStatusChange) {
-          reportStatus("found " +  
-          json.response.data.length +
-          " names on Block # " +  block_num );
-      }
-      let namesList = ""
-      let names = json.response.data.map((datum) => {
-              namesList += "<li>" + datum.fieldData["Panel Listing"] +
-              "(" + datum.fieldData["Panel Number"].charAt(datum.fieldData["Panel Number"].length - 1)+ ")</li>";
-              return(datum.fieldData["Panel Listing"]);
-              });
-              //setNamesList({...namesDB,block_num:namesList});
-      //clearResultsList()
-      
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-    return Promise.reject();
-  })  ;
- }
-
- 
 function runExhibit(displayData) {
   
   ReactDOM.render(
     <React.StrictMode>
-      <AQTDisplay db={spatialDataByRows} config={config} blockList={blockList} />
+      <AQTDisplay blocks={displayData} config={config} otherPOIs={"otherPOIs"}/>
     </React.StrictMode>,
     document.getElementById('root')
   );

@@ -3,8 +3,12 @@ import OpenSeaDragon from 'openseadragon';
 
 
 function PopupBlock(props){
-    
-        
+    useEffect(() => {
+        //debugger;
+        initSeaDragon()
+    })
+         
+     if (props.block === 0) return null;   
     console.log('making a pop up');
 
     const initSeaDragonDZI = () => {
@@ -82,11 +86,7 @@ function PopupBlock(props){
           initSeaDragonDZI();
       //}
   }
-  useEffect(() => {
-      //debugger;
-      initSeaDragon()
-  })
-   
+  
 
     return (
     <div className="modal">
