@@ -4,6 +4,7 @@ import { Polygon, InfoWindow } from '@react-google-maps/api';
 import { CircularProgress } from '@mui/material';
 import BlockOverlay from './BlockOverlay.js';
 import { logIn, find } from '../Services/quiltDB.js';
+
 const reportStatus = (status) => {
   document.getElementById("status").innerHTML = status;
   //document.getElementById("status").style.display="block";
@@ -21,7 +22,6 @@ function InteractiveQuiltMap(props) {
   });
   const [infoWindow, setInfoWindow] = useState(null);
   const [blocksOverlay, setBlocksOverlay] = useState([]);
-  const [names, setNames] = useState([]);
 
   
   
@@ -30,60 +30,27 @@ function InteractiveQuiltMap(props) {
     console.log("block click", blockNum);
     //setSelectedBlock(blockNum);
   }
-  const getNamesOnBlock = (block_num,noStatusChange=false) => {
-    const namesOnBlockQuery = JSON.stringify({
-            "query":[
-                {"Block #":"=="+[block_num]},
-                {"Panel Listing":"==","omit":"true"}],
-            "limit":"500","offset":"1",
-            "sort":[
-                {"fieldName":"Panel Number","sortOrder":"ascend"},
-                {"fieldName":"Panel Listing","sortOrder":"ascend"}]});
+ 
 
-
-    find(namesOnBlockQuery)
-    .then(json => {
-      if (Object.keys(json.response).length === 0) return;
-      if ( ! noStatusChange) {
-          reportStatus("found " +  
-          json.response.data.length +
-          " names on Block # " +  block_num );
-      }
-      //let namesList = ""
-      let names = json.response.data.map((datum) => {
-        /* searchList += "<li>" + datum.fieldData["Panel Listing"] +
-              "(" + datum.fieldData["Panel Number"].charAt(datum.fieldData["Panel Number"].length - 1)+ ")</li>";
-              */ 
-             return(datum.fieldData["Panel Listing"]);
-      });
-      props.addNamesToSearch(names);        //setNamesList({...namesDB,block_num:namesList});
-      //clearResultsList()
-      
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-    return Promise.reject();
-  })  ;
- }
-
-  const buildNamesList = useCallback((inventory) => {
+  const buildNamesList = useCallback(() => {
+    const inventory = props.blocks;
     console.log("getting names for",inventory.length,"blocks");
 
     //const [namesDB, setNamesList] = useState({});
     //const [spatialDataByRows, setSpatialData] = useState({});
      for (var block in inventory) {
       const blockNumber = inventory[block]["Block #"];
-      let names = [{BlockNumber: blockNumber, PanelListing:'foo'},
-          {BlockNumber: blockNumber, PanelListing:'bar'},
-          {BlockNumber: blockNumber, PanelListing:'baz'}];
-      props.addNamesToSearch(names); 
+      /* const addNamesToSearch = props.addNamesToSearch;
+      getnames(blockNumber)
+      .then(names =>
+       {addNamesToSearch(names);})  */
      }
     /*logIn()
     .then((response) => {
 
         getNamesOnBlock(String(blockNumber).padStart(5, '0'));
   
-    })} */},[]);
+    })} */},[props.blocks, props.addNamesToSearch]);
   
 
   const buildBlocksOverlay = useCallback( (props) => {
@@ -120,7 +87,7 @@ function InteractiveQuiltMap(props) {
         east:blockBounds.ne.lng,
         west:blockBounds.sw.lng
       };
-      
+      props.addNamesToSearch(inventory[block]['Block #']);
       blocks.push(
         <BlockOverlay row={inventory[block].row} 
               col={inventory[block].column} 
@@ -164,10 +131,6 @@ function InteractiveQuiltMap(props) {
     zIndex: 1
   }
 
-  useEffect(() => { 
-    setNames(buildNamesList(props.blocks));
-    console.log("namesList updated"); 
-  },[buildNamesList, props]);
   
   useEffect(() => {
     setBlocksOverlay(buildBlocksOverlay(props));

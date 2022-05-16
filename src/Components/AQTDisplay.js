@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useReducer, useCallback, useEffect } from 'react';
 //import logo from './logo.svg';
 import './AQTDisplay.css';
 import { Autocomplete } from '@mui/material';
 import { TextField } from '@mui/material';
+import  {getnames, addName}  from '../Services/nameslist.js';
 
 import InteractiveQuiltmap from './InteractiveQuiltMap.js';
 
 function AQTDisplay(props) {
-  const [searchList, setSearchList] = useState([]);
+
+  function reducer(state, action) {
+    let foo = {menuList: state.menuList.concat(action.payload)};
+    return foo;
+  }
+  const [searchList, setSearchList] = useState({menuList: []});
   
   let polyOverlays = [
     {  lat: props.config.origin.lat, lng: props.config.origin.lng },
@@ -21,18 +27,24 @@ function AQTDisplay(props) {
     ];
     let otherPOIs = null;
        
+    const addNamesToSearch = (blockID) => {
+      addName({"BlockNumber": blockID, "PanelListing":"bar"});
+    }
+  useEffect(() => {
+    let mounted = true;
+    getnames()
+    .then(names => {
+      if (mounted)  {
+        setSearchList(names);
+      }
+    })
+    return () => mounted = false;
+  },[])     
    
-      
-       
-         
-    //import Mask from './Mask.js'; Static entry in index.html
-   
-   
-  const addNamesToSearch = (namelist) => {
-    let foo = searchList;
-    foo.push(namelist);
-    setSearchList(foo);
-  }
+  /* const addNamesToSearch = useCallback((namelist) => {
+    dispatch({payload: namelist});
+    console.log(namelist);
+  },[]); */
   
   
   // look at https://mui.com/material-ui/react-autocomplete/ for the seearch function
@@ -40,9 +52,9 @@ function AQTDisplay(props) {
     <div className="AQTDisplay">
     <Autocomplete
       id="grouped-by-block"
-      options={searchList.sort((a, b) => -b.PanelListing.localeCompare(a.PanelListing))}
-      groupBy={(searchList) => searchList.BlockNumber}
-      getOptionLabel={(searchList) => searchList.PanelListing}
+      options={searchList.menuList.sort((a, b) => b.PanelListing.localeCompare(a.PanelListing))}
+      groupBy={(option) => option.BlockNumber}
+      getOptionLabel={(option) => option.PanelListing}
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Search the June 2022 Quilt Display" />}
     />
