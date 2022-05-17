@@ -1,15 +1,16 @@
 export  function getnames() {
-    return fetch('http://localhost:3333/nameList')
+    return fetch('http://localhost:3334/nameList')
     .then(data => data.json())
     }
 
 export  function addName(nameobj) {
-    return fetch('http://localhost:3333/nameList', {
+    let newBody = JSON.stringify( nameobj );
+    return fetch('http://localhost:3334/nameList', {
     method: 'POST',
         headers: {
         'Content-Type': 'application/json'
         },
-    body: JSON.stringify({ nameobj })
+    body: newBody
     })
     .then(data => data.json())
 }

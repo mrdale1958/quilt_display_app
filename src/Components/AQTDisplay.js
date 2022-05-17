@@ -26,10 +26,20 @@ function AQTDisplay(props) {
     {  lat: props.config.origin.lat + 2*props.config.pitchdown.lat, lng: props.config.origin.lng  + 2*props.config.pitchdown.lng},
     ];
     let otherPOIs = null;
-       
+    const [addNamesFlag, setAddNamesFlag] = useState(false);
+    const [blockToAdd, setAddBlock] = useState({});
+
     const addNamesToSearch = (blockID) => {
-      addName({"BlockNumber": blockID, "PanelListing":"bar"});
+      setAddBlock(blockID);
+      //setAddNamesFlag(true);
     }
+
+  useEffect(() => {
+    if (Object.keys(blockToAdd).length > 0)
+      {addName({"BlockNumber": blockToAdd, "PanelListing":"bar"});}
+    //setAddNamesFlag(false);
+  },[blockToAdd]);
+
   useEffect(() => {
     let mounted = true;
     getnames()
@@ -45,20 +55,24 @@ function AQTDisplay(props) {
     dispatch({payload: namelist});
     console.log(namelist);
   },[]); */
+  useEffect(() => {
+    console.log(searchList);
+  },[searchList]);
   
   
   // look at https://mui.com/material-ui/react-autocomplete/ for the seearch function
   return (
     <div className="AQTDisplay">
+    {  (searchList.length > 0) ?
     <Autocomplete
       id="grouped-by-block"
-      options={searchList.menuList.sort((a, b) => b.PanelListing.localeCompare(a.PanelListing))}
+      options={searchList.sort((a, b) => b.PanelListing.localeCompare(a.PanelListing))}
       groupBy={(option) => option.BlockNumber}
       getOptionLabel={(option) => option.PanelListing}
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Search the June 2022 Quilt Display" />}
-    />
-   
+    /> : null
+    }
     <InteractiveQuiltmap 
                         config={props.config} 
                         blocks={props.blocks}

@@ -63,7 +63,6 @@ fetch('D9355JuneDisplay.txt')
 
 });
 
-
 function runExhibit(displayData) {
   
   ReactDOM.render(

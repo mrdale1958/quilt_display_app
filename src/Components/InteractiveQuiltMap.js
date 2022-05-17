@@ -32,7 +32,7 @@ function InteractiveQuiltMap(props) {
   }
  
 
-  const buildNamesList = useCallback(() => {
+  const buildNamesList = () => {
     const inventory = props.blocks;
     console.log("getting names for",inventory.length,"blocks");
 
@@ -50,7 +50,7 @@ function InteractiveQuiltMap(props) {
 
         getNamesOnBlock(String(blockNumber).padStart(5, '0'));
   
-    })} */},[props.blocks, props.addNamesToSearch]);
+    })} */}
   
 
   const buildBlocksOverlay = useCallback( (props) => {
@@ -87,7 +87,7 @@ function InteractiveQuiltMap(props) {
         east:blockBounds.ne.lng,
         west:blockBounds.sw.lng
       };
-      props.addNamesToSearch(inventory[block]['Block #']);
+      //props.addNamesToSearch(inventory[block]['Block #']);
       blocks.push(
         <BlockOverlay row={inventory[block].row} 
               col={inventory[block].column} 
