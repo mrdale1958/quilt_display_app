@@ -83,6 +83,26 @@ return(blockLink);
 
 }
 
+export async function alogin() {
+	const auth = process.env.REACT_APP_FMP_AUTH;
+	var authHeaders = new Headers();
+	authHeaders.append("Content-Type", "application/json");
+	authHeaders.append("Authorization", auth);
+
+	var authRequestOptions = {
+			method: 'POST',
+			headers: authHeaders,
+		// redirect: 'follow'
+	};
+	console.log("fetching authorization", authRequestOptions);
+
+
+	const fetcher = await fetch("https://aidsquilt.360works.com/fmi/data/v1/databases/PMDB/sessions", authRequestOptions);
+	const result = await fetcher.json();
+	
+	authToken=result.response.token;
+	loggedIn = true;
+}
 export const logIn = ()  => {
 	const auth = process.env.REACT_APP_FMP_AUTH;
 	return new Promise(function(resolve, reject) {
@@ -95,12 +115,12 @@ export const logIn = ()  => {
 				headers: authHeaders,
 			// redirect: 'follow'
 		};
-		console.log("fetching authorization");
+		console.log("fetching authorization", authRequestOptions);
 
 	fetch("https://aidsquilt.360works.com/fmi/data/v1/databases/PMDB/sessions", authRequestOptions)
 	.then(response => response.json())
 	.then(result => {
-			console.log("authRequest", result);
+			console.log("authResponse", result);
 			authToken=result.response.token;
 			loggedIn = true;
 			resolve(result);
@@ -141,35 +161,33 @@ const logDBError= (message, searchTerm) => {
 	console.log("Fetch error:", searchTerm, message[0].code, fmpErrorCodes[message[0].code]);
 }
 export const find = (query_string) => {
-	if (loggedIn)
-	{return new Promise(function(resolve, reject) {
+	
+	return new Promise((resolve, reject) => {
+		if (loggedIn) {
+			var myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/json");
+			myHeaders.append("Authorization", "Bearer "+ authToken);
+			let queryURL = "https://aidsquilt.360works.com/fmi/data/v1/databases/PMDB/layouts/DataAPI/_find";
 
-		var myHeaders = new Headers();
-		myHeaders.append("Content-Type", "application/json");
-		myHeaders.append("Authorization", "Bearer "+ authToken);
-		let queryURL = "https://aidsquilt.360works.com/fmi/data/v1/databases/PMDB/layouts/DataAPI/_find";
-
-		var requestOptions = {
-			method: 'POST',
-			headers: myHeaders,
-			body: query_string,
-			redirect: 'follow'
-		};
-		console.log("finding", query_string);
-		fetch(queryURL, requestOptions)
-		.then(handleServerErrors)
-		.then(response => {
-			resolve(response.json());
-		});
-	})}
-	else
-	{
-		Promise.reject(new Error('not logged in, ignoring find request", query_string')).then(function() {
-			// not called
-		  }, function(error) {
-			console.error(error); // Stacktrace
-		  });
-	}
+			var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: query_string,
+				redirect: 'follow'
+			};
+			console.log("finding", query_string);
+			fetch(queryURL, requestOptions)
+			.then(handleServerErrors)
+			.then(response => {
+				resolve(response.json());
+			});
+		} else {
+			logIn().catch((error) => {
+				console.error('Error:', error); });
+			console.log('not logged in, ignoring find request', query_string);
+			reject(new Error('not logged in, ignoring find request, query_string'));
+		}
+	})
 
 }
 // TODO: fill these out and move to interface files

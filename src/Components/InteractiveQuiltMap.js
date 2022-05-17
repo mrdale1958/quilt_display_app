@@ -3,7 +3,6 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { Polygon, InfoWindow } from '@react-google-maps/api';
 import { CircularProgress } from '@mui/material';
 import BlockOverlay from './BlockOverlay.js';
-import { logIn, find } from '../Services/quiltDB.js';
 
 const reportStatus = (status) => {
   document.getElementById("status").innerHTML = status;
@@ -32,27 +31,7 @@ function InteractiveQuiltMap(props) {
   }
  
 
-  const buildNamesList = () => {
-    const inventory = props.blocks;
-    console.log("getting names for",inventory.length,"blocks");
-
-    //const [namesDB, setNamesList] = useState({});
-    //const [spatialDataByRows, setSpatialData] = useState({});
-     for (var block in inventory) {
-      const blockNumber = inventory[block]["Block #"];
-      /* const addNamesToSearch = props.addNamesToSearch;
-      getnames(blockNumber)
-      .then(names =>
-       {addNamesToSearch(names);})  */
-     }
-    /*logIn()
-    .then((response) => {
-
-        getNamesOnBlock(String(blockNumber).padStart(5, '0'));
-  
-    })} */}
-  
-
+ 
   const buildBlocksOverlay = useCallback( (props) => {
     let inventory = props.blocks;
     let config = props.config;
@@ -87,7 +66,7 @@ function InteractiveQuiltMap(props) {
         east:blockBounds.ne.lng,
         west:blockBounds.sw.lng
       };
-      //props.addNamesToSearch(inventory[block]['Block #']);
+      //props.addNamesToSearch(inventory[block]['Block #'].padStart(5, '0'));
       blocks.push(
         <BlockOverlay row={inventory[block].row} 
               col={inventory[block].column} 

@@ -1,3 +1,5 @@
+import { logIn, find } from '../Services/quiltDB.js';
+
 export  function getnames() {
     return fetch('http://localhost:3334/nameList')
     .then(data => data.json())
@@ -14,8 +16,7 @@ export  function addName(nameobj) {
     })
     .then(data => data.json())
 }
-/*       
-const getNamesOnBlock = (block_num,noStatusChange=false) => {
+export function addNamesOnBlock  (block_num,noStatusChange=false)  {
     const namesOnBlockQuery = JSON.stringify({
             "query":[
                 {"Block #":"=="+[block_num]},
@@ -30,24 +31,21 @@ const getNamesOnBlock = (block_num,noStatusChange=false) => {
     .then(json => {
       if (Object.keys(json.response).length === 0) return;
       if ( ! noStatusChange) {
-          reportStatus("found " +  
+          console.log("found " +  
           json.response.data.length +
           " names on Block # " +  block_num );
       }
       //let namesList = ""
-      let names = json.response.data.map((datum) => {
-        /* searchList += "<li>" + datum.fieldData["Panel Listing"] +
-              "(" + datum.fieldData["Panel Number"].charAt(datum.fieldData["Panel Number"].length - 1)+ ")</li>";
-              */
-             /* 
-             return(datum.fieldData["Panel Listing"]);
-      });
-      props.addNamesToSearch(names);        //setNamesList({...namesDB,block_num:namesList});
-      //clearResultsList()
-      
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-    return Promise.reject();
-  })  ;
- } */
+      json.response.data.map((datum) => {
+        addName({"BlockNumber": datum.fieldData["Panel Number"].charAt(datum.fieldData["Panel Number"].length - 1),
+             "PanelListing":datum.fieldData["Panel Listing"]})
+        .then(
+            console.log("added ", data => data.json())
+        )
+      })
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        return Promise.reject();
+      })  ;
+    }

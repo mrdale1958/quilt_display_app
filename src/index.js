@@ -4,6 +4,7 @@ import './index.css';
 import AQTDisplay from './Components/AQTDisplay';
 import reportWebVitals from './reportWebVitals';
 import { readCSVfile }  from './Services/csvreader.js';
+import { logIn, alogin, find } from './Services/quiltDB.js';
 //import registerServiceWorker from './registerServiceWorker';
 
 
@@ -59,6 +60,9 @@ fetch('D9355JuneDisplay.txt')
   console.log("getting display data");
   let displayData = readCSVfile(mydata);
   //console.log("timelineData: " + timelineData);
+  //logIn()
+  //.then(runExhibit(displayData));
+  alogin();
   runExhibit(displayData);
 
 });

@@ -3,7 +3,7 @@ import React, { useState, useReducer, useCallback, useEffect } from 'react';
 import './AQTDisplay.css';
 import { Autocomplete } from '@mui/material';
 import { TextField } from '@mui/material';
-import  {getnames, addName}  from '../Services/nameslist.js';
+import  {getnames, addNamesOnBlock}  from '../Services/nameslist.js';
 
 import InteractiveQuiltmap from './InteractiveQuiltMap.js';
 
@@ -30,16 +30,14 @@ function AQTDisplay(props) {
     const [blockToAdd, setAddBlock] = useState({});
 
     const addNamesToSearch = (blockID) => {
-      setAddBlock(blockID);
+      if ((searchList.length > 0) && searchList.find(o => o.BlockNumber === blockID.padStart(5, '0')))  return;
+      console.log("want to add", blockID.padStart(5, '0'));
+        addNamesOnBlock({"BlockNumber": blockID.padStart(5, '0'), "PanelListing":"bar"})
+        
       //setAddNamesFlag(true);
     }
 
-  useEffect(() => {
-    if (Object.keys(blockToAdd).length > 0)
-      {addName({"BlockNumber": blockToAdd, "PanelListing":"bar"});}
-    //setAddNamesFlag(false);
-  },[blockToAdd]);
-
+ 
   useEffect(() => {
     let mounted = true;
     getnames()
@@ -66,10 +64,17 @@ function AQTDisplay(props) {
     {  (searchList.length > 0) ?
     <Autocomplete
       id="grouped-by-block"
-      options={searchList.sort((a, b) => b.PanelListing.localeCompare(a.PanelListing))}
+      options={searchList.sort((a, b) => a.BlockNumber.padStart(5, '0').localeCompare(b.BlockNumber.padStart(5, '0')))}
       groupBy={(option) => option.BlockNumber}
       getOptionLabel={(option) => option.PanelListing}
       sx={{ width: 300 }}
+      renderOption={(props, option) => {
+        return (
+          <li {...props} key={option.id}>
+            {option.PanelListing}
+          </li>
+        );
+      }}
       renderInput={(params) => <TextField {...params} label="Search the June 2022 Quilt Display" />}
     /> : null
     }

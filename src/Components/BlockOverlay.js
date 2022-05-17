@@ -11,7 +11,7 @@ function BlockOverlay(props) {
   const [seen, setSeen] = useState(false);
 
   useEffect(() => {
-    setBlockID(props.blockID);
+    setBlockID(props.blockID.padStart(5, '0'));
   },[props.blockID]
   );
   
@@ -72,7 +72,7 @@ function BlockOverlay(props) {
         {popup}
         <GroundOverlay
               key={baseKey+'gnd'}
-              url={getBlockImage(props.blockID)}
+              url={getBlockImage(blockID)}
               bounds={props.blockBoundsOnMap}
               onClick={onBlockClick}
           /> 
@@ -80,13 +80,13 @@ function BlockOverlay(props) {
           <Rectangle
                 key={baseKey+'rect'}
                 bounds={props.blockBoundsOnMap} 
-                onClick={onRectClick.bind(this,props.blockID)}
+                onClick={onRectClick.bind(this,blockID)}
                 options={blockBorderOptions}
                       /> 
           { props.selectedBlock ? <Rectangle
               key={baseKey+'selectedrect'}
                 bounds={props.blockBoundsOnMap} 
-                onClick={onRectClick.bind(this,props.blockID)}
+                onClick={onRectClick.bind(this,blockID)}
                 options={selectedBlockBorderOptions}
                 /> : null }
       </div>

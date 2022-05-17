@@ -349,5 +349,5 @@ Block #	DE Notes	Promised	column	row	position
 6006	"African American, Women"	AFAM/Women	25	3	d
 6012	Call My Name	Gert  Mary Bowman	25	4	a
 6016		Gert* Panelmaker Angela and Mike Richie	25	4	b
-5960			25	4	c
-5961			25	4	d
+5960	foo	bar	25	4	c
+5961	goo	baz	25	4	d
