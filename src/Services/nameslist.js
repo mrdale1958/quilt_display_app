@@ -36,7 +36,11 @@ var namesCount = 0;
 var failedAdds = 0;
 var blocksToAdd = [];
 
-export const addNamesOnBlock = (block_num) => {return new Promise((resolve, reject) => {
+export const addNamesOnBlock = (block_num) => {
+    namesList.push({"BlockNumber": "Block "+block_num,
+    "PanelListing":block_num, key:"Search_"+block_num,
+    "PanelLast":""});
+    return new Promise((resolve, reject) => {
     resolve(JSON.stringify({
         "query":[
             {"Block #":"=="+[block_num]},

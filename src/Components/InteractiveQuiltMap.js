@@ -75,6 +75,7 @@ function InteractiveQuiltMap(props) {
               blockID={inventory[block]['Block #']}
               key={inventory[block]['Block #'].padStart(5, '0')}
               handleBlockClick={handleBlockClick}
+              selected={(props.selectedBlock == inventory[block]['Block #'].padStart(5, '0'))}
               />
     );
 

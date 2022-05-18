@@ -1,5 +1,9 @@
 body {
   margin: 0;
+  padding: 0;
+/*viewport-relative units to cover page fully */
+
+  
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -51,9 +55,3 @@ code {
   padding-left: 10px;
 }
 /* Optional: Makes the sample page fill the window. */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}

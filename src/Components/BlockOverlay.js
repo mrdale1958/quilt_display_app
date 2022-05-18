@@ -33,9 +33,9 @@ function BlockOverlay(props) {
   const blockBorderOptions = {
         fillColor: "lightblue",
         fillOpacity: 0,
-        strokeColor: "red",
+        strokeColor: "white",
         strokeOpacity: 1,
-        strokeWeight: 2,
+        strokeWeight: 1,
         clickable: false,
         draggable: false,
         editable: false,
@@ -44,11 +44,11 @@ function BlockOverlay(props) {
       }
       
   const selectedBlockBorderOptions = {
-        fillColor: "lightblue",
-        fillOpacity: 0,
-        strokeColor: "lightblue",
+        fillColor: "red",
+        fillOpacity: 0.01,
+        strokeColor: "red",
         strokeOpacity: 1,
-        strokeWeight: 2,
+        strokeWeight: 1,
         clickable: false,
         draggable: false,
         editable: false,
@@ -66,6 +66,7 @@ function BlockOverlay(props) {
     props.handleBlockClick(blockNum)
   }    
   if (baseKey === '') return null;
+  console.log("selected?", props.selected, blockID);
   var popup = seen ? <PopupBlock toggle={toggleSeen} block={blockID} /> : null;
   return(
       <div key={baseKey+"div"}>
@@ -77,18 +78,18 @@ function BlockOverlay(props) {
               onClick={onBlockClick}
           /> 
             
-          <Rectangle
-                key={baseKey+'rect'}
-                bounds={props.blockBoundsOnMap} 
-                onClick={onRectClick.bind(this,blockID)}
-                options={blockBorderOptions}
-                      /> 
-          { props.selectedBlock ? <Rectangle
+           
+          { props.selected ? <Rectangle
               key={baseKey+'selectedrect'}
                 bounds={props.blockBoundsOnMap} 
                 onClick={onRectClick.bind(this,blockID)}
                 options={selectedBlockBorderOptions}
-                /> : null }
+                /> : <Rectangle
+                key={baseKey+'rect'}
+                bounds={props.blockBoundsOnMap} 
+                onClick={onRectClick.bind(this,blockID)}
+                options={blockBorderOptions}
+                      /> }
       </div>
 
   );

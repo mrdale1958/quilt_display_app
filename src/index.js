@@ -4,16 +4,12 @@ import './index.css';
 import AQTDisplay from './Components/AQTDisplay';
 import reportWebVitals from './reportWebVitals';
 import { readCSVfile }  from './Services/csvreader.js';
-import { logIn, find } from './Services/quiltDB.js';
 //import registerServiceWorker from './registerServiceWorker';
 
 
-let spatialDataByRows = {};
-let blockList = [];
-
 const containerStyle = {
-  width: '1334px',
-  height: '740px'
+  width: '100%',
+  height: '100%'
 };
 
 const center = {
