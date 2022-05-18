@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 //import logo from './logo.svg';
 import './AQTDisplay.css';
 import { Autocomplete } from '@mui/material';
@@ -9,10 +9,7 @@ import InteractiveQuiltmap from './InteractiveQuiltMap.js';
 
 function AQTDisplay(props) {
 
-  function reducer(state, action) {
-    let foo = {menuList: state.menuList.concat(action.payload)};
-    return foo;
-  }
+  
   const [searchList, setSearchList] = useState([]);
   
   let polyOverlays = [
@@ -26,15 +23,15 @@ function AQTDisplay(props) {
     {  lat: props.config.origin.lat + 2*props.config.pitchdown.lat, lng: props.config.origin.lng  + 2*props.config.pitchdown.lng},
     ];
     let otherPOIs = null;
-    const [addNamesFlag, setAddNamesFlag] = useState(false);
-    const [blockToAdd, setAddBlock] = useState({});
+
     const sortByBlockNumber = (a,b) => {
       //console.log("sorting", a.BlockNumber, b.BlockNumber);
-      return a.BlockNumber.localeCompare(b.BlockNumber);
+      return a.BlockNumber.localeCompare(b.BlockNumber) ||
+      a.PanelLast.localeCompare(b.PanelLast);
     }
     const addNamesToSearch = (blockID) => {
       if ((searchList.length > 0) && searchList.find(o => o.BlockNumber === blockID.padStart(5, '0')))  return;
-      console.log("want to add", blockID.padStart(5, '0'));
+      //console.log("want to add", blockID.padStart(5, '0'));
         addNamesOnBlock(blockID.padStart(5, '0'))
         .then(data=> {
           try {
@@ -47,7 +44,7 @@ function AQTDisplay(props) {
       
     }
 const refreshMenu = useCallback(() => {
-  console.log("searchList: ", searchList);
+  //console.log("searchList: ", searchList);
   let mounted = true;
   let names = getnames();
   //.then(names => {

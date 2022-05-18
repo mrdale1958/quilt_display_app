@@ -101,14 +101,14 @@ return(blockLink);
 				timeout: 6000
 			// redirect: 'follow'
 		};
-		console.log("fetching authorization", authRequestOptions);
+		//console.log("fetching authorization", authRequestOptions);
 	try {
 
 		const response = await fetchWithTimeout("https://aidsquilt.360works.com/fmi/data/v1/databases/PMDB/sessions", 
 												authRequestOptions);
 		const result = await response.json();
 	
-		console.log("authResponse", result);
+		//console.log("authResponse", result);
 		authToken=result.response.token;
 		loggedIn = true;
 		loggingIn = false;
@@ -150,6 +150,38 @@ const handleServerErrors = (response) => {
 const logDBError= (message, searchTerm) => {
 	console.log("Fetch error:", searchTerm, message[0].code, fmpErrorCodes[message[0].code]);
 }
+export const getFieldNames = () => {
+	return new Promise((resolve, reject) => {
+		if (loggedIn) {
+			var myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/json");
+			myHeaders.append("Authorization", "Bearer "+ authToken);
+			let queryURL = "https://aidsquilt.360works.com/fmi/data/v1/databases/PMDB/layouts/DataAPI";
+
+			var requestOptions = {
+				method: 'GET',
+				headers: myHeaders,
+				redirect: 'follow'
+			};
+			//console.log(loggedIn, "finding", query_string);
+			fetch(queryURL, requestOptions)
+			.then(handleServerErrors)
+			.then(response => {
+				resolve(response.json());
+			})
+			.catch(error=>{
+				console.error('fecth Error:', error); 
+				reject(error);
+			});
+		} else {
+			logIn().catch((error) => {
+				console.error('login Error:', error); });
+			console.log('not logged in, ignoring find request');
+			reject(new Error('not logged in, ignoring find request, query_string'));
+		}
+	})
+
+}
 export const find = (query_string) => {
 	
 	return new Promise((resolve, reject) => {
@@ -165,7 +197,7 @@ export const find = (query_string) => {
 				body: query_string,
 				redirect: 'follow'
 			};
-			console.log(loggedIn, "finding", query_string);
+			//console.log(loggedIn, "finding", query_string);
 			fetch(queryURL, requestOptions)
 			.then(handleServerErrors)
 			.then(response => {

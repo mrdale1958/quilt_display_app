@@ -1,4 +1,4 @@
-import { logIn, loggedIn, find } from '../Services/quiltDB.js';
+import {  loggedIn, find, getFieldNames } from '../Services/quiltDB.js';
 var namesList = [];
 
 export  function getnames() {
@@ -40,17 +40,24 @@ export const addNamesOnBlock = (block_num) => {return new Promise((resolve, reje
     resolve(JSON.stringify({
         "query":[
             {"Block #":"=="+[block_num]},
-            {"Panel Listing":"==","omit":"true"}],
+            {"Panel Listing":"==","omit":"true"},
+            {"Panel Last":"==","omit":"true"}],
         "limit":"500","offset":"1",
         "sort":[
             {"fieldName":"Panel Number","sortOrder":"ascend"},
             {"fieldName":"Panel Listing","sortOrder":"ascend"}]}));
         }
+    // ).then((namesOnBlockQuery) => {getFieldNames()
+    //     .then(json => {
+    //         console.log("DataAPi", json);
+    //      })
+    //     return(namesOnBlockQuery);
+    // }
     ).then( (namesOnBlockQuery) =>
         find(namesOnBlockQuery)
         .then(
             json => {
-                if (Object.keys(json.response).length === 0) return;
+                if (Object.keys(json.response).length === 0) return {};
                 //if ( ! noStatusChange) {
                     blocksCount++;
                     namesCount += json.response.data.length;
@@ -65,11 +72,16 @@ export const addNamesOnBlock = (block_num) => {return new Promise((resolve, reje
             }
         ).then(data =>
         {
+            if (Object.keys(data).length === 0) {
+                console.log("No data for: ",namesOnBlockQuery);
+                return(namesList);
+            }
             data.map(async (datum) => {
                 insertionCount++;
 
                 await addName({"BlockNumber": datum.fieldData["Panel Number"].substring(0,5),
-                    "PanelListing":datum.fieldData["Panel Listing"], key:"Search_"+insertionCount})
+                    "PanelListing":datum.fieldData["Panel Listing"], key:"Search_"+insertionCount,
+                    "PanelLast":datum.fieldData["Panel Last"]})
             //.then(data=>{
                 //console.log(insertionCount, "added ", namesList.length);
             //})
