@@ -3,6 +3,7 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { Polygon, InfoWindow } from '@react-google-maps/api';
 import { CircularProgress } from '@mui/material';
 import BlockOverlay from './BlockOverlay.js';
+import { loggedIn, logIn } from '../Services/quiltDB.js';
 
 const reportStatus = (status) => {
   document.getElementById("status").innerHTML = status;
@@ -21,7 +22,7 @@ function InteractiveQuiltMap(props) {
   });
   const [infoWindow, setInfoWindow] = useState(null);
   const [blocksOverlay, setBlocksOverlay] = useState([]);
-
+  const [authorised, setAuthorization] = useState(false);
   
   
   const handleBlockClick= (blockNum) => {
@@ -66,7 +67,6 @@ function InteractiveQuiltMap(props) {
         east:blockBounds.ne.lng,
         west:blockBounds.sw.lng
       };
-      //props.addNamesToSearch(inventory[block]['Block #'].padStart(5, '0'));
       blocks.push(
         <BlockOverlay row={inventory[block].row} 
               col={inventory[block].column} 
@@ -109,12 +109,36 @@ function InteractiveQuiltMap(props) {
     geodesic: false,
     zIndex: 1
   }
+const [ searchDBLoaded, setDBLoaded ] = useState(false);
 
+  function buildSearchDB(inventory=props.blocks) {
+    if (searchDBLoaded) return;
+    for (let block in inventory) {
+      props.addNamesToSearch(inventory[block]['Block #'].padStart(5, '0'));
+    }
+    setDBLoaded(true);
+  }
+  useEffect(() => {
+    console.log("logged in? begin", authorised, loggedIn)
+
+    if (loggedIn ) buildSearchDB();
+    else 
+      logIn().then(result =>
+        {if (loggedIn) setAuthorization(true);
+          console.log("logged in? return", authorised, loggedIn)
+        }
+      );
+  },[authorised,buildSearchDB]);
   
   useEffect(() => {
     setBlocksOverlay(buildBlocksOverlay(props));
   },[buildBlocksOverlay, props]
   );
+
+  useEffect(() => {
+    console.log("dbloaded", searchDBLoaded);
+    if (searchDBLoaded) props.refreshMenu();
+  },[searchDBLoaded,props])
 
   const renderMap = () => {
       // wrapping to a function is useful in case you want to access `window.google`

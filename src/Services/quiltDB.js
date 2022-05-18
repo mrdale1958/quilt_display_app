@@ -1,7 +1,9 @@
 import React from 'react';
+import { fetchWithTimeout } from './fetch.js';
 var authToken = '51f74aff963eb3151f504eab39ff851def286f11ee919f299445';
 var nameSearchResults = {};
-var loggedIn = false;
+export var loggedIn = false;
+export var loggingIn = false;
 var fmpErrorCodes;
 
 fetch("./fmperrorcodes.json")
@@ -83,29 +85,12 @@ return(blockLink);
 
 }
 
-export async function alogin() {
+
+	  
+  export async function logIn()  {
+	if (loggingIn) return;
+	loggingIn = true;
 	const auth = process.env.REACT_APP_FMP_AUTH;
-	var authHeaders = new Headers();
-	authHeaders.append("Content-Type", "application/json");
-	authHeaders.append("Authorization", auth);
-
-	var authRequestOptions = {
-			method: 'POST',
-			headers: authHeaders,
-		// redirect: 'follow'
-	};
-	console.log("fetching authorization", authRequestOptions);
-
-
-	const fetcher = await fetch("https://aidsquilt.360works.com/fmi/data/v1/databases/PMDB/sessions", authRequestOptions);
-	const result = await fetcher.json();
-	
-	authToken=result.response.token;
-	loggedIn = true;
-}
-export const logIn = ()  => {
-	const auth = process.env.REACT_APP_FMP_AUTH;
-	return new Promise(function(resolve, reject) {
 		var authHeaders = new Headers();
 		authHeaders.append("Content-Type", "application/json");
 		authHeaders.append("Authorization", auth);
@@ -113,27 +98,32 @@ export const logIn = ()  => {
 		var authRequestOptions = {
 				method: 'POST',
 				headers: authHeaders,
+				timeout: 6000
 			// redirect: 'follow'
 		};
 		console.log("fetching authorization", authRequestOptions);
+	try {
 
-	fetch("https://aidsquilt.360works.com/fmi/data/v1/databases/PMDB/sessions", authRequestOptions)
-	.then(response => response.json())
-	.then(result => {
-			console.log("authResponse", result);
-			authToken=result.response.token;
-			loggedIn = true;
-			resolve(result);
-		})
-	})
-	.catch(error => 
+		const response = await fetchWithTimeout("https://aidsquilt.360works.com/fmi/data/v1/databases/PMDB/sessions", 
+												authRequestOptions);
+		const result = await response.json();
+	
+		console.log("authResponse", result);
+		authToken=result.response.token;
+		loggedIn = true;
+		loggingIn = false;
+		return (result);
+		}
+	catch(error) 
 		{
-			Promise.reject(new Error('not logged in, ignoring find request", query_string')).then(function() {
+			//Promise.reject(new Error('not logged in, ignoring find request", query_string')).then(function() {
 				// not called
-			  }, function(error) {
+			  //}, function(error) {
+				loggingIn = false;
+
 				console.error('log in error', error); // Stacktrace
-			  });
-		});
+			 // });
+		}
 }
 
 const handleServerErrors = (response) => {
@@ -175,15 +165,19 @@ export const find = (query_string) => {
 				body: query_string,
 				redirect: 'follow'
 			};
-			console.log("finding", query_string);
+			console.log(loggedIn, "finding", query_string);
 			fetch(queryURL, requestOptions)
 			.then(handleServerErrors)
 			.then(response => {
 				resolve(response.json());
+			})
+			.catch(error=>{
+				console.error('fecth Error:', error); 
+				reject(error);
 			});
 		} else {
 			logIn().catch((error) => {
-				console.error('Error:', error); });
+				console.error('login Error:', error); });
 			console.log('not logged in, ignoring find request', query_string);
 			reject(new Error('not logged in, ignoring find request, query_string'));
 		}

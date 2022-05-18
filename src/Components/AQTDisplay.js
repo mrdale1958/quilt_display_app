@@ -13,7 +13,7 @@ function AQTDisplay(props) {
     let foo = {menuList: state.menuList.concat(action.payload)};
     return foo;
   }
-  const [searchList, setSearchList] = useState({menuList: []});
+  const [searchList, setSearchList] = useState([]);
   
   let polyOverlays = [
     {  lat: props.config.origin.lat, lng: props.config.origin.lng },
@@ -28,49 +28,63 @@ function AQTDisplay(props) {
     let otherPOIs = null;
     const [addNamesFlag, setAddNamesFlag] = useState(false);
     const [blockToAdd, setAddBlock] = useState({});
-
+    const sortByBlockNumber = (a,b) => {
+      //console.log("sorting", a.BlockNumber, b.BlockNumber);
+      return a.BlockNumber.localeCompare(b.BlockNumber);
+    }
     const addNamesToSearch = (blockID) => {
       if ((searchList.length > 0) && searchList.find(o => o.BlockNumber === blockID.padStart(5, '0')))  return;
       console.log("want to add", blockID.padStart(5, '0'));
-        addNamesOnBlock({"BlockNumber": blockID.padStart(5, '0'), "PanelListing":"bar"})
-        
-      //setAddNamesFlag(true);
+        addNamesOnBlock(blockID.padStart(5, '0'))
+        .then(data=> {
+          try {
+            data.sort(sortByBlockNumber);
+            setSearchList(data)}
+          catch(error){
+            console.error("menu sort", data, error)
+          }
+        })
+      
     }
-
+const refreshMenu = useCallback(() => {
+  console.log("searchList: ", searchList);
+  let mounted = true;
+  let names = getnames();
+  //.then(names => {
+    if (mounted && names.length > 0)  {
+      //console.log("setting search list", names);
+      setSearchList(names);
+    }
+  //})
+  //return () => mounted = false;
+  mounted = false;
+},[searchList]);
  
   useEffect(() => {
-    let mounted = true;
-    getnames()
-    .then(names => {
-      if (mounted)  {
-        setSearchList(names);
-      }
-    })
-    return () => mounted = false;
-  },[])     
+    //if (searchList.length === 0)  return;
+   refreshMenu();
+  },[searchList,refreshMenu])     
    
   /* const addNamesToSearch = useCallback((namelist) => {
     dispatch({payload: namelist});
     console.log(namelist);
   },[]); */
-  useEffect(() => {
-    console.log(searchList);
-  },[searchList]);
   
   
   // look at https://mui.com/material-ui/react-autocomplete/ for the seearch function
   return (
     <div className="AQTDisplay">
-    {  (searchList.length > 0) ?
+    {  
+    (searchList.length > 1) ?
     <Autocomplete
       id="grouped-by-block"
-      options={searchList.sort((a, b) => a.BlockNumber.padStart(5, '0').localeCompare(b.BlockNumber.padStart(5, '0')))}
+      options={searchList}
       groupBy={(option) => option.BlockNumber}
       getOptionLabel={(option) => option.PanelListing}
       sx={{ width: 300 }}
       renderOption={(props, option) => {
         return (
-          <li {...props} key={option.id}>
+          <li {...props} key={option.key}>
             {option.PanelListing}
           </li>
         );
@@ -84,6 +98,7 @@ function AQTDisplay(props) {
                         otherPOIs={props.otherPOIs}
                         polyOverlays={polyOverlays}
                         addNamesToSearch={addNamesToSearch}
+                        refreshMenu={refreshMenu}
       />
       
     </div>
