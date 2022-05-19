@@ -84,24 +84,10 @@ export class QuiltOverlay extends PureComponent {
     }
   }
   onAdd = () => {
-    this.div = document.createElement("div");
-      this.div.style.borderStyle = "none";
-      this.div.style.borderWidth = "0px";
-      this.div.style.position = "absolute";
-
+    
       // Create the img element and attach it to the div.
-      const img = document.createElement("img");
+      this.updatePane()
 
-      img.src = this.image;
-      img.style.width = "100%";
-      img.style.height = "100%";
-      img.style.position = "absolute";
-      this.div.appendChild(img);
-
-      // Add the element to the "overlayLayer" pane.
-      const panes = this.overlayView.getPanes();
-
-      panes.overlayLayer.appendChild(this.div);this.updatePane()
     this.props.onLoad?.(this.overlayView)
   }
 
@@ -121,14 +107,16 @@ export class QuiltOverlay extends PureComponent {
       const ne = quiltProjection.fromLatLngToDivPixel(
         llBounds.getNorthEast()
       );
-
+      
       // Resize the image's div to fit the indicated dimensions.
-      if (this.div) {
-        this.div.style.left = sw.x + "px";
-        this.div.style.top = ne.y + "px";
-        this.div.style.width = ne.x - sw.x + "px";
-        this.div.style.height = sw.y - ne.y + "px";
-      }
+        var placementStyle = JSON.parse(JSON.stringify(this.state.containerStyle));
+        placementStyle.left = sw.x + "px";
+        placementStyle.top = ne.y + "px";
+        //placementStyle.width = ne.x - sw.x + "px";
+        placementStyle.width = sw.x - ne.x + "px";
+        placementStyle.height = sw.y - ne.y + "px";
+        this.setState(prevState => ({containerStyle: placementStyle})); 
+
 /*
     const offset = {
       x: 0,
@@ -165,9 +153,9 @@ export class QuiltOverlay extends PureComponent {
       paneEl: null
     }))
     // this.mapPaneEl = null
-    if (this.div) {
-      this.div.parentNode.removeChild(this.div);
-      delete this.div;
+    if (this.state.quiltDiv) {
+      this.state.quiltDiv.parentNode.removeChild(this.state.quiltDiv);
+      delete this.state.quiltDiv;
     }
     this.props.onUnmount?.(this.overlayView)
   }
@@ -176,20 +164,20 @@ export class QuiltOverlay extends PureComponent {
      *  Set the visibility to 'hidden' or 'visible'.
      */
    hide() {
-    if (this.div) {
-      this.div.style.visibility = "hidden";
-    }
+    if (this.state.quiltDiv) {
+      this.setState(prevState => ({visibility: "hidden"})); 
+       }
   }
 
   show() {
-    if (this.div) {
-      this.div.style.visibility = "visible";
+    if (this.state.quiltDiv) {
+      this.setState(prevState => ({visibility: "visible"})); 
     }
   }
 
   toggle() {
-    if (this.div) {
-      if (this.div.style.visibility === "hidden") {
+    if (this.state.quiltDiv) {
+      if (this.state.visibility === "hidden") {
         this.show();
       } else {
         this.hide();
@@ -214,9 +202,19 @@ export class QuiltOverlay extends PureComponent {
         // set initial position
         position: 'absolute'
       },
+      visibility: "visible",
       bounds: props.bounds,
       image: props.image,
-      quiltDiv: <div></div>
+      placement: {
+        left: "0px",
+        top: "0px",
+        width: "100px",
+        height: "100px"},
+      quiltStyle : {
+        borderStyle: "none",
+        borderWidth: "0px",
+        position: "absolute"
+      }
     }
     
   
@@ -233,9 +231,10 @@ export class QuiltOverlay extends PureComponent {
   componentDidMount() {
     // You must call setMap() with a valid Map object to trigger the call to
     // the onAdd() method and setMap(null) in order to trigger the onRemove() method.
-    if (this.props.map)
-      this.overlayView.setMap(this.props.map)
-    else
+    if (this.props.map){
+      this.overlayView.setMap(this.props.map);
+      
+   } else
       console.log("no map yet")
   }
 
@@ -262,11 +261,13 @@ export class QuiltOverlay extends PureComponent {
     const kiddos = React.Children.toArray(this.props.children)
     if (paneEl) {
       return ReactDOM.createPortal(
-        <div
+        <div 
           ref={this.containerRef}
           style={this.state.containerStyle}
         >
-          {Children.only(this.props.children)}
+          <div className={'ggp-rotation super-block-rotation-'+this.props.superBlockLocation} style={this.state.quiltStyle}>
+            <img alt={""} src={this.image} width={"100%"} height={"100%"} position="absolute"/>
+          </div>
         </div>,
         paneEl
       )

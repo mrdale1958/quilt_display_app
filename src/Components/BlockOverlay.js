@@ -75,21 +75,16 @@ function BlockOverlay(props) {
   return(
       <div key={baseKey+"div"}>
         {popup}
-        <GroundOverlay
-              key={baseKey+'gnd'}
-              url={getBlockImage(blockID)}
-              bounds={props.blockBoundsOnMap}
-              onClick={onBlockClick}
-          /> 
+        
         <QuiltOverlay
               bounds={props.blockBoundsOnMap}
+              superBlockLocation={props.superBlockLocation}
               image={getBlockImage(blockID)}
               mapPaneName={QuiltOverlay.MAP_PANE} 
               map={props.map}   >
-      <div></div>
-    </QuiltOverlay>    
-           
-          { props.selected ? <Rectangle
+        </QuiltOverlay>    
+        <div className={'ggp-rotation'}>
+            { props.selected ? <Rectangle
               key={baseKey+'selectedrect'}
                 bounds={props.blockBoundsOnMap} 
                 onClick={onRectClick.bind(this,blockID)}
@@ -100,6 +95,7 @@ function BlockOverlay(props) {
                 onClick={onRectClick.bind(this,blockID)}
                 options={blockBorderOptions}
                       /> }
+          </div>
       </div>
 
   );
@@ -107,3 +103,10 @@ function BlockOverlay(props) {
 }
 
 export default BlockOverlay;
+
+/* <GroundOverlay
+              key={baseKey+'gnd'}
+              url={getBlockImage(blockID)}
+              bounds={props.blockBoundsOnMap}
+              onClick={onBlockClick}
+          /> */

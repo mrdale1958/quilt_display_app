@@ -71,6 +71,7 @@ function InteractiveQuiltMap(props) {
       blocks.push(
         <BlockOverlay 
               map={map}
+              superBlockLocation={inventory[block].position}
               row={inventory[block].row} 
               col={inventory[block].column} 
               position={position} 

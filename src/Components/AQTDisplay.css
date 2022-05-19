@@ -1,3 +1,6 @@
+:root {
+  --ggp-rotation: 50deg;
+}
 .AQTDisplay {
   text-align: center;
   height:calc(100vh - 56px);
@@ -28,6 +31,24 @@
 
 .AQTDisplay-link {
   color: #61dafb;
+}
+
+.ggp-rotation {
+  transform: rotate(var(--ggp-rotation));
+}
+
+
+.ggp-rotation.super-block-rotation-a {
+  transform: rotate(0deg) rotate(var(--ggp-rotation));
+}
+.ggp-rotation.super-block-rotation-b {
+  transform: rotate(90deg) rotate(var(--ggp-rotation));
+}
+.ggp-rotation.super-block-rotation-c {
+  transform: rotate(270deg) rotate(var(--ggp-rotation));
+}
+.ggp-rotation.super-block-rotation-d {
+  transform: rotate(180deg) rotate(var(--ggp-rotation));
 }
 
 @keyframes AQTDisplay-logo-spin {

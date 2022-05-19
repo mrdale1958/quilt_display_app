@@ -21,8 +21,8 @@ let config = {
 	displayData : {},
   mapContainerStyle:containerStyle,
   center:center,
-  zoom:19,
-  options:{maxZoom:25,
+  zoom:23,
+  options:{maxZoom:28,
             minZoom:17,
             zoomControl: true,
             mapTypeControl: true,
@@ -37,7 +37,7 @@ let config = {
   gutterWidth : { lat: -18e-6, lng: 0.3e-4 },
   positionShift : { 
     "a" : { lat: 0, lng: 0},
-    "b" : { lat: 0, lng: 0.5},
+    "b" : { lat: -0.2, lng: 0.3},
     "c" : { lat: 0.5, lng: 0},
     "d" : { lat: 0.5, lng: 0.5},
   }

@@ -21,9 +21,6 @@ code {
   height: 100%;
 }
 
-.ggp-rotation {
-  transform: rotate(50deg);
-}
 
 .modal {
   position: fixed;
