@@ -20,6 +20,7 @@ function InteractiveQuiltMap(props) {
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
   });
+  //const [map, setMap] = useState(null);
   const [infoWindow, setInfoWindow] = useState(null);
   const [blocksOverlay, setBlocksOverlay] = useState([]);
   const [authorised, setAuthorization] = useState(false);
@@ -33,7 +34,7 @@ function InteractiveQuiltMap(props) {
  
 
  
-  const buildBlocksOverlay = useCallback( (props) => {
+  const buildBlocksOverlay = useCallback( (props, map) => {
     let inventory = props.blocks;
     let config = props.config;
     let blocks = [];
@@ -68,14 +69,16 @@ function InteractiveQuiltMap(props) {
         west:blockBounds.sw.lng
       };
       blocks.push(
-        <BlockOverlay row={inventory[block].row} 
+        <BlockOverlay 
+              map={map}
+              row={inventory[block].row} 
               col={inventory[block].column} 
               position={position} 
               blockBoundsOnMap={blockBoundsOnMap} 
               blockID={inventory[block]['Block #']}
               key={inventory[block]['Block #'].padStart(5, '0')}
               handleBlockClick={handleBlockClick}
-              selected={(props.selectedBlock == inventory[block]['Block #'].padStart(5, '0'))}
+              selected={(props.selectedBlock === inventory[block]['Block #'].padStart(5, '0'))}
               />
     );
 
@@ -131,10 +134,10 @@ const [ searchDBLoaded, setDBLoaded ] = useState(false);
       );
   },[authorised,buildSearchDB]);
   
-  useEffect(() => {
-    setBlocksOverlay(buildBlocksOverlay(props));
-  },[buildBlocksOverlay, props]
-  );
+  //useEffect(() => {
+  //  setBlocksOverlay(buildBlocksOverlay(props));
+  //},[buildBlocksOverlay, props]
+  //);
 
   useEffect(() => {
     console.log("dbloaded", searchDBLoaded);
@@ -156,6 +159,10 @@ const [ searchDBLoaded, setDBLoaded ] = useState(false);
         tilt={0}
         options={props.config.options}
         onClick={handleMapClick}
+        onLoad={map => {
+          setBlocksOverlay(buildBlocksOverlay(props,map));
+
+        }}
       >
         { /* Child components, such as markers, info windows, etc. */}
         {blocksOverlay}

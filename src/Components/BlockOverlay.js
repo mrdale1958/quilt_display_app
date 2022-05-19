@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { GroundOverlay, OverlayView, Polygon, Rectangle, InfoWindow } from '@react-google-maps/api';
 import getBlockImage from '../Services/blockImage.js';
 import PopupBlock from './PopupBlock.js';
+import QuiltOverlay from './QuiltOverlay.js';
+/*global google*/
 
 
 function BlockOverlay(props) {
@@ -66,7 +68,9 @@ function BlockOverlay(props) {
     props.handleBlockClick(blockNum)
   }    
   if (baseKey === '') return null;
-  console.log("selected?", props.selected, blockID);
+  if (props.map)
+    console.log("blockoverlay has a map")
+  //console.log("selected?", props.selected, blockID);
   var popup = seen ? <PopupBlock toggle={toggleSeen} block={blockID} /> : null;
   return(
       <div key={baseKey+"div"}>
@@ -77,7 +81,13 @@ function BlockOverlay(props) {
               bounds={props.blockBoundsOnMap}
               onClick={onBlockClick}
           /> 
-            
+        <QuiltOverlay
+              bounds={props.blockBoundsOnMap}
+              image={getBlockImage(blockID)}
+              mapPaneName={QuiltOverlay.MAP_PANE} 
+              map={props.map}   >
+      <div></div>
+    </QuiltOverlay>    
            
           { props.selected ? <Rectangle
               key={baseKey+'selectedrect'}
