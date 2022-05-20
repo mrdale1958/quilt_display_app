@@ -81,21 +81,10 @@ function BlockOverlay(props) {
               superBlockLocation={props.superBlockLocation}
               image={getBlockImage(blockID)}
               mapPaneName={QuiltOverlay.MAP_PANE} 
-              map={props.map}   >
+              map={props.map}
+              border={props.selected ? selectedBlockBorderOptions : blockBorderOptions}   >
         </QuiltOverlay>    
-        <div className={'ggp-rotation'}>
-            { props.selected ? <Rectangle
-              key={baseKey+'selectedrect'}
-                bounds={props.blockBoundsOnMap} 
-                onClick={onRectClick.bind(this,blockID)}
-                options={selectedBlockBorderOptions}
-                /> : <Rectangle
-                key={baseKey+'rect'}
-                bounds={props.blockBoundsOnMap} 
-                onClick={onRectClick.bind(this,blockID)}
-                options={blockBorderOptions}
-                      /> }
-          </div>
+        
       </div>
 
   );
@@ -109,4 +98,20 @@ export default BlockOverlay;
               url={getBlockImage(blockID)}
               bounds={props.blockBoundsOnMap}
               onClick={onBlockClick}
-          /> */
+              
+          /> 
+          
+          
+          <div className={'ggp-rotation'}>
+            { props.selected ? <Polygon
+              key={baseKey+'selectedrect'}
+                bounds={props.blockBoundsOnMap} 
+                onClick={onRectClick.bind(this,blockID)}
+                options={selectedBlockBorderOptions}
+                /> : <Polygon
+                key={baseKey+'rect'}
+                bounds={props.blockBoundsOnMap} 
+                onClick={onRectClick.bind(this,blockID)}
+                options={blockBorderOptions}
+                      /> }
+          </div>*/

@@ -31,20 +31,26 @@ let config = {
             rotateControl: false,
             fullscreenControl: true
           },
-  origin : { lat: 37.76909625350, lng: -122.45867076433 },
-  pitchright : { lat: 1.1e-4, lng: 1.5e-4 },
-  pitchdown : { lat: -1.5e-4, lng: 12.0e-5 },
-  gutterWidth : { lat: -18e-6, lng: 0.3e-4 },
+
+  origin : { lat: 37.76907400867421, lng: -122.45866567286548 },
+  pitchright : { lat: 1.1e-4, lng: 1.8e-4 },
+  pitchdown : { lat: -1.3e-4, lng: 1.50e-4 },
+  gutterWidth : { lat: -1.2e-6, lng: 1.25e-6 },
   positionShift : { 
     "a" : { lat: 0, lng: 0},
-    "b" : { lat: -0.2, lng: 0.3},
-    "c" : { lat: 0.5, lng: 0},
-    "d" : { lat: 0.5, lng: 0.5},
+    "b" : { lat: -0.35, lng: 0.39},
+    "c" : { lat: 0.42, lng: 0.32},
+    "d" : { lat: 0.07, lng: 0.71},
+    "e" : { lat: 0, lng: 0},
+    "f" : { lat: -0.35, lng: 0.39},
+    "g" : { lat: 0.42, lng: 0.32},
+    "h" : { lat: 0.07, lng: 0.71},
   }
 }	
 
 
-fetch('D9355JuneDisplay.txt')
+fetch('D9355JuneDisplay16052022.txt')
+//fetch('D9355JuneDisplay.txt')
 //fetch('D9355JuneDisplay7blocks.txt')
 .then((response) => {
     //response => response.clone.text();

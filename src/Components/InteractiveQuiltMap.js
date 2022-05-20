@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import { Polygon, InfoWindow } from '@react-google-maps/api';
+import { Polygon, InfoWindow, OverlayView } from '@react-google-maps/api';
 import { CircularProgress } from '@mui/material';
+import OtherPOIOverlay from './OtherPOIOverlay.js';
 import BlockOverlay from './BlockOverlay.js';
 import { loggedIn, logIn } from '../Services/quiltDB.js';
 
@@ -23,6 +24,7 @@ function InteractiveQuiltMap(props) {
   //const [map, setMap] = useState(null);
   const [infoWindow, setInfoWindow] = useState(null);
   const [blocksOverlay, setBlocksOverlay] = useState([]);
+  const [POIsOverlay, setPOIsOverlay] = useState([]);
   const [authorised, setAuthorization] = useState(false);
   
   
@@ -31,9 +33,44 @@ function InteractiveQuiltMap(props) {
     console.log("block click", blockNum);
     //setSelectedBlock(blockNum);
   }
- 
 
+  const demoPOIs = [
+    {
+      id: "demo001",
+      styles: {
+        transform: "rotate(51deg)",
+        backgroundColor: "red",
+        border: "black ridge 1px",
+      } ,
+      POIBoundsOnMap: {
+        north: 37.76864995787339,
+
+        south:37.7686086127902,
+
+        east:-122.45811146142778,
+        west:-122.45819460990724
+      }
+     }
+  ]
  
+  const buildPOIsOverlay = useCallback((props, map) => {
+    let inventory = props.POIs ? props.POIs : demoPOIs;
+    let config = props.config;
+    let POIs = [];
+    for (var POI in inventory) {
+      const dut = inventory[POI];
+      POIs.push(
+        <OtherPOIOverlay 
+              map={map}
+              bounds={dut.POIBoundsOnMap} 
+              key={dut.id}
+              boxStyle={dut.styles}
+              mapPaneName={OtherPOIOverlay.MAP_PANE} 
+              />
+    );
+    }
+    return(POIs)
+  },[]); 
   const buildBlocksOverlay = useCallback( (props, map) => {
     let inventory = props.blocks;
     let config = props.config;
@@ -68,6 +105,7 @@ function InteractiveQuiltMap(props) {
         east:blockBounds.ne.lng,
         west:blockBounds.sw.lng
       };
+      
       blocks.push(
         <BlockOverlay 
               map={map}
@@ -162,12 +200,13 @@ const [ searchDBLoaded, setDBLoaded ] = useState(false);
         onClick={handleMapClick}
         onLoad={map => {
           setBlocksOverlay(buildBlocksOverlay(props,map));
+          setPOIsOverlay(buildPOIsOverlay(props,map));
 
         }}
       >
         { /* Child components, such as markers, info windows, etc. */}
         {blocksOverlay}
-        {props.otherPOIs}
+        {POIsOverlay}
         <Polygon
           paths={props.polyOverlays}
           options={blockBorderOptions}

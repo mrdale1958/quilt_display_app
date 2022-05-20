@@ -13,15 +13,23 @@ function AQTDisplay(props) {
   const [searchList, setSearchList] = useState([]);
   const [selectedBlock, setSelectedBlock] = useState({"BlockNumber":"00000", "PanelListing":""});
   let polyOverlays = [
-    {  lat: props.config.origin.lat, lng: props.config.origin.lng },
-    {  lat: props.config.origin.lat + props.config.pitchright.lat, lng: props.config.origin.lng  + props.config.pitchright.lng},
-    {  lat: props.config.origin.lat + props.config.pitchright.lat + props.config.pitchdown.lat, lng: props.config.origin.lng + props.config.pitchright.lng + props.config.pitchdown.lng },
-    {  lat: props.config.origin.lat + props.config.pitchdown.lat, lng: props.config.origin.lng  + props.config.pitchdown.lng},
-    {  lat: props.config.origin.lat + props.config.pitchdown.lat, lng: props.config.origin.lng  + props.config.pitchdown.lng},
-    {  lat: props.config.origin.lat + props.config.pitchright.lat + props.config.pitchdown.lat, lng: props.config.origin.lng + props.config.pitchright.lng + props.config.pitchdown.lng },
-    {  lat: props.config.origin.lat + props.config.pitchright.lat + 2*props.config.pitchdown.lat, lng: props.config.origin.lng + props.config.pitchright.lng + 2*props.config.pitchdown.lng },
-    {  lat: props.config.origin.lat + 2*props.config.pitchdown.lat, lng: props.config.origin.lng  + 2*props.config.pitchdown.lng},
-    ];
+    {  lat: props.config.origin.lat, 
+      lng: props.config.origin.lng },
+    {  lat: props.config.origin.lat + props.config.pitchright.lat, 
+      lng: props.config.origin.lng  + props.config.pitchright.lng},
+    {  lat: props.config.origin.lat + props.config.pitchright.lat + props.config.pitchdown.lat, 
+      lng: props.config.origin.lng + props.config.pitchright.lng + props.config.pitchdown.lng },
+    {  lat: props.config.origin.lat + props.config.pitchdown.lat, 
+      lng: props.config.origin.lng  + props.config.pitchdown.lng},
+    {  lat: props.config.origin.lat, 
+      lng: props.config.origin.lng },
+    {  lat: props.config.origin.lat + props.config.pitchright.lat - props.config.gutterWidth.lat, 
+      lng: props.config.origin.lng  + props.config.pitchright.lng - props.config.gutterWidth.lng},
+      {  lat: props.config.origin.lat + props.config.pitchright.lat + props.config.pitchdown.lat - props.config.gutterWidth.lat, 
+        lng: props.config.origin.lng + props.config.pitchright.lng + props.config.pitchdown.lng - props.config.gutterWidth.lng },
+      {  lat: props.config.origin.lat + props.config.pitchdown.lat - props.config.gutterWidth.lat, 
+        lng: props.config.origin.lng  + props.config.pitchdown.lng - props.config.gutterWidth.lng},
+       ];
     let otherPOIs = null;
 
     const sortByBlockNumber = (a,b) => {

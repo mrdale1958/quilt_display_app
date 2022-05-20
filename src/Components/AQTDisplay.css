@@ -1,5 +1,5 @@
 :root {
-  --ggp-rotation: 50deg;
+  --ggp-rotation: 51deg;
 }
 .AQTDisplay {
   text-align: center;
@@ -51,6 +51,18 @@
   transform: rotate(180deg) rotate(var(--ggp-rotation));
 }
 
+.ggp-rotation.super-block-rotation-e {
+  transform: rotate(90deg) rotate(var(--ggp-rotation));
+}
+.ggp-rotation.super-block-rotation-f {
+  transform: rotate(180deg) rotate(var(--ggp-rotation));
+}
+.ggp-rotation.super-block-rotation-g {
+  transform: rotate(0deg) rotate(var(--ggp-rotation));
+}
+.ggp-rotation.super-block-rotation-h {
+  transform: rotate(270deg) rotate(var(--ggp-rotation));
+}
 @keyframes AQTDisplay-logo-spin {
   from {
     transform: rotate(0deg);
