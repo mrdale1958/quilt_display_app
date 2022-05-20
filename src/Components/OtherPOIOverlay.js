@@ -4,10 +4,8 @@ import invariant from 'invariant'
 
 import MapContext from '../Services/map-context'
 
-import { getOffsetOverride, getLayoutStyles, arePositionsEqual } from '../Services/dom-helper'
-import React,  { ReactNode, CSSProperties, PureComponent, RefObject, createRef, ReactPortal, Children } from 'react'
+import React,  { PureComponent, createRef } from 'react'
 
-/*global google*/
 
 function convertToLatLngString(latLngLike) {
   if (!latLngLike) {
@@ -36,19 +34,6 @@ function convertToLatLngBoundsString(latLngBoundsLike) {
   return latLngBounds + ''
 }
 
-//export type PaneNames = keyof window.google.maps.MapPanes
-const OtherPOIOverlayProps = {
-  children: "ReactNode | undefined",
-  // required
-  mapPaneName: "",
-  getPixelPositionOffset: "((offsetWidth: number, offsetHeight: number) => { x: number; y: number })" ,
-  //bounds?: window.google.maps.LatLngBounds | window.google.maps.LatLngBoundsLiteral | undefined
-  bounds: "window.google.maps.LatLngBounds ",
-  position: "window.google.maps.LatLng | window.google.maps.LatLngLiteral | undefined",
-  onLoad: "((overlayView: window.google.maps.OverlayView) => void) | undefined",
-  onUnmount: "((overlayView: window.google.maps.OverlayView) => void) | undefined",
-  image: "string  | undefined"
-}
 
 export class OtherPOIOverlay extends PureComponent {
   static FLOAT_PANE = `floatPane`
@@ -101,12 +86,10 @@ export class OtherPOIOverlay extends PureComponent {
       // in LatLngs and convert them to pixel coordinates.
       // We'll use these coordinates to resize the div.
       const llBounds = new window.google.maps.LatLngBounds({'lat': this.bounds.south, 'lng': this.bounds.east}, {'lat': this.bounds.north, 'lng': this.bounds.west});
-      const sw = quiltProjection.fromLatLngToDivPixel(
-        llBounds.getSouthWest()
-      );
-      const ne = quiltProjection.fromLatLngToDivPixel(
-        llBounds.getNorthEast()
-      );
+      const llsw = llBounds.getSouthWest();
+      const llne = llBounds.getNorthEast();
+      const sw = quiltProjection.fromLatLngToDivPixel(llsw);
+      const ne = quiltProjection.fromLatLngToDivPixel(llne);
       
       // Resize the image's div to fit the indicated dimensions.
         var placementStyle = JSON.parse(JSON.stringify(this.state.containerStyle));
@@ -258,18 +241,20 @@ export class OtherPOIOverlay extends PureComponent {
 
   render() {
     const paneEl = this.state.paneEl
-    const kiddos = React.Children.toArray(this.props.children)
     if (paneEl) {
       return ReactDOM.createPortal(
         <div 
           ref={this.containerRef}
           style={this.state.containerStyle}
         >
-          <div className={'ggp-rotation super-block-rotation-'+this.props.superBlockLocation} style={this.state.quiltStyle}>
+          <div className={"poi"} style={this.state.quiltStyle}>
+            <div className={"poi"} style={this.props.boxStyle}>
             { 
-            this.image ? <img alt={""} src={this.image} width={"100%"} height={"100%"} position="absolute"/> : null
+              this.image ? <img alt={""} src={this.image} width={"100%"} height={"100%"} position="absolute"/> : null
             }
-            <div style={this.props.boxStyle}></div>
+            </div>
+            
+            <div className={"poi-label"} >{this.props.id}</div>
             </div>
         </div>,
         paneEl

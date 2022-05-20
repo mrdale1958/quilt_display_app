@@ -112,6 +112,7 @@ const refreshMenu = useCallback(() => {
                         polyOverlays={polyOverlays}
                         addNamesToSearch={addNamesToSearch}
                         refreshMenu={refreshMenu}
+                        POIs={props.config.POIs}
       />
       
     </div>

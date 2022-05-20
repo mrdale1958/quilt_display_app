@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import { Polygon, InfoWindow, OverlayView } from '@react-google-maps/api';
+import { Polygon, InfoWindow, OverlayView, Marker } from '@react-google-maps/api';
 import { CircularProgress } from '@mui/material';
 import OtherPOIOverlay from './OtherPOIOverlay.js';
 import BlockOverlay from './BlockOverlay.js';
 import { loggedIn, logIn } from '../Services/quiltDB.js';
+
+
+const FEET_TO_DEGREES_LAT = 3.18e-6;
+const FEET_TO_DEGREES_LNG = 3.46e-6;
 
 const reportStatus = (status) => {
   document.getElementById("status").innerHTML = status;
@@ -36,41 +40,87 @@ function InteractiveQuiltMap(props) {
 
   const demoPOIs = [
     {
-      id: "demo001",
+      id: "Main/Reader's Stage",
       styles: {
-        transform: "rotate(51deg)",
+        transform: "rotate(0deg)",
         backgroundColor: "red",
         border: "black ridge 1px",
+        width: "100%",
+        height: "100%"
+      } , 
+      location: {"lat":37.76866373956265,"lng":-122.45814364793596},
+      size: {width:20,height:12}
+
+     },
+     {
+      id: "Media Tent",
+      styles: {
+        transform: "rotate(322deg)",
+        backgroundColor: "tan",
+        border: "black ridge 1px",
+        width: "100%",
+        height: "100%"
       } ,
-      POIBoundsOnMap: {
-        north: 37.76864995787339,
-
-        south:37.7686086127902,
-
-        east:-122.45811146142778,
-        west:-122.45819460990724
-      }
+      location: {"lat":37.76887152472016,"lng":-122.45769303682145},
+      size: {width:20,height:10}
+     },
+     {
+      id: "Volunteer check-in",
+      styles: {
+        transform: "rotate(322deg)",
+        backgroundColor: "blue",
+        border: "black ridge 1px",
+        width: "100%",
+        height: "100%"
+      } ,
+      location: {"lat":37.769321017144925,"lng":-122.45854597928819},
+      size: {width:20,height:10}
+     },
+     {
+      id: "Info/Merchandise",
+      styles: {
+        transform: "rotate(322deg)",
+        backgroundColor: "purple",
+        border: "black ridge 1px",
+        width: "100%",
+        height: "100%"
+      },
+      size: {width:20,height:10},
+      location: {"lat":37.769377733565726,"lng":-122.4583501780301}
      }
   ]
  
   const buildPOIsOverlay = useCallback((props, map) => {
-    let inventory = props.POIs ? props.POIs : demoPOIs;
-    let config = props.config;
-    let POIs = [];
+    let inventory = props.config.POIs;
+    let POIOverlays = [];
     for (var POI in inventory) {
       const dut = inventory[POI];
-      POIs.push(
-        <OtherPOIOverlay 
+      const bounds = {
+        north: dut.location.lat,
+
+        south: dut.location.lat - dut.size.height*FEET_TO_DEGREES_LAT,
+
+        east:dut.location.lng,
+        west:dut.location.lng -  dut.size.width*FEET_TO_DEGREES_LNG
+      }
+      const image = ( dut.image )? dut.image : null; 
+      POIOverlays.push(
+        <div><OtherPOIOverlay 
+              id={dut.id}
               map={map}
-              bounds={dut.POIBoundsOnMap} 
+              bounds={bounds} 
               key={dut.id}
               boxStyle={dut.styles}
               mapPaneName={OtherPOIOverlay.MAP_PANE} 
+              image={image}
               />
+       
+              </div>
     );
     }
-    return(POIs)
+    return(POIOverlays)
   },[]); 
+
   const buildBlocksOverlay = useCallback( (props, map) => {
     let inventory = props.blocks;
     let config = props.config;
@@ -140,38 +190,27 @@ function InteractiveQuiltMap(props) {
     setInfoWindow(latLngInfoWindow)
   }
 
-  const blockBorderOptions = {
-    fillColor: "lightblue",
-    fillOpacity: 0,
-    strokeColor: "red",
-    strokeOpacity: 1,
-    strokeWeight: 2,
-    clickable: false,
-    draggable: false,
-    editable: false,
-    geodesic: false,
-    zIndex: 1
-  }
-const [ searchDBLoaded, setDBLoaded ] = useState(false);
+  
+  const [ searchDBLoaded, setDBLoaded ] = useState(false);
 
-  function buildSearchDB(inventory=props.blocks) {
-    if (searchDBLoaded) return;
-    for (let block in inventory) {
-      props.addNamesToSearch(inventory[block]['Block #'].padStart(5, '0'));
-    }
-    setDBLoaded(true);
-  }
   useEffect(() => {
     console.log("logged in? begin", authorised, loggedIn)
 
-    if (loggedIn ) buildSearchDB();
+    if (loggedIn ) {
+      if (searchDBLoaded) return;
+      const inventory=props.blocks;
+      for (let block in inventory) {
+        props.addNamesToSearch(inventory[block]['Block #'].padStart(5, '0'));
+      }
+      setDBLoaded(true);
+    }
     else 
       logIn().then(result =>
         {if (loggedIn) setAuthorization(true);
           console.log("logged in? return", authorised, loggedIn)
         }
       );
-  },[authorised,buildSearchDB]);
+  },[authorised,searchDBLoaded,props]);
   
   //useEffect(() => {
   //  setBlocksOverlay(buildBlocksOverlay(props));
@@ -188,7 +227,7 @@ const [ searchDBLoaded, setDBLoaded ] = useState(false);
       // to eg. setup options or create latLng object, it won't be available otherwise
       // feel free to render directly if you don't need that
     let mapOptions = props.config.options;
-    mapOptions['mapTypeId'] = window.google.maps.MapTypeId.HYBRID;
+    mapOptions['mapTypeId'] = window.google.maps.MapTypeId.ROADMAP;
 
     return (
       <GoogleMap
@@ -207,10 +246,7 @@ const [ searchDBLoaded, setDBLoaded ] = useState(false);
         { /* Child components, such as markers, info windows, etc. */}
         {blocksOverlay}
         {POIsOverlay}
-        <Polygon
-          paths={props.polyOverlays}
-          options={blockBorderOptions}
-        />
+        
         {infoWindow}
       </GoogleMap>);
   
@@ -225,7 +261,13 @@ const [ searchDBLoaded, setDBLoaded ] = useState(false);
 
 export default React.memo(InteractiveQuiltMap);
 
-/*
+/*<Polygon
+          paths={props.polyOverlays}
+          options={blockBorderOptions}
+        />
         */
 
-        /* */
+        /*  <Marker 
+              position={dut.location}
+              label={dut.id}
+              />*/

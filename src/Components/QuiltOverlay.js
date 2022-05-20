@@ -4,10 +4,8 @@ import invariant from 'invariant'
 
 import MapContext from '../Services/map-context'
 
-import { getOffsetOverride, getLayoutStyles, arePositionsEqual } from '../Services/dom-helper'
-import React,  { ReactNode, CSSProperties, PureComponent, RefObject, createRef, ReactPortal, Children } from 'react'
+import React,  { PureComponent,createRef } from 'react'
 
-/*global google*/
 
 function convertToLatLngString(latLngLike) {
   if (!latLngLike) {
@@ -36,19 +34,6 @@ function convertToLatLngBoundsString(latLngBoundsLike) {
   return latLngBounds + ''
 }
 
-//export type PaneNames = keyof window.google.maps.MapPanes
-const QuiltOverlayProps = {
-  children: "ReactNode | undefined",
-  // required
-  mapPaneName: "",
-  getPixelPositionOffset: "((offsetWidth: number, offsetHeight: number) => { x: number; y: number })" ,
-  //bounds?: window.google.maps.LatLngBounds | window.google.maps.LatLngBoundsLiteral | undefined
-  bounds: "window.google.maps.LatLngBounds ",
-  position: "window.google.maps.LatLng | window.google.maps.LatLngLiteral | undefined",
-  onLoad: "((overlayView: window.google.maps.OverlayView) => void) | undefined",
-  onUnmount: "((overlayView: window.google.maps.OverlayView) => void) | undefined",
-  image: "string  | undefined"
-}
 
 export class QuiltOverlay extends PureComponent {
   static FLOAT_PANE = `floatPane`
@@ -258,14 +243,13 @@ export class QuiltOverlay extends PureComponent {
 
   render() {
     const paneEl = this.state.paneEl
-    const kiddos = React.Children.toArray(this.props.children)
     if (paneEl) {
       return ReactDOM.createPortal(
         <div 
           ref={this.containerRef}
           style={this.state.containerStyle}
         >
-          <div className={'ggp-rotation super-block-rotation-'+this.props.superBlockLocation} style={this.state.quiltStyle}>
+          <div className={'ggp-rotation super-block-rotation-'+this.props.superBlockLocation} onClick={this.props.clickHandler} style={this.state.quiltStyle}>
             <img alt={""} src={this.image} width={"100%"} height={"100%"} position="absolute"/>
           </div>
         </div>,

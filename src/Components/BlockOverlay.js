@@ -60,7 +60,7 @@ function BlockOverlay(props) {
         
   const onBlockClick = blockNum => {
     console.log("GroundOverlay onClick block: ", blockNum)
-    props.handleBlockClick(blockNum);
+    toggleSeen();
   }
   
   const onRectClick = blockNum => {
@@ -82,7 +82,8 @@ function BlockOverlay(props) {
               image={getBlockImage(blockID)}
               mapPaneName={QuiltOverlay.MAP_PANE} 
               map={props.map}
-              border={props.selected ? selectedBlockBorderOptions : blockBorderOptions}   >
+              border={props.selected ? selectedBlockBorderOptions : blockBorderOptions}  
+              clickHandler={onBlockClick} >
         </QuiltOverlay>    
         
       </div>

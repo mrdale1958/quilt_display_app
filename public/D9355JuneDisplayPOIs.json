@@ -1,0 +1,341 @@
+[
+    {
+      "id": "Main/Reader's Stage",
+      "styles": {
+        "transform": "rotate(0deg)",
+        "backgroundColor": "red",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      } , 
+      "size": {"width":20,"height":12},
+      "location": {"lat":37.76870773493809,"lng":-122.45802361908254}
+     },
+     {
+      "id": "Media Tent",
+      "styles": {
+        "transform": "rotate(322deg)",
+        "backgroundColor": "tan",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      } ,
+      "size": {"width":20,"height":10},
+      "location": {"lat":37.76885085224342,"lng":-122.45773259940442}
+
+     },
+     {
+      "id": "Volunteer check-in",
+      "styles": {
+        "transform": "rotate(322deg)",
+        "backgroundColor": "blue",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      } ,
+      "location": {"lat":37.769321017144925,"lng":-122.45854597928819},
+      "size": {"width":20,"height":10}
+     },
+     {
+      "id": "Info/Merchandise1",
+      "styles": {
+        "transform": "rotate(322deg)",
+        "backgroundColor": "purple",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "size": {"width":20,"height":10},
+      "location": {"lat":37.769377733565726,"lng":-122.4583501780301}
+     },
+     {
+      "id": "Info/Merchandise2",
+      "styles": {
+        "transform": "rotate(322deg)",
+        "backgroundColor": "purple",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "size": {"width":20,"height":10},
+      "location": {"lat":37.76950653798591,"lng":-122.4569259250432}
+
+     },
+     {
+      "id": "Info/Merchandise3",
+      "styles": {
+        "transform": "rotate(322deg)",
+        "backgroundColor": "purple",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "size": {"width":20,"height":10},
+      "location": {"lat":37.77049456113896,"lng":-122.456351932314}
+
+     },
+     {
+      "id": "Gay Flag",
+      "styles": {
+        "transform": "rotate(322deg)",
+        "backgroundColor": "purple",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "image": "gay-pride.jpeg",
+      "size": {"width":60,"height":20},
+      "location": {"lat":37.76996291727395,"lng":-122.4579619282752}
+
+     },
+     {
+      "id": "Medical Tent",
+      "styles": {
+        "transform": "rotate(45deg)",
+        "backgroundColor": "white",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "image": "rt9mgn.jpeg",
+      "size": {"width":20,"height":20},
+      "location": {"lat":37.77017228894325,"lng":-122.45573502424058}
+
+     },
+     {
+      "id": "VIP Tent",
+      "styles": {
+        "transform": "rotate(144deg)",
+        "backgroundColor": "green",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "size": {"width":60,"height":30},
+      "location": {"lat":37.770162217914475,"lng":-122.45809737983045}
+
+     },
+     {
+      "id": "New Panel checkin/making",
+      "styles": {
+        "transform": "rotate(0deg)",
+        "backgroundColor": "orange",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "size": {"width":30,"height":20},
+      "location":{"lat":37.76986220663957,"lng":-122.45742012205419}
+
+     },
+     {
+        "id": "ASO/Partner 1",
+        "styles": {
+          "transform": "rotate(0deg)",
+          "backgroundColor": "yellow",
+          "border": "black ridge 1px",
+          "width": "100%",
+          "height": "100%"
+        },
+        "size": {"width":10,"height":10},
+        "location": {"lat":37.76952774033813,"lng":-122.45667916181382}
+  
+     },
+     {
+        "id": "ASO/Partner 2",
+        "styles": {
+          "transform": "rotate(0deg)",
+          "backgroundColor": "yellow",
+          "border": "black ridge 1px",
+          "width": "100%",
+          "height": "100%"
+        },
+        "size": {"width":10,"height":10},
+        "location": {"lat":37.76953198080782,"lng":-122.45652359369096}
+
+     },
+     {
+        "id": "ASO/Partner 3",
+        "styles": {
+          "transform": "rotate(22deg)",
+          "backgroundColor": "yellow",
+          "border": "black ridge 1px",
+          "width": "100%",
+          "height": "100%"
+        },
+        "size": {"width":10,"height":10},
+        "location": {"lat":37.76956166408896,"lng":-122.45635729673204}
+
+     },
+     {
+        "id": "ASO/Partner 4",
+        "styles": {
+          "transform": "rotate(22deg)",
+          "backgroundColor": "yellow",
+          "border": "black ridge 1px",
+          "width": "100%",
+          "height": "100%"
+        },
+        "size": {"width":10,"height":10},
+        "location": {"lat":37.769650713860926,"lng":-122.45625537278947}
+
+     },
+     {
+        "id": "ASO/Partner 5",
+        "styles": {
+          "transform": "rotate(22deg)",
+          "backgroundColor": "yellow",
+          "border": "black ridge 1px",
+          "width": "100%",
+          "height": "100%"
+        },
+        "size": {"width":10,"height":10},
+        "location":{"lat":37.769727042151565,"lng":-122.45613199117479}
+
+     },
+     {
+        "id": "ASO/Partner 6",
+        "styles": {
+          "transform": "rotate(22deg)",
+          "backgroundColor": "yellow",
+          "border": "black ridge 1px",
+          "width": "100%",
+          "height": "100%"
+        },
+        "size": {"width":10,"height":10},
+        "location": {"lat":37.769763616096235,"lng":-122.4560635948449}
+
+     },
+     {
+        "id": "ASO/Partner 7",
+        "styles": {
+          "transform": "rotate(22deg)",
+          "backgroundColor": "yellow",
+          "border": "black ridge 1px",
+          "width": "100%",
+          "height": "100%"
+        },
+        "size": {"width":10,"height":10},
+        "location":{"lat":37.76983040325287,"lng":-122.45606828871068}
+
+     },
+     {
+        "id": "ASO/Partner 8",
+        "styles": {
+          "transform": "rotate(22deg)",
+          "backgroundColor": "yellow",
+          "border": "black ridge 1px",
+          "width": "100%",
+          "height": "100%"
+        },
+        "size": {"width":10,"height":10},
+        "location": {"lat":37.7698759881029,"lng":-122.45611120405492}
+
+     },
+     {
+        "id": "ASO/Partner 9",
+        "styles": {
+          "transform": "rotate(22deg)",
+          "backgroundColor": "yellow",
+          "border": "black ridge 1px",
+          "width": "100%",
+          "height": "100%"
+        },
+        "size": {"width":10,"height":10},
+        "location": {"lat":37.76991839258935,"lng":-122.45618764701184}
+
+     },
+     {
+        "id": "ASO/Partner 10",
+        "styles": {
+          "transform": "rotate(22deg)",
+          "backgroundColor": "yellow",
+          "border": "black ridge 1px",
+          "width": "100%",
+          "height": "100%"
+        },
+        "size": {"width":10,"height":10},
+        "location": {"lat":37.769971398163214,"lng":-122.45622117462453}
+
+     },
+     {
+      "id": "Port-a-potties 1",
+      "styles": {
+        "transform": "rotate(322deg)",
+        "backgroundColor": "teal",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "size": {"width":25,"height":5},
+      "location": {"lat":37.77043095489581,"lng":-122.45649140718278}
+
+
+     },
+     {
+      "id": "Port-a-potties 2",
+      "styles": {
+        "transform": "rotate(144deg)",
+        "backgroundColor": "teal",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "size": {"width":25,"height":5},
+      "location": {"lat":37.77036469833432,"lng":-122.45761458220777}
+
+     },
+     {
+      "id": "Port-a-potties 3",
+      "styles": {
+        "transform": "rotate(163deg)",
+        "backgroundColor": "teal",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "size": {"width":25,"height":5},
+      "location":{"lat":37.769315186482366,"lng":-122.45658595505056}
+
+
+     },
+     {
+      "id": "Port-a-potties 4",
+      "styles": {
+        "transform": "rotate(90deg)",
+        "backgroundColor": "teal",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "size": {"width":25,"height":5},
+      "location":{"lat":37.76974824444053,"lng":-122.4604396188527}
+
+     },
+     {
+      "id": "Dumpster 1",
+      "styles": {
+        "transform": "rotate(90deg)",
+        "backgroundColor": "green",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "size": {"width":25,"height":5},
+      "location":{"lat":37.76991362208582,"lng":-122.46043157222566}
+
+     },
+     {
+      "id": "Dumpster 2",
+      "styles": {
+        "transform": "rotate(00deg)",
+        "backgroundColor": "green",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "size": {"width":25,"height":5},
+      "location":{"lat":37.7693241975061,"lng":-122.45666038635072}
+
+     }
+  ]

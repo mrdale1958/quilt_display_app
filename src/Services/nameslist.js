@@ -1,4 +1,4 @@
-import {  loggedIn, find, getFieldNames } from '../Services/quiltDB.js';
+import {  loggedIn, find } from '../Services/quiltDB.js';
 var namesList = [];
 
 export  function getnames() {
@@ -33,8 +33,8 @@ export  function addName(nameobj) {
 var insertionCount = 0;
 var blocksCount = 0;
 var namesCount = 0;
-var failedAdds = 0;
-var blocksToAdd = [];
+// var failedAdds = 0;
+// var blocksToAdd = [];
 
 export const addNamesOnBlock = (block_num) => {
     namesList.push({"BlockNumber": "Block "+block_num,

@@ -1,4 +1,3 @@
-import React from 'react';
 import { fetchWithTimeout } from './fetch.js';
 var authToken = '51f74aff963eb3151f504eab39ff851def286f11ee919f299445';
 var nameSearchResults = {};
@@ -18,29 +17,6 @@ fetch("./fmperrorcodes.json")
 .then(result => {fmpErrorCodes = result})
 .catch(error => console.log('error reading errorcodes', error));
 
-const onlyUnique = (value, index, self) => { 
-	return self.indexOf(value) === index;
-}
-
-const clearOverlays = () => {
-	// TODO Figure out equivalent for googlemap
-	//viewer.clearOverlays();    
-}
-
-const clearSearchbar = () => {
-	document.getElementById("search").value = '';
-}
-
-const addNameToResults = (name, blockNumber) => {
-let cleanName = name.trim().replace(/\*$/, '').trim();
-let cleanBlockNumber = parseInt(blockNumber);
-if (isNaN(cleanBlockNumber)) return;
-if ( nameSearchResults[cleanName] === undefined) {
-	nameSearchResults[cleanName] = [ cleanBlockNumber ];
-} else if ( ! nameSearchResults[cleanName].includes(cleanBlockNumber)) {
-	nameSearchResults[cleanName].push(cleanBlockNumber);
-}
-}
 
 const reportStatus = (status) => {
 document.getElementById("status").innerHTML = status;
@@ -65,24 +41,6 @@ nameSearchResults = {};
 document.getElementById("namesList").innerHTML = "";
 document.getElementById("results-box").style.display="none";
 document.getElementById("result-description").innerHTML = "";
-}
-
-const addNewResults = ( namesList ) => {
-document.getElementById("results-box").style.display="block";
-document.getElementById("namesList").innerHTML = document.getElementById("namesList").innerHTML.concat(namesList);
-}
-
-const addNewResultDescription = ( description ) => {
-document.getElementById("results-box").style.display="block";
-document.getElementById("result-description").innerHTML = description;
-}
-
-const buildBlockLink = (blockNum) => {
-let paddedBlockNum = String(blockNum).padStart(4, "0");
-// using blocknum to call flyToBlock because sometimes 0 padded strings get interpreted as octal
-let blockLink = "<a href=# onClick='flyToBlock(" + blockNum + ")' >" + paddedBlockNum + "</a>";
-return(blockLink);
-
 }
 
 
