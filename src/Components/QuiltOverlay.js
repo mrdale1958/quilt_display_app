@@ -198,7 +198,8 @@ export class QuiltOverlay extends PureComponent {
       quiltStyle : {
         borderStyle: "none",
         borderWidth: "0px",
-        position: "absolute"
+        position: "absolute",
+        cursor: "crosshair"
       }
     }
     
@@ -240,7 +241,12 @@ export class QuiltOverlay extends PureComponent {
   componentWillUnmount() {
     this.overlayView.setMap(null)
   }
-
+  onClick = (event) => {
+    event.stopPropagation()
+    console.info('QuiltOverlay says I have been clicked! bubbling up')
+    this.props.clickHandler(this.props.block)
+  };
+  
   render() {
     const paneEl = this.state.paneEl
     if (paneEl) {
@@ -249,7 +255,9 @@ export class QuiltOverlay extends PureComponent {
           ref={this.containerRef}
           style={this.state.containerStyle}
         >
-          <div className={'ggp-rotation super-block-rotation-'+this.props.superBlockLocation} onClick={this.props.clickHandler} style={this.state.quiltStyle}>
+          <div onClick={this.onClick}
+                className={'ggp-rotation super-block-rotation-'+this.props.superBlockLocation} 
+                style={this.state.quiltStyle}>
             <img alt={""} src={this.image} width={"100%"} height={"100%"} position="absolute"/>
           </div>
         </div>,

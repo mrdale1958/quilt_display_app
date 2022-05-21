@@ -59,7 +59,7 @@ function BlockOverlay(props) {
       }
         
   const onBlockClick = blockNum => {
-    console.log("GroundOverlay onClick block: ", blockNum)
+    console.log("QuiltOverlay onClick block: ", blockNum)
     toggleSeen();
   }
   
@@ -77,12 +77,13 @@ function BlockOverlay(props) {
         {popup}
         
         <QuiltOverlay
+              block={blockID}
               bounds={props.blockBoundsOnMap}
               superBlockLocation={props.superBlockLocation}
               image={getBlockImage(blockID)}
-              mapPaneName={QuiltOverlay.MAP_PANE} 
+              mapPaneName={QuiltOverlay.OVERLAY_MOUSE_TARGET} 
               map={props.map}
-              border={props.selected ? selectedBlockBorderOptions : blockBorderOptions}  
+              border={(props.selected || seen) ? selectedBlockBorderOptions : blockBorderOptions}  
               clickHandler={onBlockClick} >
         </QuiltOverlay>    
         

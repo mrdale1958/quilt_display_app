@@ -9,7 +9,7 @@
         "lat": 37.76946625350,
         "lng": -122.45707076433
     },
-    "zoom":18,
+    "zoom":21,
     "options":{"maxZoom":28,
             "minZoom":17,
             "zoomControl": true,
