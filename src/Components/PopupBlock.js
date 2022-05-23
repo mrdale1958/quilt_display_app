@@ -20,60 +20,28 @@ function PopupBlock(props){
               id: "openseadragon1", //id + "osd",
               showNavigationControl: false,
               prefixUrl: "css/seadragon_images/",
-              tileSources:  process.env.REACT_APP_BLOCK_SRC + String(props.block).padStart(5, '0') +".dzi",
+              defaultZoomLevel: 1,
+              minZoomLevel: 0,
+              maxZoomLevel: 4,
+              minZoomImageRatio: 0,
+              tileSources:  {
+              Image: {
+                  xmlns:    "http://schemas.microsoft.com/deepzoom/2008",
+                  Url:      process.env.REACT_APP_BLOCK_SRC + String(props.block).padStart(5, '0') +"_files/",
+                  Format:"jpeg", 
+                  Overlap:"0" ,
+                  TileSize:"128",
+                  
+                    Size: {
+                        Width:"2048", 
+                        Height:"2048"
+                      },
+                    MaxLevel: 4,
+                    MinLevel: 0
+              }},
               visibilityRatio: 1.0,
               constrainDuringPan: true,
-              overlays: [
-              /*{
-                  id: 'overlay2890',
-                  x: 0.039, 
-                  y: 0.2185, 
-                  lastx: 0.039452, 
-                  lasty: 0.218675, 
-                  width: 0.0081, 
-                  height: 0.0081,
-                  className: 'highlight'
-              },
-              {
-                  id: 'overlay4174',
-                  x: 0.414, 
-                  y: 0.3125, 
-                  lastx: 0.413702, 
-                  lasty: 0.313700, 
-                  width: 0.0081, 
-                  height: 0.0081,
-                  className: 'highlight'
-              },
-              {
-                  id: 'overlay0335',
-                  x: 0.1952, 
-                  y: 0.02328, 
-                  lastx: 0.193452, 
-                  lasty: 0.024675, 
-                  width: 0.0081, 
-                  height: 0.0081,
-                  className: 'highlight'
-              },
-              {
-                  id: 'overlay1321',
-                  x: 0.6561, 
-                  y: 0.0936, 
-                  lastx: 0.551702, 
-                  lasty: 0.103700, 
-                  width: 0.0081, 
-                  height: 0.0081, 
-                  className: 'highlight'
-              }*/
-              {
-                  id: 'overlay3877',
-                  x: 0.5076, 
-                  y: 0.2891, 
-                  lastx: 0.4870, 
-                  lasty: 0.2691, 
-                  width: 0.0081, 
-                  height: 0.0081,
-                  className: 'highlight'
-              }],
+              overlays: [],
           });
        //});
   }
@@ -97,7 +65,7 @@ function PopupBlock(props){
           <p>show zoomable block {props.block}</p>
           <div className="ocd-div" >
                 
-          <div className="openseadragon" id="openseadragon1"></div>
+            <div className="openseadragon" id="openseadragon1"></div>
           <ul className="ocd-toolbar">
              
           </ul>

@@ -70,24 +70,24 @@ function BlockOverlay(props) {
   if (baseKey === '') return null;
   if (props.map)
     console.log("blockoverlay has a map")
-  //console.log("selected?", props.selected, blockID);
+    //console.log("selected?", props.selected, blockID);
   var popup = seen ? <PopupBlock toggle={toggleSeen} block={blockID} /> : null;
   return(
-      <div key={baseKey+"div"}>
-        {popup}
-        
-        <QuiltOverlay
-              block={blockID}
-              bounds={props.blockBoundsOnMap}
-              superBlockLocation={props.superBlockLocation}
-              image={getBlockImage(blockID)}
-              mapPaneName={QuiltOverlay.OVERLAY_MOUSE_TARGET} 
-              map={props.map}
-              border={(props.selected || seen) ? selectedBlockBorderOptions : blockBorderOptions}  
-              clickHandler={onBlockClick} >
-        </QuiltOverlay>    
-        
-      </div>
+    <div key={baseKey+"div"}>
+      {popup}
+      
+      <QuiltOverlay
+        block={blockID}
+        bounds={props.blockBoundsOnMap}
+        superBlockLocation={props.superBlockLocation}
+        image={getBlockImage(blockID)}
+        mapPaneName={QuiltOverlay.OVERLAY_MOUSE_TARGET} 
+        map={props.map}
+        border={(props.selected || seen) ? selectedBlockBorderOptions : blockBorderOptions}  
+        clickHandler={onBlockClick} >
+      </QuiltOverlay>    
+      
+    </div>
 
   );
 

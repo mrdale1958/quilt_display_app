@@ -114,7 +114,8 @@ const refreshMenu = useCallback(() => {
                         refreshMenu={refreshMenu}
                         POIs={props.config.POIs}
       />
-      
+      <div  className={"reticule"}><img src={"https://upload.wikimedia.org/wikipedia/commons/6/64/Red_Ribbon.svg"} width={20}  /></div>
+
     </div>
   );
 }
