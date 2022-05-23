@@ -33,6 +33,9 @@
   color: #61dafb;
 }
 
+.search-bar {
+  width: 40vw;
+}
 .reticule {
   position:absolute;
   width:20px;

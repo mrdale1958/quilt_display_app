@@ -11,7 +11,8 @@ function AQTDisplay(props) {
 
   
   const [searchList, setSearchList] = useState([]);
-  const [selectedBlock, setSelectedBlock] = useState({"BlockNumber":"00000", "PanelListing":""});
+  const [searchSelection, setSearchSelection] = useState({"BlockNumber":"00000", "PanelListing":""});
+  const [selectedBlock, setSelectedBlock] = useState("");
   let polyOverlays = [
     {  lat: props.config.origin.lat, 
       lng: props.config.origin.lng },
@@ -75,21 +76,23 @@ const refreshMenu = useCallback(() => {
     console.log(namelist);
   },[]); */
   
-  console.log("selected Block:", selectedBlock);
+  useEffect(() => {
+    refreshMenu();
+    console.log("selected Block:", selectedBlock);
+  }, [   refreshMenu,    selectedBlock]);
 
   // look at https://mui.com/material-ui/react-autocomplete/ for the seearch function
   return (
     <div className="AQTDisplay">
     {  
     (searchList.length > 1) ?
-    <Autocomplete
+    <Autocomplete className="search-bar"
       id="grouped-by-block"
       options={searchList}
-      fullWidth={true}
       
       groupBy={(option) => option.BlockNumber}
       getOptionLabel={(option) => option.PanelListing}
-      sx={{ width: "100%" }}
+      sx={{ width: "40vw" }}
       renderOption={(props, option) => {
         return (
           <li {...props} key={option.key}>
@@ -97,9 +100,11 @@ const refreshMenu = useCallback(() => {
           </li>
         );
       }}
-      value={selectedBlock}
-      onChange={(_event, selectedBlock) => {
-        setSelectedBlock(selectedBlock);
+      value={searchSelection}
+      onChange={(_event, selection) => {
+        setSearchSelection(selection);
+        const newSelectedBlock = (selection.BlockNumber.startsWith('Block 0')) ? selection.PanelListing : selection.BlockNumber; 
+        setSelectedBlock(newSelectedBlock);
       }}
       renderInput={(params) => <TextField {...params} label="Search the June 2022 Quilt Display" />}
     /> : null
@@ -107,7 +112,7 @@ const refreshMenu = useCallback(() => {
     <InteractiveQuiltmap 
                         config={props.config} 
                         blocks={props.blocks}
-                        selectedBlock={selectedBlock.BlockNumber}
+                        selectedBlock={selectedBlock}
                         otherPOIs={props.otherPOIs}
                         polyOverlays={polyOverlays}
                         addNamesToSearch={addNamesToSearch}

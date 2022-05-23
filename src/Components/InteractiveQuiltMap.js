@@ -35,6 +35,7 @@ function InteractiveQuiltMap(props) {
   const blockBoundsForCenterBehavior = useRef({});
   const popup = useRef(false);
   const [hovering, setHovering] = useState(false);
+  const [selectedBlock, setSelectedBlock] = useState("")
 
   const handleBlockClick= (blockNum) => {
     //setSeen(!seen);
@@ -171,7 +172,7 @@ function InteractiveQuiltMap(props) {
               blockID={inventory[block]['Block #']}
               key={inventory[block]['Block #'].padStart(5, '0')}
               handleBlockClick={handleBlockClick}
-              selected={(props.selectedBlock === inventory[block]['Block #'].padStart(5, '0'))}
+              selected={selectedBlock}
               />
     );
 
@@ -235,6 +236,17 @@ function InteractiveQuiltMap(props) {
   //);
 
   useEffect(() => {
+    console.log("selected Block:", props.selectedBlock);
+      if (selectedBlock !== props.selectedBlock) {
+        setSelectedBlock(props.selectedBlock);
+        myMap.setCenter(blockBoundsForCenterBehavior.current[Number(props.selectedBlock)].getCenter());
+        myMap.panTo(myMap.getCenter());
+        myMap.setZoom(props.config.zoom);
+      }
+    }, [ selectedBlock, myMap,   props.selectedBlock, props.config.zoom]);
+
+
+  useEffect(() => {
     console.log("dbloaded", searchDBLoaded);
     if (searchDBLoaded) props.refreshMenu();
   },[searchDBLoaded,props])
@@ -247,7 +259,6 @@ function InteractiveQuiltMap(props) {
     mapOptions['mapTypeId'] = window.google.maps.MapTypeId.ROADMAP;
 
     return (
-      
       <GoogleMap
         mapContainerStyle={props.config.mapContainerStyle}
         center={props.config.center}
@@ -269,7 +280,6 @@ function InteractiveQuiltMap(props) {
         
         {infoWindow}
       </GoogleMap>
-     
       );
   }
   if (loadError) {
@@ -288,7 +298,10 @@ export default React.memo(InteractiveQuiltMap);
         />
         */
 
-        /*  
+        /* 
+              <div><div id={"mumble"} style={{height:0}}>{props.selectedBlock}</div>
+       </div>
+
     <Marker 
               position={dut.location}
               label={dut.id}
