@@ -4,6 +4,7 @@ import './AQTDisplay.css';
 import { Autocomplete } from '@mui/material';
 import { TextField } from '@mui/material';
 import  {getnames, addNamesOnBlock}  from '../Services/nameslist.js';
+import { loggedIn, logIn } from '../Services/quiltDB.js';
 
 import InteractiveQuiltmap from './InteractiveQuiltMap.js';
 
@@ -13,6 +14,11 @@ function AQTDisplay(props) {
   const [searchList, setSearchList] = useState([]);
   const [searchSelection, setSearchSelection] = useState({"BlockNumber":"00000", "PanelListing":""});
   const [selectedBlock, setSelectedBlock] = useState("");
+  const [searchReady, setSearchReady] = useState(true);
+  const [authorised, setAuthorization] = useState(false);
+  const [ searchDBLoaded, setDBLoaded ] = useState(false);
+  const [namesByBlock, setNamesDB] = useState({});
+
   let polyOverlays = [
     {  lat: props.config.origin.lat, 
       lng: props.config.origin.lng },
@@ -30,42 +36,42 @@ function AQTDisplay(props) {
         lng: props.config.origin.lng + props.config.pitchright.lng + props.config.pitchdown.lng - props.config.gutterWidth.lng },
       {  lat: props.config.origin.lat + props.config.pitchdown.lat - props.config.gutterWidth.lat, 
         lng: props.config.origin.lng  + props.config.pitchdown.lng - props.config.gutterWidth.lng},
-       ];
-    let otherPOIs = null;
+  ];
+  let otherPOIs = null;
 
-    const sortByBlockNumber = (a,b) => {
-      //console.log("sorting", a.BlockNumber, b.BlockNumber);
-      return a.BlockNumber.localeCompare(b.BlockNumber) ||
-      a.PanelLast.localeCompare(b.PanelLast);
-    }
-    const addNamesToSearch = (blockID) => {
-      if ((searchList.length > 0) && searchList.find(o => o.BlockNumber === blockID.padStart(5, '0')))  return;
-      //console.log("want to add", blockID.padStart(5, '0'));
-        addNamesOnBlock(blockID.padStart(5, '0'))
-        .then(data=> {
-          try {
-            data.sort(sortByBlockNumber);
-            setSearchList(data)}
-          catch(error){
-            console.error("menu sort", data, error)
-          }
-        })
-      
-    }
-const refreshMenu = useCallback(() => {
-  //console.log("searchList: ", searchList);
-  let mounted = true;
-  let names = getnames();
-  //.then(names => {
-    if (mounted && names.length > 0)  {
-      //console.log("setting search list", names);
-      setSearchList(names);
-    }
-  //})
-  //return () => mounted = false;
-  mounted = false;
-},[searchList]);
- 
+  const sortByBlockNumber = (a,b) => {
+    //console.log("sorting", a.BlockNumber, b.BlockNumber);
+    return a.BlockNumber.localeCompare(b.BlockNumber) ||
+    a.PanelLast.localeCompare(b.PanelLast);
+  }
+  const addNamesToSearch = useCallback((blockID) => {
+    if ((searchList.length > 0) && searchList.find(o => o.BlockNumber === blockID.padStart(5, '0')))  return;
+    //console.log("want to add", blockID.padStart(5, '0'));
+      addNamesOnBlock(blockID.padStart(5, '0'))
+      .then(data=> {
+        try {
+          data.sort(sortByBlockNumber);
+          setSearchList(data)}
+        catch(error){
+          console.error("menu sort", data, error)
+        }
+      })
+    
+  },[searchList]);
+  const refreshMenu = useCallback(() => {
+    //console.log("searchList: ", searchList);
+    let mounted = true;
+    let names = getnames();
+    //.then(names => {
+      if (mounted && names.length > 0)  {
+        console.log("setting search list", names);
+        setSearchList(names);
+      }
+    //})
+    //return () => mounted = false;
+    mounted = false;
+  },[searchList]);
+  
   useEffect(() => {
     //if (searchList.length === 0)  return;
    refreshMenu();
@@ -81,11 +87,31 @@ const refreshMenu = useCallback(() => {
     console.log("selected Block:", selectedBlock);
   }, [   refreshMenu,    selectedBlock]);
 
+  useEffect(( ) => {
+    console.log("logged in? begin", authorised, loggedIn)
+    
+    if (loggedIn ) {
+      if (searchDBLoaded) return;
+      const inventory=props.blocks;
+      for (let block in inventory) {
+        addNamesToSearch(inventory[block]['Block #'].padStart(5, '0'));
+      }
+      setDBLoaded(true);
+    }
+    else 
+    logIn().then(result =>
+      {if (loggedIn) setAuthorization(true);
+        console.log("logged in? return", authorised, loggedIn)
+      }
+      );   
+  }, [props.blocks, addNamesToSearch, searchDBLoaded, authorised]);
+
   // look at https://mui.com/material-ui/react-autocomplete/ for the seearch function
   return (
     <div className="AQTDisplay">
     {  
     (searchList.length > 1) ?
+    // TODO test for return, if list is len 1 then just select that item, else blink
     <Autocomplete className="search-bar"
       id="grouped-by-block"
       options={searchList}
@@ -104,21 +130,22 @@ const refreshMenu = useCallback(() => {
       onChange={(_event, selection) => {
         setSearchSelection(selection);
         const newSelectedBlock = (selection.BlockNumber.startsWith('Block 0')) ? selection.PanelListing : selection.BlockNumber; 
-        setSelectedBlock(newSelectedBlock);
+        if (!newSelectedBlock.equal("00000") && !newSelectedBlock.equal(""))  setSelectedBlock(newSelectedBlock);
       }}
       renderInput={(params) => <TextField {...params} label="Search the June 2022 Quilt Display" />}
     /> : null
     }
-    <InteractiveQuiltmap 
+    { ( searchList.length > 352 ) ? <InteractiveQuiltmap 
                         config={props.config} 
                         blocks={props.blocks}
                         selectedBlock={selectedBlock}
                         otherPOIs={props.otherPOIs}
                         polyOverlays={polyOverlays}
                         addNamesToSearch={addNamesToSearch}
+                        names={searchList}
                         refreshMenu={refreshMenu}
                         POIs={props.config.POIs}
-      />
+      /> : null }
       <div  className={"reticule"}><img src={"https://upload.wikimedia.org/wikipedia/commons/6/64/Red_Ribbon.svg"} width={20}  /></div>
 
     </div>

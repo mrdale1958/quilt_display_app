@@ -1,5 +1,6 @@
 import {  loggedIn, find } from '../Services/quiltDB.js';
 var namesList = [];
+var namesByBlock = {};
 
 export  function getnames() {
     return namesList;
@@ -7,6 +8,10 @@ export  function getnames() {
     //.then(data => data.json())
     //.catch(error=>console.log(error))
     }
+
+export function getNamesOnBlock(blockID) {
+    return namesByBlock[blockID];
+}
 
 export  function addName(nameobj) {
 	return new Promise((resolve, reject) => {
@@ -82,7 +87,17 @@ export const addNamesOnBlock = (block_num) => {
             }
             data.map(async (datum) => {
                 insertionCount++;
-
+                const blockNum = datum.fieldData["Panel Number"].substring(0,5);
+                const currentEntry = namesByBlock[blockNum];
+                const newEntry = (blockNum.startsWith('Block 0')) ? null : datum.fieldData["Panel Listing"];
+                if (newEntry) {
+                  if (currentEntry !== undefined) {
+                    namesByBlock[blockNum].push(newEntry);
+                  } else
+                  {          
+                    namesByBlock[blockNum] = [newEntry];
+                  }    
+                }
                 await addName({"BlockNumber": datum.fieldData["Panel Number"].substring(0,5),
                     "PanelListing":datum.fieldData["Panel Listing"], key:"Search_"+insertionCount,
                     "PanelLast":datum.fieldData["Panel Last"]})
