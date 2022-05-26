@@ -53,6 +53,11 @@ fetch('./config.json')
 .catch((error) => console.log("config read error", error));
 
 function runExhibit(displayData) {
+// TODO This method must be called while responding to a user interaction or a device orientation change; otherwise it will fail.
+  //document.getElementById('root').requestFullscreen()
+  //.catch((error) => {
+  //  console.log("full screen error", error)
+  //});
   ReactDOM.render(
     <React.StrictMode>
       <AQTDisplay blocks={displayData} config={config} otherPOIs={"otherPOIs"}/>

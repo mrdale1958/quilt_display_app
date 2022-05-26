@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import OpenSeaDragon from 'openseadragon';
 import NamesList from './NamesList.js';
 import { getNamesOnBlock } from '../Services/nameslist.js';
+import CloseIcon from '@mui/icons-material/Close';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import AppBar from '@mui/material/AppBar';
 
 
 function PopupBlock(props){
@@ -49,21 +54,31 @@ function PopupBlock(props){
  
     return (
     <div className="modal">
+        <AppBar sx={{ position: 'relative' }}>
+            <Toolbar>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                Block #{props.block}</Typography>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={props.toggle}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            
+          
+          </Toolbar>
+        </AppBar>
         <div className="modal_content">
-          <span className="close" onClick={props.toggle}>
-            &times;
-          </span>
-          <p>show zoomable block {props.block}</p>
-          <div className="ocd-div" >
+            <div className="ocd-div" >
                 
-            <div className="openseadragon" id="openseadragon1"></div>
-          <ul className="ocd-toolbar">
-             
-          </ul>
-          <NamesList names={names} />
-      </div>
-       </div>
-      </div>
+                <div className="openseadragon" id="openseadragon1"></div>
+                <ul className="ocd-toolbar"></ul>
+            </div>
+            <NamesList names={names} />
+        </div>
+    </div>
     );
 }
 

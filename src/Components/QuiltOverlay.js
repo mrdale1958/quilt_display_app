@@ -85,7 +85,12 @@ export class QuiltOverlay extends PureComponent {
       // Retrieve the south-west and north-east coordinates of this overlay
       // in LatLngs and convert them to pixel coordinates.
       // We'll use these coordinates to resize the div.
-      const llBounds = new window.google.maps.LatLngBounds({'lat': this.bounds.south, 'lng': this.bounds.east}, {'lat': this.bounds.north, 'lng': this.bounds.west});
+
+      // lng seems to be off ~block width so leets ove it
+      const lngOffset = this.bounds.east - this.bounds.west;
+      const llBounds = new window.google.maps.LatLngBounds(
+        {'lat': this.bounds.south, 'lng': this.bounds.east - lngOffset}, 
+        {'lat': this.bounds.north, 'lng': this.bounds.west - lngOffset});
       const sw = quiltProjection.fromLatLngToDivPixel(
         llBounds.getSouthWest()
       );

@@ -6,18 +6,19 @@
         "height":"100%"
     },
     "center":{
-        "lat": 37.76946625350,
-        "lng": -122.45707076433
+        "lat": 37.769600888406515,
+        "lng": -122.45723706128892
     },
     "zoom":19,
     "options":{"maxZoom":28,
             "minZoom":17,
-            "zoomControl": true,
             "mapTypeControl": true,
+            "zoomControl": true,
             "scaleControl": false,
             "streetViewControl": false,
             "rotateControl": false,
-            "fullscreenControl": true
+            "fullscreenControl": false,
+            "gestureHandling": "greedy"
           },
 
     "origin" : { "lat": 37.76907400867421, "lng": -122.45866567286548 },

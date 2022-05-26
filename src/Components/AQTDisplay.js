@@ -64,7 +64,7 @@ function AQTDisplay(props) {
     let names = getnames();
     //.then(names => {
       if (mounted && names.length > 0)  {
-        console.log("setting search list", names);
+        //console.log("setting search list", names);
         setSearchList(names);
       }
     //})
@@ -128,11 +128,12 @@ function AQTDisplay(props) {
       }}
       value={searchSelection}
       onChange={(_event, selection) => {
+        console.log("updating search result to",selection);
         setSearchSelection(selection);
         const newSelectedBlock = (selection.BlockNumber.startsWith('Block 0')) ? selection.PanelListing : selection.BlockNumber; 
-        if (!newSelectedBlock.equal("00000") && !newSelectedBlock.equal(""))  setSelectedBlock(newSelectedBlock);
+        if ((newSelectedBlock !== "00000") && (newSelectedBlock !== ""))  setSelectedBlock(newSelectedBlock);
       }}
-      renderInput={(params) => <TextField {...params} label="Search the June 2022 Quilt Display" />}
+      renderInput={(params) => <TextField {...params} label="Search the Quilt" />}
     /> : null
     }
     { ( searchList.length > 352 ) ? <InteractiveQuiltmap 

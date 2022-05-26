@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import { Polygon, InfoWindow, OverlayView, Marker } from '@react-google-maps/api';
+import { Rectangle, Polygon, InfoWindow, OverlayView, Marker } from '@react-google-maps/api';
 import { CircularProgress } from '@mui/material';
 import OtherPOIOverlay from './OtherPOIOverlay.js';
 import BlockOverlay from './BlockOverlay.js';
@@ -17,10 +17,44 @@ const reportStatus = (status) => {
   
 }
 
+const streets =
+{
+  0 : { 
+    label: "13", 
+    latLon: {"lat":37.76972916238076,"lng":-122.45722264441547}
+  }
+
+}
+
+const aves =
+{
+  0 : { 
+    label: "C", 
+    latLon: {"lat":37.76965283409231,"lng":-122.45723940822181}
+  },
+  1 : { 
+    label: "D", 
+    latLon: {"lat":37.76958816700853,"lng":-122.45716866495904}
+  }           
+
+}
+
 
 function InteractiveQuiltMap(props) {
   // props.config
-  const onClick = () => {
+  const blockBorderOptions = {
+    fillColor: "lightblue",
+    fillOpacity: 0,
+    strokeColor: "white",
+    strokeOpacity: 1,
+    strokeWeight: 1,
+    clickable: false,
+    draggable: false,
+    editable: false,
+    geodesic: false,
+    zIndex: 1
+  }
+const onClick = () => {
     console.info('I have been clicked!')
   };
   const { isLoaded, loadError } = useJsApiLoader({
@@ -30,14 +64,16 @@ function InteractiveQuiltMap(props) {
   const [infoWindow, setInfoWindow] = useState(null);
   const [blocksOverlay, setBlocksOverlay] = useState([]);
   const [POIsOverlay, setPOIsOverlay] = useState([]);
+  const [StreetsAndAvenues, setsRoadSigns] = useState(null);
+    
   const [authorised, setAuthorization] = useState(false);
   const [myMap, setMap] = useState(null);
-  const blockBoundsForCenterBehavior = useRef({});
-  const popup = useRef(false);
+  const blockBoundsForCenterBehavior = useRef([]);
+  const [blockInCenter, setBlockInCenter] = useState(-1);
   const [hovering, setHovering] = useState(false);
   const [selectedBlock, setSelectedBlock] = useState("")
   const [names, setNames] = useState([]);
-  const [ searchDBLoaded, setDBLoaded ] = useState(false);
+  const [searchDBLoaded, setDBLoaded ] = useState(false);
  
   const handleBlockClick= (blockNum) => {
     //setSeen(!seen);
@@ -155,8 +191,11 @@ function InteractiveQuiltMap(props) {
           currRow * config.pitchdown.lng * 0.5,}
           
       };
-      blockBoundsForCenterBehavior.current[inventory[block]['Block #']] = new window.google.maps.LatLngBounds(blockBounds.sw,blockBounds.ne);
-      let blockBoundsOnMap = {
+      const tmpBlockID = inventory[block]['Block #'].padStart(5, '0');
+      let tmpBlockObject = {};
+      tmpBlockObject[tmpBlockID] = new window.google.maps.LatLngBounds(blockBounds.sw,blockBounds.ne);
+      blockBoundsForCenterBehavior.current.push( tmpBlockObject);
+      const blockBoundsOnMap = {
         north: blockBounds.ne.lat,
         south:blockBounds.sw.lat,
         east:blockBounds.ne.lng,
@@ -193,9 +232,11 @@ function InteractiveQuiltMap(props) {
   },[]);
         
   function handleMapClick(event) {
+     
     console.log("Map clicked: ", JSON.stringify(event.latLng.toJSON()));
     const latLngInfoWindow = <InfoWindow position={event.latLng}><div >{JSON.stringify(event.latLng.toJSON())}</div></InfoWindow>
-    setInfoWindow(latLngInfoWindow)
+    setInfoWindow(latLngInfoWindow) 
+    
   }
   
         
@@ -219,19 +260,22 @@ function InteractiveQuiltMap(props) {
       );
   },[authorised,searchDBLoaded,props]); */
   const enableBlockInfoPopUp = (block) => {
-    console.log("open a popup for info for", block);
+    //console.log("open a popup for info for", block);
+    setBlockInCenter(Object.keys(blockBoundsForCenterBehavior.current[block])[0]);
     setHovering(true);
   }
   const scanForBlockInCenter = (map) => {
-    setHovering(false);
+    //var blockInCenter = -1;
     for (var block in blockBoundsForCenterBehavior.current) {
       // TODO take rotation into account
-      if (blockBoundsForCenterBehavior.current[block].contains(map.center)) {
+      if (Object.values(blockBoundsForCenterBehavior.current[block])[0].contains(map.center)) {
         enableBlockInfoPopUp(block);
-        break;
+        return;
       }
     }
-    popup.current = hovering ? <PopupOnCenter block={block} /> : null;
+    //console.log("closing popup");
+    setHovering(false);
+    setBlockInCenter(-1);    
   }
   //useEffect(() => {
     //  setBlocksOverlay(buildBlocksOverlay(props));
@@ -285,6 +329,14 @@ function InteractiveQuiltMap(props) {
     // feel free to render directly if you don't need that
     let mapOptions = props.config.options;
     mapOptions['mapTypeId'] = window.google.maps.MapTypeId.ROADMAP;
+    mapOptions["mapTypeControlOptions"]= {
+      "style": window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+      "position": window.google.maps.ControlPosition.TOP_RIGHT
+    }
+    mapOptions["zoomControlOptions"]= {
+      "position": window.google.maps.ControlPosition.TOP_LEFT
+    }
+    //console.log("boxes",blockBoundsForCenterBehavior.current);
     // TODO enable higher zoom levels in satellite mode
     // TODO add row and column labels
     // TODO 
@@ -303,10 +355,24 @@ function InteractiveQuiltMap(props) {
       onCenterChanged={map =>scanForBlockInCenter(myMap)}
       >
       { /* Child components, such as markers, info windows, etc. */}
-      {popup.current}
+      <PopupOnCenter open={blockInCenter!==-1} block={blockInCenter} />
       {blocksOverlay}
+      {(Object.keys(blockBoundsForCenterBehavior.current).length) ?
+          blockBoundsForCenterBehavior.current.map((box, index) => {
+                return <Rectangle 
+                            bounds={box[Object.keys(box)[0]]} 
+                            key={index+"_BlockBox"} 
+                            options={blockBorderOptions}/>
+     
+          }) : null}
       {POIsOverlay}
-      
+      {StreetsAndAvenues}
+      <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={streets[0].latLon}>
+      <div className="street-label ggp-rotation super-block-rotation-c">{streets[0].label} </div></OverlayView>
+      <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={aves[0].latLon}>
+      <div className="street-label ggp-rotation super-block-rotation-c">{aves[0].label} </div></OverlayView>
+      <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={aves[1].latLon}>
+      <div className="street-label ggp-rotation super-block-rotation-c">{aves[1].label} </div></OverlayView>
       {infoWindow}
       </GoogleMap>
     );
