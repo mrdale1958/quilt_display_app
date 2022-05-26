@@ -22,7 +22,12 @@ const streets =
   0 : { 
     label: "13", 
     latLon: {"lat":37.76972916238076,"lng":-122.45722264441547}
+  },
+  1 : { 
+    label: "14", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
   }
+
 
 }
 
@@ -286,7 +291,8 @@ const onClick = () => {
     console.log("selected Block:", props.selectedBlock);
     if (selectedBlock !== props.selectedBlock) {
       setSelectedBlock(props.selectedBlock);
-      myMap.setCenter(blockBoundsForCenterBehavior.current[Number(props.selectedBlock)].getCenter());
+      // TODO WTF why is this now so broken?
+      //myMap.setCenter(blockBoundsForCenterBehavior.current[Number(props.selectedBlock)].getCenter());
       myMap.panTo(myMap.getCenter());
       myMap.setZoom(props.config.zoom);
     }
@@ -359,16 +365,18 @@ const onClick = () => {
       {blocksOverlay}
       {(Object.keys(blockBoundsForCenterBehavior.current).length) ?
           blockBoundsForCenterBehavior.current.map((box, index) => {
-                return <Rectangle 
+                return null;/*<Rectangle 
                             bounds={box[Object.keys(box)[0]]} 
                             key={index+"_BlockBox"} 
-                            options={blockBorderOptions}/>
+                            options={blockBorderOptions}/>*/
      
           }) : null}
       {POIsOverlay}
       {StreetsAndAvenues}
       <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={streets[0].latLon}>
       <div className="street-label ggp-rotation super-block-rotation-c">{streets[0].label} </div></OverlayView>
+      <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={streets[1].latLon}>
+      <div className="street-label ggp-rotation super-block-rotation-c">{streets[1].label} </div></OverlayView>
       <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={aves[0].latLon}>
       <div className="street-label ggp-rotation super-block-rotation-c">{aves[0].label} </div></OverlayView>
       <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={aves[1].latLon}>

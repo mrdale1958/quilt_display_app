@@ -61,23 +61,11 @@
       "location": {"lat":37.76950653798591,"lng":-122.4569259250432}
 
      },
-     {
-      "id": "Info/Merchandise3",
-      "styles": {
-        "transform": "rotate(322deg)",
-        "backgroundColor": "purple",
-        "border": "black ridge 1px",
-        "width": "100%",
-        "height": "100%"
-      },
-      "size": {"width":20,"height":10},
-      "location": {"lat":37.77049456113896,"lng":-122.456351932314}
-
-     },
+    
      {
       "id": "Gay Flag",
       "styles": {
-        "transform": "rotate(322deg)",
+        "transform": "rotate(51deg)",
         "backgroundColor": "purple",
         "border": "black ridge 1px",
         "width": "100%",
@@ -85,7 +73,7 @@
       },
       "image": "gay-pride.jpeg",
       "size": {"width":60,"height":20},
-      "location": {"lat":37.76996291727395,"lng":-122.4579619282752}
+      "location": {"lat":37.77046699844034,"lng":-122.45580744388398}
 
      },
      {
@@ -99,26 +87,14 @@
       },
       "image": "rt9mgn.jpeg",
       "size": {"width":20,"height":20},
-      "location": {"lat":37.77017228894325,"lng":-122.45573502424058}
+      "location": {"lat":37.77039703154376,"lng":-122.4565128648549}
 
      },
-     {
-      "id": "VIP Tent",
-      "styles": {
-        "transform": "rotate(144deg)",
-        "backgroundColor": "green",
-        "border": "black ridge 1px",
-        "width": "100%",
-        "height": "100%"
-      },
-      "size": {"width":60,"height":30},
-      "location": {"lat":37.770162217914475,"lng":-122.45809737983045}
-
-     },
+     
      {
       "id": "New Panel checkin/making",
       "styles": {
-        "transform": "rotate(0deg)",
+        "transform": "rotate(51deg)",
         "backgroundColor": "orange",
         "border": "black ridge 1px",
         "width": "100%",
@@ -261,14 +237,14 @@
      {
       "id": "Port-a-potties 1",
       "styles": {
-        "transform": "rotate(322deg)",
+        "transform": "rotate(163deg)",
         "backgroundColor": "teal",
         "border": "black ridge 1px",
         "width": "100%",
         "height": "100%"
       },
       "size": {"width":25,"height":5},
-      "location": {"lat":37.77043095489581,"lng":-122.45649140718278}
+      "location": {"lat":37.769328437987525,"lng":-122.45642971637544}
 
 
      },
@@ -315,14 +291,14 @@
      {
       "id": "Dumpster 1",
       "styles": {
-        "transform": "rotate(90deg)",
+        "transform": "rotate(00deg)",
         "backgroundColor": "green",
         "border": "black ridge 1px",
         "width": "100%",
         "height": "100%"
       },
       "size": {"width":25,"height":5},
-      "location":{"lat":37.76991362208582,"lng":-122.46043157222566}
+      "location":{"lat":37.7693031975061,"lng":-122.4567462170392}
 
      },
      {
@@ -335,7 +311,21 @@
         "height": "100%"
       },
       "size": {"width":25,"height":5},
-      "location":{"lat":37.7693241975061,"lng":-122.45666038635072}
+      "location":{"lat":37.7693241975061,"lng":-122.4567462170392}
+
+     },
+     {
+      "id": "Dumpster 3",
+      "styles": {
+        "transform": "rotate(00deg)",
+        "backgroundColor": "green",
+        "border": "black ridge 1px",
+        "width": "100%",
+        "height": "100%"
+      },
+      "size": {"width":25,"height":5},
+      "location":{"lat":37.7693451975061,"lng":-122.4567462170392}
+
 
      }
   ]

@@ -105,6 +105,7 @@ function AQTDisplay(props) {
       }
       );   
   }, [props.blocks, addNamesToSearch, searchDBLoaded, authorised]);
+// TODO add intersection label
 
   // look at https://mui.com/material-ui/react-autocomplete/ for the seearch function
   return (
