@@ -8,7 +8,8 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AppBar from '@mui/material/AppBar';
 
-
+// TODO needs to animate up like the other one does 
+// TODO don't pass mouse events to map below
 function PopupBlock(props){
 
   const [names, setNames] = useState([]);

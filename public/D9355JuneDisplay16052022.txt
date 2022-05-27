@@ -1,4 +1,4 @@
-Block #	LOCATION ID	column	row	position
+BlockNumber	LOCATION_ID	column	row	position
 1	D23	25	4	a
 2	D23	25	4	b
 3	D23	25	4	c

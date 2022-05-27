@@ -94,7 +94,7 @@ function AQTDisplay(props) {
       if (searchDBLoaded) return;
       const inventory=props.blocks;
       for (let block in inventory) {
-        addNamesToSearch(inventory[block]['Block #'].padStart(5, '0'));
+        addNamesToSearch(inventory[block].BlockNumber.padStart(5, '0'));
       }
       setDBLoaded(true);
     }
@@ -130,9 +130,11 @@ function AQTDisplay(props) {
       value={searchSelection}
       onChange={(_event, selection) => {
         console.log("updating search result to",selection);
+        if (selection === null) return;
         setSearchSelection(selection);
         const newSelectedBlock = (selection.BlockNumber.startsWith('Block 0')) ? selection.PanelListing : selection.BlockNumber; 
         if ((newSelectedBlock !== "00000") && (newSelectedBlock !== ""))  setSelectedBlock(newSelectedBlock);
+        // TODO clear the autocomplete
       }}
       renderInput={(params) => <TextField {...params} label="Search the Quilt" />}
     /> : null

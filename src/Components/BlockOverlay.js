@@ -57,7 +57,7 @@ function BlockOverlay(props) {
         geodesic: false,
         zIndex: 10
       }
-        
+   // TODO this needs to close the smaller popup     
   const onBlockClick = blockNum => {
     console.log("QuiltOverlay onClick block: ", blockNum)
     toggleSeen();

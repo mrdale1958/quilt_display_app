@@ -38,9 +38,9 @@ function PopupOnCenter(props){
         <AppBar sx={{ position: 'relative' }}>
             <Toolbar>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                Block #{( props.block !== -1)?props.block:" "}</Typography>
-           
-          
+                {( props.block !== -1)? "Block #" + props.block:" " }</Typography>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                {( props.block !== -1)? "Location:" + props.intersection:" " }</Typography>          
           </Toolbar>
         </AppBar>
         </div>

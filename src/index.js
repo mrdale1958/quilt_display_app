@@ -7,6 +7,7 @@ import { readCSVfile }  from './Services/csvreader.js';
 //import registerServiceWorker from './registerServiceWorker';
 
 
+// TODo cookie for splash/instructions page
 
 var config = {}; 
 
@@ -35,13 +36,11 @@ fetch('./config.json')
       return response.text();
     })
     .then((mydata) => {
-      //console.log("raw timeline: " + mydata);
+// TODO need aux data
+// TODO need coming soon images
       console.log("getting display data");
       let displayData = readCSVfile(mydata);
-      //console.log("timelineData: " + timelineData);
-      //logIn()
-      //.then(runExhibit(displayData));
-      // alogin();
+      
       runExhibit(displayData);
 
     })

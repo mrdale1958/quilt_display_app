@@ -50,6 +50,7 @@ export const addNamesOnBlock = (block_num) => {
         "query":[
             {"Block #":"=="+[block_num]},
             {"Panel Listing":"==","omit":"true"},
+            {"Panel First":"==","omit":"true"},
             {"Panel Last":"==","omit":"true"}],
         "limit":"500","offset":"1",
         "sort":[
@@ -100,7 +101,8 @@ export const addNamesOnBlock = (block_num) => {
                 }
                 await addName({"BlockNumber": datum.fieldData["Panel Number"].substring(0,5),
                     "PanelListing":datum.fieldData["Panel Listing"], key:"Search_"+insertionCount,
-                    "PanelLast":datum.fieldData["Panel Last"]})
+                    "PanelLast":datum.fieldData["Panel Last"],
+                    "PanelFirst":datum.fieldData["Panel First"]})
             //.then(data=>{
                 //console.log(insertionCount, "added ", namesList.length);
             //})

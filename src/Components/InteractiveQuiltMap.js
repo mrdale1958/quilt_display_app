@@ -175,10 +175,11 @@ const onClick = () => {
     let prevRow, prevColumn, currRow, currColumn;
     //let selectedBlock = props.selectedBlock;
     let gutters = { lat: 0, lng: 0 };
-    for (let block in inventory) {
-      currRow = Number(inventory[block].row) - 1;
-      currColumn = Number(inventory[block].column) - 1; 
-      const position = inventory[block].position;
+    for (const blockIndex in inventory) {
+      const block = inventory[blockIndex];
+      currRow = Number(block.row) - 1;
+      currColumn = Number(block.column) - 1; 
+      const position = block.position;
       
       let blockBounds =  {
         ne: {lat: config.origin.lat + currRow * config.gutterWidth.lat +
@@ -196,10 +197,8 @@ const onClick = () => {
           currRow * config.pitchdown.lng * 0.5,}
           
       };
-      const tmpBlockID = inventory[block]['Block #'].padStart(5, '0');
-      let tmpBlockObject = {};
-      tmpBlockObject[tmpBlockID] = new window.google.maps.LatLngBounds(blockBounds.sw,blockBounds.ne);
-      blockBoundsForCenterBehavior.current.push( tmpBlockObject);
+      const blockID = block.BlockNumber.padStart(5, '0');
+      blockBoundsForCenterBehavior.current.push({block: blockID, bounds: new window.google.maps.LatLngBounds(blockBounds.sw,blockBounds.ne)});
       const blockBoundsOnMap = {
         north: blockBounds.ne.lat,
         south:blockBounds.sw.lat,
@@ -210,16 +209,16 @@ const onClick = () => {
       blocks.push(
         <BlockOverlay 
         map={map}
-        superBlockLocation={inventory[block].position}
-        row={inventory[block].row} 
-        col={inventory[block].column} 
+        superBlockLocation={block.position}
+        row={block.row} 
+        col={block.column} 
         position={position} 
         blockBoundsOnMap={blockBoundsOnMap} 
-        blockID={inventory[block]['Block #']}
-        key={inventory[block]['Block #'].padStart(5, '0')}
+        blockID={blockID}
+        key={blockID}
         handleBlockClick={handleBlockClick}
         selected={selectedBlock}
-        names={props.names[inventory[block]['Block #']]}
+        names={props.names[blockID]}
         />
       );
         
@@ -266,15 +265,15 @@ const onClick = () => {
   },[authorised,searchDBLoaded,props]); */
   const enableBlockInfoPopUp = (block) => {
     //console.log("open a popup for info for", block);
-    setBlockInCenter(Object.keys(blockBoundsForCenterBehavior.current[block])[0]);
+    setBlockInCenter(block);
     setHovering(true);
   }
   const scanForBlockInCenter = (map) => {
     //var blockInCenter = -1;
     for (var block in blockBoundsForCenterBehavior.current) {
       // TODO take rotation into account
-      if (Object.values(blockBoundsForCenterBehavior.current[block])[0].contains(map.center)) {
-        enableBlockInfoPopUp(block);
+      if (blockBoundsForCenterBehavior.current[block].bounds.contains(map.center)) {
+        enableBlockInfoPopUp(blockBoundsForCenterBehavior.current[block].block);
         return;
       }
     }
@@ -292,7 +291,9 @@ const onClick = () => {
     if (selectedBlock !== props.selectedBlock) {
       setSelectedBlock(props.selectedBlock);
       // TODO WTF why is this now so broken?
-      //myMap.setCenter(blockBoundsForCenterBehavior.current[Number(props.selectedBlock)].getCenter());
+      //let obj = arr.find(o => o.name === 'string 1');
+
+      myMap.setCenter(blockBoundsForCenterBehavior.current.find(o => {return (o.block.padStart(5, '0') === props.selectedBlock)}).bounds.getCenter());
       myMap.panTo(myMap.getCenter());
       myMap.setZoom(props.config.zoom);
     }
@@ -309,7 +310,11 @@ const onClick = () => {
     if (myMap && names.length) setBlocksOverlay(buildBlocksOverlay(props,myMap));
     
   },[names,props,myMap,buildBlocksOverlay]);
-  
+  // TODO get this and other things to just not get called until there are intersections to find
+  const getIntersection = (blockID) => {
+    const blockObj = props.blocks.find(o => {return (blockInCenter>-1 && o.BlockNumber.padStart(5, '0') === blockInCenter.padStart(5, '0'))});
+    return (blockInCenter>-1) ? blockObj.LOCATION_ID : "";
+  }
   useEffect(() => {
     let namesDB = {};
     if (props.names.length) {
@@ -342,46 +347,45 @@ const onClick = () => {
     mapOptions["zoomControlOptions"]= {
       "position": window.google.maps.ControlPosition.TOP_LEFT
     }
-    //console.log("boxes",blockBoundsForCenterBehavior.current);
+    
+
     // TODO enable higher zoom levels in satellite mode
     // TODO add row and column labels
     // TODO 
     return (
       <GoogleMap
-      mapContainerStyle={props.config.mapContainerStyle}
-      center={props.config.center}
-      zoom={props.config.zoom}
-      tilt={0}
-      options={props.config.options}
-      onClick={handleMapClick}
-      onLoad={map => {
-        setPOIsOverlay(buildPOIsOverlay(props,map));
-        setMap(map)
-      }}
-      onCenterChanged={map =>scanForBlockInCenter(myMap)}
+        mapContainerStyle={props.config.mapContainerStyle}
+        center={props.config.center}
+        zoom={props.config.zoom}
+        tilt={0}
+        options={props.config.options}
+        onClick={handleMapClick}
+        onLoad={map => {
+          setPOIsOverlay(buildPOIsOverlay(props,map));
+          setMap(map)
+        }}
+        onCenterChanged={map =>scanForBlockInCenter(myMap)}
       >
-      { /* Child components, such as markers, info windows, etc. */}
-      <PopupOnCenter open={blockInCenter!==-1} block={blockInCenter} />
-      {blocksOverlay}
-      {(Object.keys(blockBoundsForCenterBehavior.current).length) ?
-          blockBoundsForCenterBehavior.current.map((box, index) => {
-                return null;/*<Rectangle 
-                            bounds={box[Object.keys(box)[0]]} 
-                            key={index+"_BlockBox"} 
-                            options={blockBorderOptions}/>*/
-     
-          }) : null}
-      {POIsOverlay}
-      {StreetsAndAvenues}
-      <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={streets[0].latLon}>
-      <div className="street-label ggp-rotation super-block-rotation-c">{streets[0].label} </div></OverlayView>
-      <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={streets[1].latLon}>
-      <div className="street-label ggp-rotation super-block-rotation-c">{streets[1].label} </div></OverlayView>
-      <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={aves[0].latLon}>
-      <div className="street-label ggp-rotation super-block-rotation-c">{aves[0].label} </div></OverlayView>
-      <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={aves[1].latLon}>
-      <div className="street-label ggp-rotation super-block-rotation-c">{aves[1].label} </div></OverlayView>
-      {infoWindow}
+        { /* Child components, such as markers, info windows, etc. */}
+        <PopupOnCenter open={blockInCenter!==-1} block={blockInCenter} intersection={getIntersection(blockInCenter)}/>
+        {blocksOverlay}
+        { blockBoundsForCenterBehavior.current.map((block, index) => {
+            return <Rectangle 
+                      bounds={block.bounds} 
+                      key={index+"_BlockBox"} 
+                      options={blockBorderOptions}/>    
+                })}
+        {POIsOverlay}
+        {StreetsAndAvenues}
+        <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={streets[0].latLon}>
+        <div className="street-label ggp-rotation super-block-rotation-c">{streets[0].label} </div></OverlayView>
+        <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={streets[1].latLon}>
+        <div className="street-label ggp-rotation super-block-rotation-c">{streets[1].label} </div></OverlayView>
+        <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={aves[0].latLon}>
+        <div className="street-label ggp-rotation super-block-rotation-c">{aves[0].label} </div></OverlayView>
+        <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={aves[1].latLon}>
+        <div className="street-label ggp-rotation super-block-rotation-c">{aves[1].label} </div></OverlayView>
+        {infoWindow}
       </GoogleMap>
     );
   }
@@ -401,7 +405,14 @@ export default React.memo(InteractiveQuiltMap);
       options={blockBorderOptions}
       />
       */
-      
+      /*{(Object.keys(blockBoundsForCenterBehavior.current).length) ?
+          blockBoundsForCenterBehavior.current.map((box, index) => {
+                return null;<Rectangle 
+                            bounds={box[Object.keys(box)[0]]} 
+                            key={index+"_BlockBox"} 
+                            options={blockBorderOptions}/>
+     
+          }) : null}*/
       /* 
       <div><div id={"mumble"} style={{height:0}}>{props.selectedBlock}</div>
       </div>
