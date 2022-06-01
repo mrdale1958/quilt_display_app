@@ -20,11 +20,187 @@ const reportStatus = (status) => {
 const streets =
 {
   0 : { 
+    label: "1", 
+    latLon: {"lat":37.7691015718921,"lng":-122.45865863206681}
+  },
+  1 : { 
+    label: "1", 
+    latLon:{"lat":37.76867328073065,"lng":-122.45818924548921}
+  },
+  2 : { 
+    label: "2", 
+    latLon: {"lat":37.769158818542586,"lng":-122.4585647547513}
+  },
+  3 : { 
+    label: "2", 
+    latLon: {"lat":37.76872840745488,"lng":-122.45810609700975}
+  },
+  4 : { 
+    label: "3", 
+    latLon: {"lat":37.76922454612366,"lng":-122.45847355964479}
+  },
+  5 : { 
+    label: "3", 
+    latLon: {"lat":37.7687792936254,"lng":-122.45800953748521}
+  },
+  6 : { 
+    label: "4", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  7 : { 
+    label: "4", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  8 : { 
+    label: "5", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  9 : { 
+    label: "5", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  10 : { 
+    label: "6", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  11 : { 
+    label: "6", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  12 : { 
+    label: "7", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  13 : { 
+    label: "7", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  14 : { 
+    label: "8", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  15 : { 
+    label: "8", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  16 : { 
+    label: "9", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  17 : { 
+    label: "9", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  18 : { 
+    label: "10", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  19 : { 
+    label: "10", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  20 : { 
+    label: "11", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  21 : { 
+    label: "11", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  22 : { 
+    label: "12", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  23 : { 
+    label: "12", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  24 : { 
     label: "13", 
     latLon: {"lat":37.76972916238076,"lng":-122.45722264441547}
   },
-  1 : { 
+  25 : { 
+    label: "13", 
+    latLon: {"lat":37.76972916238076,"lng":-122.45722264441547}
+  },
+  26 : { 
     label: "14", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  27 : { 
+    label: "14", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  28 : { 
+    label: "15", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  29 : { 
+    label: "15", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  30 : { 
+    label: "16", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  31 : { 
+    label: "16", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  32 : { 
+    label: "17", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  33 : { 
+    label: "17", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  34 : { 
+    label: "18", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  35 : { 
+    label: "18", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  36 : { 
+    label: "19", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  37 : { 
+    label: "19", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  38 : { 
+    label: "20", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  391 : { 
+    label: "20", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  40 : { 
+    label: "21", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  41 : { 
+    label: "21", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  42 : { 
+    label: "22", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  43 : { 
+    label: "22", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  44 : { 
+    label: "23", 
+    latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
+  },
+  45 : { 
+    label: "23", 
     latLon: {"lat":37.769784288317844,"lng":-122.45713513734636}
   }
 
@@ -34,15 +210,70 @@ const streets =
 const aves =
 {
   0 : { 
-    label: "C", 
-    latLon: {"lat":37.76965283409231,"lng":-122.45723940822181}
+    label: "A", 
+    latLon: {"lat":37.768690237216305,"lng":-122.45830592600132}
   },
   1 : { 
+    label: "B", 
+    latLon: {"lat":37.76875331489252,"lng":-122.45837700454021}
+  },
+  2 : { 
+    label: "C", 
+    latLon: {"lat":37.768821163089235,"lng":-122.45845009473587}
+  },
+  3 : { 
     label: "D", 
+    latLon: {"lat":37.76889696217286,"lng":-122.4585278787973}
+  },
+  4 : { 
+    label: "E", 
+    latLon: {"lat":37.768964280175,"lng":-122.45860700396324}
+  },
+  5 : { 
+    label: "F", 
+    latLon: {"lat":37.76902523736818,"lng":-122.45867104170347}
+  },
+  6 : { 
+    label: "A", 
+    latLon: {"lat":37.769254754001246,"lng":-122.45734636572624}
+  },           
+  7 : { 
+    label: "F", 
+    latLon: {"lat":37.76958869147917,"lng":-122.45772254554058}
+  },
+  8 : { 
+    label: "B", 
+    latLon: {"lat":37.769374547619165,"lng":-122.45734535989786}
+  },
+  9 : { 
+    label: "E", 
+    latLon: {"lat":37.769577030195805,"lng":-122.45756463048482}
+  },
+  10 : { 
+    label: "C", 
+    latLon:{"lat":37.7694922208071,"lng":-122.45733530161405}
+  },
+  11 : { 
+    label: "D", 
+    latLon: {"lat":37.76956165850134,"lng":-122.45740973291421}
+  },
+  12 : { 
+    label: "C", 
     latLon: {"lat":37.76958816700853,"lng":-122.45716866495904}
-  }           
-
-}
+  },
+  13 : { 
+    label: "D", 
+    latLon: {"lat":37.76965283409231,"lng":-122.45723940822181}
+  },
+  14 : { 
+    label: "C", 
+    latLon:{"lat":37.77021044724162,"lng":-122.45614305970693}
+  },
+  15 : { 
+    label: "D", 
+    latLon: {"lat":37.770277764048025,"lng":-122.45621682045484}
+  },
+          }
 
 
 function InteractiveQuiltMap(props) {
@@ -153,7 +384,7 @@ const onClick = () => {
       }
       const image = ( dut.image )? dut.image : null; 
       POIOverlays.push(
-        <OtherPOIOverlay 
+        <div><OtherPOIOverlay 
         id={dut.id}
         map={map}
         bounds={bounds} 
@@ -162,7 +393,11 @@ const onClick = () => {
         mapPaneName={OtherPOIOverlay.MAP_PANE} 
         image={image}
         />
-        
+        <Marker 
+      position={dut.location}
+      label={dut.id}
+      />
+      </div>
         );
       }
     return(POIOverlays)
@@ -290,9 +525,7 @@ const onClick = () => {
     console.log("selected Block:", props.selectedBlock);
     if (selectedBlock !== props.selectedBlock) {
       setSelectedBlock(props.selectedBlock);
-      // TODO WTF why is this now so broken?
-      //let obj = arr.find(o => o.name === 'string 1');
-
+      
       myMap.setCenter(blockBoundsForCenterBehavior.current.find(o => {return (o.block.padStart(5, '0') === props.selectedBlock)}).bounds.getCenter());
       myMap.panTo(myMap.getCenter());
       myMap.setZoom(props.config.zoom);
@@ -376,15 +609,16 @@ const onClick = () => {
                       options={blockBorderOptions}/>    
                 })}
         {POIsOverlay}
-        {StreetsAndAvenues}
-        <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={streets[0].latLon}>
-        <div className="street-label ggp-rotation super-block-rotation-c">{streets[0].label} </div></OverlayView>
-        <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={streets[1].latLon}>
-        <div className="street-label ggp-rotation super-block-rotation-c">{streets[1].label} </div></OverlayView>
-        <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={aves[0].latLon}>
-        <div className="street-label ggp-rotation super-block-rotation-c">{aves[0].label} </div></OverlayView>
-        <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} position={aves[1].latLon}>
-        <div className="street-label ggp-rotation super-block-rotation-c">{aves[1].label} </div></OverlayView>
+        {Object.keys(streets).map((street, index) => {
+          return( <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} key={index + "_street"} position={streets[street].latLon}>
+          <div className="street-label ggp-rotation super-block-rotation-c">{streets[street].label} </div></OverlayView>)
+          
+        })}
+        {Object.keys(aves).map((ave, index) => {
+          return( <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} key={index + "_ave"} position={aves[ave].latLon}>
+          <div className="street-label ggp-rotation super-block-rotation-c">{aves[ave].label} </div></OverlayView>)
+          
+        })}
         {infoWindow}
       </GoogleMap>
     );

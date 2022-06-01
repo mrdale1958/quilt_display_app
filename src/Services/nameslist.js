@@ -12,6 +12,7 @@ export  function getnames() {
 export function getNamesOnBlock(blockID) {
     return namesByBlock[blockID];
 }
+// TODO get names by panel
 
 export  function addName(nameobj) {
 	return new Promise((resolve, reject) => {

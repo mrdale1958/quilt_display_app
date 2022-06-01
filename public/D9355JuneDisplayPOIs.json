@@ -1,111 +1,113 @@
 [
     {
-      "id": "Main/Reader's Stage",
+      "id": "Main Stage",
       "styles": {
-        "transform": "rotate(0deg)",
-        "backgroundColor": "red",
-        "border": "black ridge 1px",
+        "transform": "rotate(230deg) translate(-20px, -20px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       } , 
-      "size": {"width":20,"height":12},
-      "location": {"lat":37.76870773493809,"lng":-122.45802361908254}
-     },
+      "image": "icons/mainstage.svg",
+      "size": {"width":60,"height":30},
+      "location": {"lat":37.76882099260995,"lng":-122.45851799011199}
+    },
      {
-      "id": "Media Tent",
+      "id": "Volunteer Village",
       "styles": {
-        "transform": "rotate(322deg)",
-        "backgroundColor": "tan",
-        "border": "black ridge 1px",
+        "transform": "rotate(0deg) translate(-60px, -60px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       } ,
-      "size": {"width":20,"height":10},
-      "location": {"lat":37.76885085224342,"lng":-122.45773259940442}
-
-     },
+      "image": "icons/volunteervillage.svg",
+      "size": {"width":90,"height":90},
+      "location": {"lat":37.7696001822832,"lng":-122.4581773495671}
+    },
      {
       "id": "Volunteer check-in",
       "styles": {
-        "transform": "rotate(322deg)",
-        "backgroundColor": "blue",
-        "border": "black ridge 1px",
+        "transform": "rotate(0deg) translate(-40px, -30px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       } ,
+      "image": "icons/volunteercheckin.svg",
       "location": {"lat":37.769321017144925,"lng":-122.45854597928819},
-      "size": {"width":20,"height":10}
+      "size": {"width":60,"height":40}
      },
      {
-      "id": "Info/Merchandise1",
+      "id": "Info Booth1",
       "styles": {
-        "transform": "rotate(322deg)",
-        "backgroundColor": "purple",
-        "border": "black ridge 1px",
+        "transform": "rotate(0deg) translate(-20px, -20px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       },
-      "size": {"width":20,"height":10},
+      "image": "icons/info.svg",
+      "size": {"width":30,"height":30},
       "location": {"lat":37.769377733565726,"lng":-122.4583501780301}
      },
      {
-      "id": "Info/Merchandise2",
+      "id": "Info Booth2",
       "styles": {
-        "transform": "rotate(322deg)",
-        "backgroundColor": "purple",
-        "border": "black ridge 1px",
+        "transform": "rotate(322deg)  translate(-20px, -20px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       },
-      "size": {"width":20,"height":10},
-      "location": {"lat":37.76950653798591,"lng":-122.4569259250432}
-
-     },
+      "image": "icons/info.svg",
+      "size": {"width":1,"height":1},
+      "location": {"lat":37.76959488170092,"lng":-122.4578367090222}
+    },
     
      {
-      "id": "Gay Flag",
+      "id": "Medical Help",
       "styles": {
-        "transform": "rotate(51deg)",
-        "backgroundColor": "purple",
-        "border": "black ridge 1px",
+        "transform": "rotate(0deg)  translate(-20px, -20px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       },
-      "image": "gay-pride.jpeg",
-      "size": {"width":60,"height":20},
-      "location": {"lat":37.77046699844034,"lng":-122.45580744388398}
-
-     },
-     {
-      "id": "Medical Tent",
-      "styles": {
-        "transform": "rotate(45deg)",
-        "backgroundColor": "white",
-        "border": "black ridge 1px",
-        "width": "100%",
-        "height": "100%"
-      },
-      "image": "rt9mgn.jpeg",
-      "size": {"width":20,"height":20},
-      "location": {"lat":37.77039703154376,"lng":-122.4565128648549}
-
-     },
+      "image": "icons/medical.svg",
+      "size": {"width":30,"height":30},
+      "location": {"lat":37.77025921776596,"lng":-122.45648604276475}
+    },
      
      {
-      "id": "New Panel checkin/making",
+      "id": "Panel Making Village",
       "styles": {
-        "transform": "rotate(51deg)",
-        "backgroundColor": "orange",
-        "border": "black ridge 1px",
+        "transform": "rotate(0deg)  translate(-20px, -20px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       },
-      "size": {"width":30,"height":20},
+      "image": "icons/panelmakingvillage.svg",
+      "size": {"width":1,"height":1},
       "location":{"lat":37.76986220663957,"lng":-122.45742012205419}
 
      },
      {
-        "id": "ASO/Partner 1",
+        "id": "Community Village",
+        "styles": {
+          "transform": "rotate(0deg)  translate(-20px, -20px)",
+          "backgroundColor": "transparent",
+        "border": "0",
+        "width": "100%",
+          "height": "100%"
+        },
+        "image": "icons/communityvillage.svg",
+        "size": {"width":10,"height":10},
+        "location": {"lat":37.76985970355589,"lng":-122.4562765475094}
+      },
+     {
+        "id": "Social Media Village",
         "styles": {
           "transform": "rotate(0deg)",
           "backgroundColor": "yellow",
@@ -113,25 +115,12 @@
           "width": "100%",
           "height": "100%"
         },
-        "size": {"width":10,"height":10},
-        "location": {"lat":37.76952774033813,"lng":-122.45667916181382}
-  
-     },
+        "image": "icons/socialmediavillage.svg",
+        "size": {"width":1,"height":1},
+        "location": {"lat":37.7702296819621,"lng":-122.45606197078821}
+      },
      {
-        "id": "ASO/Partner 2",
-        "styles": {
-          "transform": "rotate(0deg)",
-          "backgroundColor": "yellow",
-          "border": "black ridge 1px",
-          "width": "100%",
-          "height": "100%"
-        },
-        "size": {"width":10,"height":10},
-        "location": {"lat":37.76953198080782,"lng":-122.45652359369096}
-
-     },
-     {
-        "id": "ASO/Partner 3",
+        "id": "Info Booth3",
         "styles": {
           "transform": "rotate(22deg)",
           "backgroundColor": "yellow",
@@ -139,12 +128,12 @@
           "width": "100%",
           "height": "100%"
         },
-        "size": {"width":10,"height":10},
-        "location": {"lat":37.76956166408896,"lng":-122.45635729673204}
-
-     },
+        "image": "icons/info.svg",
+        "size": {"width":1,"height":1},
+        "location": {"lat":37.77032085114181,"lng":-122.45635433157084}
+      },
      {
-        "id": "ASO/Partner 4",
+        "id": "Info Booth4",
         "styles": {
           "transform": "rotate(22deg)",
           "backgroundColor": "yellow",
@@ -152,12 +141,13 @@
           "width": "100%",
           "height": "100%"
         },
+        "image": "icons/info.svg",
         "size": {"width":10,"height":10},
         "location": {"lat":37.769650713860926,"lng":-122.45625537278947}
 
      },
      {
-        "id": "ASO/Partner 5",
+        "id": "Info Booth5",
         "styles": {
           "transform": "rotate(22deg)",
           "backgroundColor": "yellow",
@@ -165,12 +155,13 @@
           "width": "100%",
           "height": "100%"
         },
+        "image": "icons/info.svg",
         "size": {"width":10,"height":10},
         "location":{"lat":37.769727042151565,"lng":-122.45613199117479}
 
      },
      {
-        "id": "ASO/Partner 6",
+        "id": "Info Booth6",
         "styles": {
           "transform": "rotate(22deg)",
           "backgroundColor": "yellow",
@@ -178,12 +169,13 @@
           "width": "100%",
           "height": "100%"
         },
+        "image": "icons/info.svg",
         "size": {"width":10,"height":10},
         "location": {"lat":37.769763616096235,"lng":-122.4560635948449}
 
      },
      {
-        "id": "ASO/Partner 7",
+        "id": "Info Booth7",
         "styles": {
           "transform": "rotate(22deg)",
           "backgroundColor": "yellow",
@@ -191,12 +183,13 @@
           "width": "100%",
           "height": "100%"
         },
+        "image": "icons/info.svg",
         "size": {"width":10,"height":10},
         "location":{"lat":37.76983040325287,"lng":-122.45606828871068}
 
      },
      {
-        "id": "ASO/Partner 8",
+        "id": "Info Booth8",
         "styles": {
           "transform": "rotate(22deg)",
           "backgroundColor": "yellow",
@@ -204,12 +197,13 @@
           "width": "100%",
           "height": "100%"
         },
+        "image": "icons/info.svg",
         "size": {"width":10,"height":10},
         "location": {"lat":37.7698759881029,"lng":-122.45611120405492}
 
      },
      {
-        "id": "ASO/Partner 9",
+        "id": "Info Booth9",
         "styles": {
           "transform": "rotate(22deg)",
           "backgroundColor": "yellow",
@@ -217,12 +211,13 @@
           "width": "100%",
           "height": "100%"
         },
+        "image": "icons/info.svg",
         "size": {"width":10,"height":10},
         "location": {"lat":37.76991839258935,"lng":-122.45618764701184}
 
      },
      {
-        "id": "ASO/Partner 10",
+        "id": "Info Booth10",
         "styles": {
           "transform": "rotate(22deg)",
           "backgroundColor": "yellow",
@@ -230,12 +225,27 @@
           "width": "100%",
           "height": "100%"
         },
+        "image": "icons/info.svg",
         "size": {"width":10,"height":10},
         "location": {"lat":37.769971398163214,"lng":-122.45622117462453}
 
      },
      {
-      "id": "Port-a-potties 1",
+        "id": "Info Booth11",
+        "styles": {
+          "transform": "rotate(22deg)",
+          "backgroundColor": "yellow",
+          "border": "black ridge 1px",
+          "width": "100%",
+          "height": "100%"
+        },
+        "image": "icons/info.svg",
+        "size": {"width":10,"height":10},
+        "location": {"lat":37.769971398163214,"lng":-122.45622117462453}
+
+     },
+     {
+      "id": "Restrooms 1",
       "styles": {
         "transform": "rotate(163deg)",
         "backgroundColor": "teal",
@@ -243,13 +253,14 @@
         "width": "100%",
         "height": "100%"
       },
+      "image": "icons/restroom.svg",
       "size": {"width":25,"height":5},
       "location": {"lat":37.769328437987525,"lng":-122.45642971637544}
 
 
      },
      {
-      "id": "Port-a-potties 2",
+      "id": "Restrooms 2",
       "styles": {
         "transform": "rotate(144deg)",
         "backgroundColor": "teal",
@@ -257,12 +268,13 @@
         "width": "100%",
         "height": "100%"
       },
+      "image": "icons/restroom.svg",
       "size": {"width":25,"height":5},
       "location": {"lat":37.77036469833432,"lng":-122.45761458220777}
 
      },
      {
-      "id": "Port-a-potties 3",
+      "id": "Restrooms 3",
       "styles": {
         "transform": "rotate(163deg)",
         "backgroundColor": "teal",
@@ -270,13 +282,14 @@
         "width": "100%",
         "height": "100%"
       },
+      "image": "icons/restroom.svg",
       "size": {"width":25,"height":5},
       "location":{"lat":37.769315186482366,"lng":-122.45658595505056}
 
 
      },
      {
-      "id": "Port-a-potties 4",
+      "id": "Sign Language",
       "styles": {
         "transform": "rotate(90deg)",
         "backgroundColor": "teal",
@@ -284,12 +297,13 @@
         "width": "100%",
         "height": "100%"
       },
+      "image": "icons/signlanguage.svg",
       "size": {"width":25,"height":5},
       "location":{"lat":37.76974824444053,"lng":-122.4604396188527}
 
      },
      {
-      "id": "Dumpster 1",
+      "id": "Merch Booth 1",
       "styles": {
         "transform": "rotate(00deg)",
         "backgroundColor": "green",
@@ -297,12 +311,13 @@
         "width": "100%",
         "height": "100%"
       },
+      "image": "icons/merch.svg",
       "size": {"width":25,"height":5},
       "location":{"lat":37.7693031975061,"lng":-122.4567462170392}
 
      },
      {
-      "id": "Dumpster 2",
+      "id": "Merch Booth 2",
       "styles": {
         "transform": "rotate(00deg)",
         "backgroundColor": "green",
@@ -310,22 +325,9 @@
         "width": "100%",
         "height": "100%"
       },
+      "image": "icons/merch.svg",
       "size": {"width":25,"height":5},
       "location":{"lat":37.7693241975061,"lng":-122.4567462170392}
-
-     },
-     {
-      "id": "Dumpster 3",
-      "styles": {
-        "transform": "rotate(00deg)",
-        "backgroundColor": "green",
-        "border": "black ridge 1px",
-        "width": "100%",
-        "height": "100%"
-      },
-      "size": {"width":25,"height":5},
-      "location":{"lat":37.7693451975061,"lng":-122.4567462170392}
-
 
      }
   ]
