@@ -10,13 +10,23 @@ import { readCSVfile }  from './Services/csvreader.js';
 // TODo cookie for splash/instructions page
 
 var config = {}; 
+var latestnames = [];
 
-fetch('./config.json')
+fetch('./latestNames.json')
+.then((response) => {
+  return response.json()
+})
+.then((json) => {
+  latestnames = json;
+})
+.then(() => {
+  fetch('./config.json')
 .then((response) => {
   return response.json()
 })
 .then((json) => {
   config = json;
+  config.latestNames = latestnames;
 })
 .then(() => {
   fetch('./D9355JuneDisplayPOIs.json')
@@ -50,6 +60,9 @@ fetch('./config.json')
 }
 )
 .catch((error) => console.log("config read error", error));
+}
+)
+.catch((error) => console.log("latest names read error", error));
 
 function runExhibit(displayData) {
 // TODO This method must be called while responding to a user interaction or a device orientation change; otherwise it will fail.

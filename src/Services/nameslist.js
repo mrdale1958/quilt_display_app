@@ -42,9 +42,9 @@ var namesCount = 0;
 // var failedAdds = 0;
 // var blocksToAdd = [];
 
-export const addNamesOnBlock = (block_num) => {
+export const addNamesOnBlock = (block_num, location) => {
     namesList.push({"BlockNumber": "Block "+block_num,
-    "PanelListing":block_num, key:"Search_"+block_num,
+    "PanelListing":block_num + " Location:" + location, key:"Search_"+block_num,
     "PanelLast":""});
     return new Promise((resolve, reject) => {
     resolve(JSON.stringify({

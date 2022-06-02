@@ -21,7 +21,7 @@
             "gestureHandling": "greedy"
           },
 
-    "origin" : { "lat": 37.76907400867421, "lng": -122.45866567286548 },
+    "origin" : {"lat":37.769021532519474,"lng":-122.45863315108117},
     "pitchright" : { "lat": 1.1e-4, "lng": 1.8e-4 },
     "pitchdown" : { "lat": -1.3e-4, "lng": 1.50e-4 },
     "gutterWidth" : { "lat": -1.2e-6, "lng": 1.25e-6 },

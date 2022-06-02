@@ -44,10 +44,10 @@ function AQTDisplay(props) {
     return a.BlockNumber.localeCompare(b.BlockNumber) ||
     a.PanelLast.localeCompare(b.PanelLast);
   }
-  const addNamesToSearch = useCallback((blockID) => {
+  const addNamesToSearch = useCallback((blockID, location) => {
     if ((searchList.length > 0) && searchList.find(o => o.BlockNumber === blockID.padStart(5, '0')))  return;
     //console.log("want to add", blockID.padStart(5, '0'));
-      addNamesOnBlock(blockID.padStart(5, '0'))
+      addNamesOnBlock(blockID.padStart(5, '0'), location)
       .then(data=> {
         try {
           data.sort(sortByBlockNumber);
@@ -64,7 +64,7 @@ function AQTDisplay(props) {
     let names = getnames();
     //.then(names => {
       if (mounted && names.length > 0)  {
-        //console.log("setting search list", names);
+        console.log("setting search list", names);
         setSearchList(names);
       }
     //})
@@ -94,7 +94,7 @@ function AQTDisplay(props) {
       if (searchDBLoaded) return;
       const inventory=props.blocks;
       for (let block in inventory) {
-        addNamesToSearch(inventory[block].BlockNumber.padStart(5, '0'));
+        addNamesToSearch(inventory[block].BlockNumber.padStart(5, '0'), inventory[block].LOCATION_ID);
       }
       setDBLoaded(true);
     }
@@ -129,7 +129,7 @@ function AQTDisplay(props) {
         console.log("updating search result to",selection);
         if (selection === null) return;
         setSearchSelection(selection);
-        const newSelectedBlock = (selection.BlockNumber.startsWith('Block 0')) ? selection.PanelListing : selection.BlockNumber; 
+        const newSelectedBlock = (selection.BlockNumber.startsWith('Block 0')) ? selection.PanelListing.substring(0,5) : selection.BlockNumber; 
         if ((newSelectedBlock !== "00000") && (newSelectedBlock !== ""))  setSelectedBlock(newSelectedBlock);
         // TODO clear the autocomplete
       }}

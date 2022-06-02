@@ -2,63 +2,49 @@
     {
       "id": "Main Stage",
       "styles": {
-        "transform": "rotate(230deg) translate(-20px, -20px)",
+        "transform": "rotate(-2deg) translate(-39px, -7px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       } , 
       "image": "icons/mainstage.svg",
-      "size": {"width":60,"height":30},
-      "location": {"lat":37.76882099260995,"lng":-122.45851799011199}
+      "size": {"width":80,"height":80},
+      "location": {"lat":37.76885774306966,"lng":-122.45861035230455}
     },
      {
       "id": "Volunteer Village",
       "styles": {
-        "transform": "rotate(0deg) translate(-60px, -60px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       } ,
       "image": "icons/volunteervillage.svg",
-      "size": {"width":90,"height":90},
-      "location": {"lat":37.76973129754458,"lng":-122.45804720177094}
+      "size": {"width":80,"height":80},
+      "location": {"lat":37.769860616470574,"lng":-122.4582241142064}
     },
      {
       "id": "Volunteer check-in",
       "styles": {
-        "transform": "rotate(0deg) translate(-40px, -30px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       } ,
       "image": "icons/volunteercheckin.svg",
-      "location": {"lat":37.76923304203244,"lng":-122.45861314787308},
-      "size": {"width":60,"height":40}
-     },
+      "size": {"width":60,"height":40},
+      "location": {"lat":37.769442930892836,"lng":-122.45874043944177}
+    },
      {
       "id": "Info Booth1",
       "styles": {
-        "transform": "rotate(0deg) translate(-20px, -20px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       },
       "image": "icons/info.svg",
       "size": {"width":30,"height":30},
-      "location": {"lat":37.769377733565726,"lng":-122.4583501780301}
-     },
+      "location": {"lat":37.76941748804035,"lng":-122.45829921605882}
+    },
      {
       "id": "Info Booth2",
       "styles": {
-        "transform": "rotate(0deg)  translate(-20px, -20px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       },
       "image": "icons/info.svg",
       "size": {"width":30,"height":30},
@@ -68,261 +54,192 @@
      {
       "id": "Medical Help",
       "styles": {
-        "transform": "rotate(0deg)  translate(-20px, -20px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       },
       "image": "icons/medical.svg",
       "size": {"width":30,"height":30},
-      "location": {"lat":37.77025921776596,"lng":-122.45648604276475}
+      "location": {"lat":37.77025285712386,"lng":-122.45653700473603}
     },
      
      {
       "id": "Panel Making Village",
       "styles": {
-        "transform": "rotate(0deg)  translate(-60px, -60px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       },
       "image": "icons/panelmakingvillage.svg",
-      "size": {"width":90,"height":90},
-      "location":{"lat":37.76986220663957,"lng":-122.45742012205419}
-
-     },
+      "size": {"width":75,"height":75},
+      "location": {"lat":37.769803370363434,"lng":-122.4575388098031}
+    },
      {
         "id": "Community Village",
         "styles": {
-          "transform": "rotate(0deg)  translate(-60px, -60px)",
           "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-          "height": "100%"
+          "border": "0"
         },
         "image": "icons/communityvillage.svg",
-        "size": {"width":90,"height":90},
-        "location": {"lat":37.76985970355589,"lng":-122.4562765475094}
+        "size": {"width":75,"height":75},
+        "location": {"lat":37.76987545804665,"lng":-122.4562969470292}
       },
      {
         "id": "Social Media Village",
         "styles": {
-          "transform": "rotate(0deg)  translate(-60px, -60px)",
           "backgroundColor": "transparent",
-          "border": "0",
-          "width": "100%",
-          "height": "100%"
+          "border": "0"
         },
         "image": "icons/socialmediavillage.svg",
-        "size": {"width":90,"height":90},
-        "location": {"lat":37.7702296819621,"lng":-122.45606197078821}
+        "size": {"width":75,"height":75},
+        "location": {"lat":37.77027193904851,"lng":-122.45607030036744}
       },
      {
         "id": "Info Booth3",
         "styles": {
-          "transform": "rotate(0deg) translate(-20px, -20px)",
           "backgroundColor": "transparent",
-          "border": "0",
-          "width": "100%",
-          "height": "100%"
+          "border": "0"
         },
         "image": "icons/info.svg",
         "size": {"width":30,"height":30},
-        "location": {"lat":37.77032085114181,"lng":-122.45635433157084}
+        "location": {"lat":37.77032282415685,"lng":-122.45643508079347}
       },
      {
         "id": "Info Booth4",
         "styles": {
-          "transform": "rotate(0deg) translate(-20px, -20px)",
           "backgroundColor": "transparent",
-          "border": "0",
-          "width": "100%",
-          "height": "100%"
+          "border": "0"
         },
         "image": "icons/info.svg",
         "size": {"width":30,"height":30},
-        "location": {"lat":37.769650713860926,"lng":-122.45625537278947}
-
-     },
+        "location":{"lat":37.76988393894599,"lng":-122.45715123060045}
+      },
      {
         "id": "Info Booth5",
         "styles": {
-          "transform": "rotate(0deg) translate(-20px, -20px)",
           "backgroundColor": "transparent",
-          "border": "0",
-          "width": "100%",
-          "height": "100%"
+          "border": "0"
         },
         "image": "icons/info.svg",
         "size": {"width":30,"height":30},
-        "location":{"lat":37.769727042151565,"lng":-122.45613199117479}
-
-     },
+        "location": {"lat":37.76995390632805,"lng":-122.45610919239816}
+      },
      {
         "id": "Info Booth6",
         "styles": {
-          "transform": "rotate(0deg) translate(-20px, -20px)",
           "backgroundColor": "transparent",
-          "border": "0",
-          "width": "100%",
-          "height": "100%"
+          "border": "0"
         },
         "image": "icons/info.svg",
         "size": {"width":30,"height":30},
-        "location": {"lat":37.769763616096235,"lng":-122.4560635948449}
-
-     },
+        "location": {"lat":37.76958922712511,"lng":-122.45633583905992}
+      },
      {
         "id": "Info Booth7",
         "styles": {
-          "transform": "rotate(0deg) translate(-20px, -20px)",
           "backgroundColor": "transparent",
-          "border": "0",
-          "width": "100%",
-          "height": "100%"
+          "border": "0"
         },
         "image": "icons/info.svg",
         "size": {"width":30,"height":30},
-        "location":{"lat":37.76983040325287,"lng":-122.45606828871068}
-
-     },
+        "location": {"lat":37.76943020946767,"lng":-122.45659735443887}
+      },
      {
         "id": "Info Booth8",
         "styles": {
-          "transform": "rotate(0deg) translate(-20px, -20px)",
           "backgroundColor": "transparent",
-          "border": "0",
-          "width": "100%",
-          "height": "100%"
+          "border": "0"
         },
         "image": "icons/info.svg",
         "size": {"width":30,"height":30},
-        "location": {"lat":37.7698759881029,"lng":-122.45611120405492}
-
-     },
+        "location": {"lat":37.76884502154378,"lng":-122.45750796439943}
+      },
      {
         "id": "Info Booth9",
         "styles": {
-          "transform": "rotate(0deg) translate(-20px, -20px)",
           "backgroundColor": "transparent",
-          "border": "0",
-          "width": "100%",
-          "height": "100%"
+          "border": "0"
         },
         "image": "icons/info.svg",
         "size": {"width":30,"height":30},
-        "location": {"lat":37.76991839258935,"lng":-122.45618764701184}
-
-     },
+        "location": {"lat":37.76853122321342,"lng":-122.45867204311189}
+      },
      {
         "id": "Info Booth10",
         "styles": {
-          "transform": "rotate(0deg) translate(-20px, -20px)",
           "backgroundColor": "transparent",
-          "border": "0",
-          "width": "100%",
-          "height": "100%"
+          "border": "0"
         },
         "image": "icons/info.svg",
         "size": {"width":30,"height":30},
-        "location": {"lat":37.769971398163214,"lng":-122.45622117462453}
-
-     },
+        "location": {"lat":37.76920970441693,"lng":-122.45871629956063}
+      },
      {
         "id": "Info Booth11",
         "styles": {
-          "transform": "rotate(0deg) translate(-20px, -20px)",
           "backgroundColor": "transparent",
-          "border": "0",
-          "width": "100%",
-          "height": "100%"
+          "border": "0"
         },
         "image": "icons/info.svg",
         "size": {"width":30,"height":30},
-        "location": {"lat":37.769971398163214,"lng":-122.45622117462453}
-
-     },
+        "location": {"lat":37.76962527107991,"lng":-122.45786201598939}
+      },
      {
       "id": "Restrooms 1",
       "styles": {
-        "transform": "rotate(0deg) translate(-20px, -20px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       },
       "image": "icons/restroom.svg",
       "size": {"width":30,"height":30},
-      "location": {"lat":37.76956284935898,"lng":-122.45861771816858}
+      "location": {"lat":37.76944717136744,"lng":-122.458873208788}
     },
      {
       "id": "Restrooms 2",
       "styles": {
-        "transform": "rotate(0deg) translate(-20px, -20px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       },
       "image": "icons/restroom.svg",
       "size": {"width":30,"height":30},
-      "location": {"lat":37.76896229066566,"lng":-122.45743754620203}
+      "location": {"lat":37.76890862915117,"lng":-122.45737921836671}
     },
      {
       "id": "Restrooms 3",
       "styles": {
-        "transform": "rotate(0deg) translate(-20px, -20px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       },
       "image": "icons/restroom.svg",
       "size": {"width":30,"height":30},
-      "location":{"lat":37.769315186482366,"lng":-122.45658595505056}
-
-
-     },
+      "location": {"lat":37.7694196082784,"lng":-122.45645653846559}
+    },
      {
       "id": "Sign Language",
       "styles": {
-        "transform": "rotate(90deg) translate(-20px, -20px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       },
       "image": "icons/signlanguage.svg",
       "size": {"width":30,"height":30},
-      "location":{"lat":37.76974824444053,"lng":-122.4604396188527}
-
-     },
+      "location": {"lat":37.76919274246271,"lng":-122.4585835302144}
+    },
      {
       "id": "Merch Booth 1",
       "styles": {
-        "transform": "rotate(00deg) translate(-20px, -20px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       },
       "image": "icons/merch.svg",
       "size": {"width":30,"height":30},
-      "location":{"lat":37.76933057316291,"lng":-122.45843343986908}
+      "location": {"lat":37.769440810655496,"lng":-122.45847892406282}
     },
      {
       "id": "Merch Booth 2",
       "styles": {
-        "transform": "rotate(00deg) translate(-20px, -20px)",
         "backgroundColor": "transparent",
-        "border": "0",
-        "width": "100%",
-        "height": "100%"
+        "border": "0"
       },
       "image": "icons/merch.svg",
       "size": {"width":30,"height":30},
-      "location":{"lat":37.76947050890802,"lng":-122.4568348432962}
+      "location": {"lat":37.76942172851638,"lng":-122.45671403053102}
     }
   ]

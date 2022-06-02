@@ -52,10 +52,32 @@
   height: 100%;
 }
 
+.poi-label {
+  display: none;
+}
+
 .street-label {
   font-weight:bold;
   margin-top: -8px;
   margin-left: -4px;
+  background-color: #8fc741;
+  color: white;
+  border-width: 1px;
+  border-color: white;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.ave-label {
+  font-weight:bold;
+  margin-top: -8px;
+  margin-left: -4px;
+  background-color: #5741c7;
+  color: white;
+  border-width: 1px;
+  border-color: white;
+  border-radius: 4px;
+  padding: 2px;
 }
 
 .ggp-rotation {

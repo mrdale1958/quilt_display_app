@@ -1,5 +1,6 @@
 {
   "name": "quilt_display_map",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -57,7 +58,7 @@
     }
   },
   "ignoreme": {
-    "homepage": "http://quilt.utdallas.edu/quiltdata/aqtnam/web/build/",
+    "homepage": "http://aidsquilttouch.org/livedisplay/",
     "start_url": "."
   }
 }
