@@ -23,7 +23,7 @@
       } ,
       "image": "icons/volunteervillage.svg",
       "size": {"width":90,"height":90},
-      "location": {"lat":37.7696001822832,"lng":-122.4581773495671}
+      "location": {"lat":37.76973129754458,"lng":-122.45804720177094}
     },
      {
       "id": "Volunteer check-in",
@@ -35,7 +35,7 @@
         "height": "100%"
       } ,
       "image": "icons/volunteercheckin.svg",
-      "location": {"lat":37.769321017144925,"lng":-122.45854597928819},
+      "location": {"lat":37.76923304203244,"lng":-122.45861314787308},
       "size": {"width":60,"height":40}
      },
      {
@@ -54,15 +54,15 @@
      {
       "id": "Info Booth2",
       "styles": {
-        "transform": "rotate(322deg)  translate(-20px, -20px)",
+        "transform": "rotate(0deg)  translate(-20px, -20px)",
         "backgroundColor": "transparent",
         "border": "0",
         "width": "100%",
         "height": "100%"
       },
       "image": "icons/info.svg",
-      "size": {"width":1,"height":1},
-      "location": {"lat":37.76959488170092,"lng":-122.4578367090222}
+      "size": {"width":30,"height":30},
+      "location": {"lat":37.76974825937526,"lng":-122.45788626923004}
     },
     
      {
@@ -82,208 +82,205 @@
      {
       "id": "Panel Making Village",
       "styles": {
-        "transform": "rotate(0deg)  translate(-20px, -20px)",
+        "transform": "rotate(0deg)  translate(-60px, -60px)",
         "backgroundColor": "transparent",
         "border": "0",
         "width": "100%",
         "height": "100%"
       },
       "image": "icons/panelmakingvillage.svg",
-      "size": {"width":1,"height":1},
+      "size": {"width":90,"height":90},
       "location":{"lat":37.76986220663957,"lng":-122.45742012205419}
 
      },
      {
         "id": "Community Village",
         "styles": {
-          "transform": "rotate(0deg)  translate(-20px, -20px)",
+          "transform": "rotate(0deg)  translate(-60px, -60px)",
           "backgroundColor": "transparent",
         "border": "0",
         "width": "100%",
           "height": "100%"
         },
         "image": "icons/communityvillage.svg",
-        "size": {"width":10,"height":10},
+        "size": {"width":90,"height":90},
         "location": {"lat":37.76985970355589,"lng":-122.4562765475094}
       },
      {
         "id": "Social Media Village",
         "styles": {
-          "transform": "rotate(0deg)",
-          "backgroundColor": "yellow",
-          "border": "black ridge 1px",
+          "transform": "rotate(0deg)  translate(-60px, -60px)",
+          "backgroundColor": "transparent",
+          "border": "0",
           "width": "100%",
           "height": "100%"
         },
         "image": "icons/socialmediavillage.svg",
-        "size": {"width":1,"height":1},
+        "size": {"width":90,"height":90},
         "location": {"lat":37.7702296819621,"lng":-122.45606197078821}
       },
      {
         "id": "Info Booth3",
         "styles": {
-          "transform": "rotate(22deg)",
-          "backgroundColor": "yellow",
-          "border": "black ridge 1px",
+          "transform": "rotate(0deg) translate(-20px, -20px)",
+          "backgroundColor": "transparent",
+          "border": "0",
           "width": "100%",
           "height": "100%"
         },
         "image": "icons/info.svg",
-        "size": {"width":1,"height":1},
+        "size": {"width":30,"height":30},
         "location": {"lat":37.77032085114181,"lng":-122.45635433157084}
       },
      {
         "id": "Info Booth4",
         "styles": {
-          "transform": "rotate(22deg)",
-          "backgroundColor": "yellow",
-          "border": "black ridge 1px",
+          "transform": "rotate(0deg) translate(-20px, -20px)",
+          "backgroundColor": "transparent",
+          "border": "0",
           "width": "100%",
           "height": "100%"
         },
         "image": "icons/info.svg",
-        "size": {"width":10,"height":10},
+        "size": {"width":30,"height":30},
         "location": {"lat":37.769650713860926,"lng":-122.45625537278947}
 
      },
      {
         "id": "Info Booth5",
         "styles": {
-          "transform": "rotate(22deg)",
-          "backgroundColor": "yellow",
-          "border": "black ridge 1px",
+          "transform": "rotate(0deg) translate(-20px, -20px)",
+          "backgroundColor": "transparent",
+          "border": "0",
           "width": "100%",
           "height": "100%"
         },
         "image": "icons/info.svg",
-        "size": {"width":10,"height":10},
+        "size": {"width":30,"height":30},
         "location":{"lat":37.769727042151565,"lng":-122.45613199117479}
 
      },
      {
         "id": "Info Booth6",
         "styles": {
-          "transform": "rotate(22deg)",
-          "backgroundColor": "yellow",
-          "border": "black ridge 1px",
+          "transform": "rotate(0deg) translate(-20px, -20px)",
+          "backgroundColor": "transparent",
+          "border": "0",
           "width": "100%",
           "height": "100%"
         },
         "image": "icons/info.svg",
-        "size": {"width":10,"height":10},
+        "size": {"width":30,"height":30},
         "location": {"lat":37.769763616096235,"lng":-122.4560635948449}
 
      },
      {
         "id": "Info Booth7",
         "styles": {
-          "transform": "rotate(22deg)",
-          "backgroundColor": "yellow",
-          "border": "black ridge 1px",
+          "transform": "rotate(0deg) translate(-20px, -20px)",
+          "backgroundColor": "transparent",
+          "border": "0",
           "width": "100%",
           "height": "100%"
         },
         "image": "icons/info.svg",
-        "size": {"width":10,"height":10},
+        "size": {"width":30,"height":30},
         "location":{"lat":37.76983040325287,"lng":-122.45606828871068}
 
      },
      {
         "id": "Info Booth8",
         "styles": {
-          "transform": "rotate(22deg)",
-          "backgroundColor": "yellow",
-          "border": "black ridge 1px",
+          "transform": "rotate(0deg) translate(-20px, -20px)",
+          "backgroundColor": "transparent",
+          "border": "0",
           "width": "100%",
           "height": "100%"
         },
         "image": "icons/info.svg",
-        "size": {"width":10,"height":10},
+        "size": {"width":30,"height":30},
         "location": {"lat":37.7698759881029,"lng":-122.45611120405492}
 
      },
      {
         "id": "Info Booth9",
         "styles": {
-          "transform": "rotate(22deg)",
-          "backgroundColor": "yellow",
-          "border": "black ridge 1px",
+          "transform": "rotate(0deg) translate(-20px, -20px)",
+          "backgroundColor": "transparent",
+          "border": "0",
           "width": "100%",
           "height": "100%"
         },
         "image": "icons/info.svg",
-        "size": {"width":10,"height":10},
+        "size": {"width":30,"height":30},
         "location": {"lat":37.76991839258935,"lng":-122.45618764701184}
 
      },
      {
         "id": "Info Booth10",
         "styles": {
-          "transform": "rotate(22deg)",
-          "backgroundColor": "yellow",
-          "border": "black ridge 1px",
+          "transform": "rotate(0deg) translate(-20px, -20px)",
+          "backgroundColor": "transparent",
+          "border": "0",
           "width": "100%",
           "height": "100%"
         },
         "image": "icons/info.svg",
-        "size": {"width":10,"height":10},
+        "size": {"width":30,"height":30},
         "location": {"lat":37.769971398163214,"lng":-122.45622117462453}
 
      },
      {
         "id": "Info Booth11",
         "styles": {
-          "transform": "rotate(22deg)",
-          "backgroundColor": "yellow",
-          "border": "black ridge 1px",
+          "transform": "rotate(0deg) translate(-20px, -20px)",
+          "backgroundColor": "transparent",
+          "border": "0",
           "width": "100%",
           "height": "100%"
         },
         "image": "icons/info.svg",
-        "size": {"width":10,"height":10},
+        "size": {"width":30,"height":30},
         "location": {"lat":37.769971398163214,"lng":-122.45622117462453}
 
      },
      {
       "id": "Restrooms 1",
       "styles": {
-        "transform": "rotate(163deg)",
-        "backgroundColor": "teal",
-        "border": "black ridge 1px",
+        "transform": "rotate(0deg) translate(-20px, -20px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       },
       "image": "icons/restroom.svg",
-      "size": {"width":25,"height":5},
-      "location": {"lat":37.769328437987525,"lng":-122.45642971637544}
-
-
-     },
+      "size": {"width":30,"height":30},
+      "location": {"lat":37.76956284935898,"lng":-122.45861771816858}
+    },
      {
       "id": "Restrooms 2",
       "styles": {
-        "transform": "rotate(144deg)",
-        "backgroundColor": "teal",
-        "border": "black ridge 1px",
+        "transform": "rotate(0deg) translate(-20px, -20px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       },
       "image": "icons/restroom.svg",
-      "size": {"width":25,"height":5},
-      "location": {"lat":37.77036469833432,"lng":-122.45761458220777}
-
-     },
+      "size": {"width":30,"height":30},
+      "location": {"lat":37.76896229066566,"lng":-122.45743754620203}
+    },
      {
       "id": "Restrooms 3",
       "styles": {
-        "transform": "rotate(163deg)",
-        "backgroundColor": "teal",
-        "border": "black ridge 1px",
+        "transform": "rotate(0deg) translate(-20px, -20px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       },
       "image": "icons/restroom.svg",
-      "size": {"width":25,"height":5},
+      "size": {"width":30,"height":30},
       "location":{"lat":37.769315186482366,"lng":-122.45658595505056}
 
 
@@ -291,43 +288,41 @@
      {
       "id": "Sign Language",
       "styles": {
-        "transform": "rotate(90deg)",
-        "backgroundColor": "teal",
-        "border": "black ridge 1px",
+        "transform": "rotate(90deg) translate(-20px, -20px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       },
       "image": "icons/signlanguage.svg",
-      "size": {"width":25,"height":5},
+      "size": {"width":30,"height":30},
       "location":{"lat":37.76974824444053,"lng":-122.4604396188527}
 
      },
      {
       "id": "Merch Booth 1",
       "styles": {
-        "transform": "rotate(00deg)",
-        "backgroundColor": "green",
-        "border": "black ridge 1px",
+        "transform": "rotate(00deg) translate(-20px, -20px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       },
       "image": "icons/merch.svg",
-      "size": {"width":25,"height":5},
-      "location":{"lat":37.7693031975061,"lng":-122.4567462170392}
-
-     },
+      "size": {"width":30,"height":30},
+      "location":{"lat":37.76933057316291,"lng":-122.45843343986908}
+    },
      {
       "id": "Merch Booth 2",
       "styles": {
-        "transform": "rotate(00deg)",
-        "backgroundColor": "green",
-        "border": "black ridge 1px",
+        "transform": "rotate(00deg) translate(-20px, -20px)",
+        "backgroundColor": "transparent",
+        "border": "0",
         "width": "100%",
         "height": "100%"
       },
       "image": "icons/merch.svg",
-      "size": {"width":25,"height":5},
-      "location":{"lat":37.7693241975061,"lng":-122.4567462170392}
-
-     }
+      "size": {"width":30,"height":30},
+      "location":{"lat":37.76947050890802,"lng":-122.4568348432962}
+    }
   ]
