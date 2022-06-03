@@ -9,6 +9,10 @@ export  function getnames() {
     //.catch(error=>console.log(error))
     }
 
+export function setnames(newlist) {
+    namesList = newlist;
+}
+
 export function getNamesOnBlock(blockID) {
     return namesByBlock[blockID];
 }
@@ -45,19 +49,20 @@ var namesCount = 0;
 export const addNamesOnBlock = (block_num, location) => {
     namesList.push({"BlockNumber": "Block "+block_num,
     "PanelListing":block_num + " Location:" + location, key:"Search_"+block_num,
-    "PanelLast":""});
+    "PanelLast":"", "panelID": '1'});
     return new Promise((resolve, reject) => {
     resolve(JSON.stringify({
         "query":[
             {"Block #":"=="+[block_num]},
-            {"Panel Listing":"==","omit":"true"},
-            {"Panel First":"==","omit":"true"},
-            {"Panel Last":"==","omit":"true"}],
+            {"Panel Listing":"==","omit":"true"}],
         "limit":"500","offset":"1",
         "sort":[
             {"fieldName":"Panel Number","sortOrder":"ascend"},
             {"fieldName":"Panel Listing","sortOrder":"ascend"}]}));
         }
+        //,
+        //    {"Panel First":"==","omit":"true"},
+        //    {"Panel Last":"==","omit":"true"}
     // ).then((namesOnBlockQuery) => {getFieldNames()
     //     .then(json => {
     //         console.log("DataAPi", json);
@@ -90,11 +95,22 @@ export const addNamesOnBlock = (block_num, location) => {
             data.map(async (datum) => {
                 insertionCount++;
                 const blockNum = datum.fieldData["Panel Number"].substring(0,5);
+                //if (blockNum==="00092") console.log("244", datum, data);
+                const panelNum = datum.fieldData["Panel Number"].substring(6);
                 const currentEntry = namesByBlock[blockNum];
-                const newEntry = (blockNum.startsWith('Block 0')) ? null : datum.fieldData["Panel Listing"];
+                const newEntry = (blockNum.startsWith('Block 0')) ? null : { 'name': datum.fieldData["Panel Listing"], 'panelNumber': panelNum };
                 if (newEntry) {
-                  if (currentEntry !== undefined) {
-                    namesByBlock[blockNum].push(newEntry);
+                  if (currentEntry !== undefined ) {
+                    var found = false;
+                    //if (blockNum==="00092") {
+                    //    console.log("244", datum, data);}
+                    for (const entry in currentEntry) {
+                        if (currentEntry[entry].name === datum.fieldData["Panel Listing"] && currentEntry[entry].panelNumber === panelNum) {
+                            found = true;
+                            break
+                        }
+                    }
+                    if (!found) namesByBlock[blockNum].push(newEntry)
                   } else
                   {          
                     namesByBlock[blockNum] = [newEntry];

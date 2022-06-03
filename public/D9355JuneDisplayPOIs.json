@@ -135,16 +135,5 @@
       "image": "icons/merch.svg",
       "size": {"width":30,"height":30},
       "location": {"lat":37.769538341511925,"lng":-122.45687496307191}
-    },
-    {
-     "id": "pride flag",
-     "styles": {
-      "transform": "rotate(45deg)",
-      "backgroundColor": "transparent",
-       "border": "0"
-     },
-     "image": "./gay-pride.jpeg",
-     "size": {"width":60,"height":30},
-     "location": {"lat":37.77057300876354,"lng":-122.45585706475076}
     }
   ]

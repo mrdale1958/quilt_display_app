@@ -8,7 +8,7 @@ var fmpErrorCodes;
 fetch("./fmperrorcodes.json")
 .then(
 	response => {
-		console.log(response);
+		//console.log(response);
 		if (!response.ok) {
 			throw new Error("HTTP error " + response.status);
 		}

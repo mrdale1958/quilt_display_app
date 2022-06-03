@@ -527,7 +527,6 @@ const onClick = () => {
         east:blockBounds.ne.lng,
         west:blockBounds.sw.lng
       };
-      // TODO clean up blockID inventory[block]['Block #'] stuff
       blocks.push(
         <BlockOverlay 
         map={map}
@@ -541,6 +540,8 @@ const onClick = () => {
         handleBlockClick={handleBlockClick}
         selected={selectedBlock}
         names={props.names[blockID]}
+        location={block.LOCATION_ID}
+        config={props.config}
         />
       );
         
@@ -567,24 +568,7 @@ const onClick = () => {
   
         
   
-  /* useEffect(() => {
-    console.log("logged in? begin", authorised, loggedIn)
-    
-    if (loggedIn ) {
-      if (searchDBLoaded) return;
-      const inventory=props.blocks;
-      for (let block in inventory) {
-        props.addNamesToSearch(inventory[block]['Block #'].padStart(5, '0'));
-      }
-      setDBLoaded(true);
-    }
-    else 
-    logIn().then(result =>
-      {if (loggedIn) setAuthorization(true);
-        console.log("logged in? return", authorised, loggedIn)
-      }
-      );
-  },[authorised,searchDBLoaded,props]); */
+  
   const enableBlockInfoPopUp = (block) => {
     //console.log("open a popup for info for", block);
     setBlockInCenter(block);
@@ -628,19 +612,19 @@ const onClick = () => {
     //);
     
   useEffect(() => {
-    console.log("selected Block:", props.selectedBlock);
     if (selectedBlock !== props.selectedBlock) {
       setSelectedBlock(props.selectedBlock);
-      
-      myMap.setCenter(blockBoundsForCenterBehavior.current.find(o => {return (o.block.padStart(5, '0') === props.selectedBlock)}).bounds.getCenter());
-      myMap.panTo(myMap.getCenter());
-      myMap.setZoom(props.config.zoom);
-    }
+      const blockImage = blockBoundsForCenterBehavior.current.find(o => {return (o.block.padStart(5, '0') === props.selectedBlock.substring(0,5))})
+      //myMap.setCenter(blockImage.bounds.getCenter());
+      myMap.panTo(blockImage.bounds.getCenter());
+      //myMap.setZoom(props.config.zoom);
+      console.log("selected Block:", props.selectedBlock, blockImage.bounds.getCenter().toString(), myMap.getCenter().toString());
+  }
   }, [ selectedBlock, myMap,   props.selectedBlock, props.config.zoom]);
   
   
   useEffect(() => {
-    console.log("dbloaded", searchDBLoaded);
+    //console.log("dbloaded", searchDBLoaded);
     if (searchDBLoaded) props.refreshMenu();
   },[searchDBLoaded,props])
   

@@ -49,7 +49,7 @@ fetch('./latestNames.json')
     .then((mydata) => {
 // TODO need aux data
 // TODO need coming soon images
-      console.log("getting display data");
+      //console.log("getting display data");
       let displayData = readCSVfile(mydata);
       
       runExhibit(displayData);

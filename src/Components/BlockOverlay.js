@@ -68,10 +68,10 @@ function BlockOverlay(props) {
     props.handleBlockClick(blockNum)
   }    
   if (baseKey === '') return null;
-  if (props.map)
-    console.log("blockoverlay has a map")
+  //if (props.map)
+    //console.log("blockoverlay has a map")
     //console.log("selected?", props.selected, blockID);
-  var popup = seen ? <PopupBlock toggle={toggleSeen} block={blockID} names={names}/> : null;
+  var popup = seen ? <PopupBlock toggle={toggleSeen} block={blockID} names={names} location={props.location}  config={props.config}/> : null;
   return(
     <div key={baseKey+"div"}>
       {popup}

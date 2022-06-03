@@ -17,34 +17,34 @@ function PopupBlock(props){
   useEffect(()=>{
     setNames(getNamesOnBlock(props.block));
     if (names !== undefined && names.length){
-    var  viewer = OpenSeaDragon({
-      id: "openseadragon1", //id + "osd",
-      showNavigationControl: false,
-      prefixUrl: "css/seadragon_images/",
-      defaultZoomLevel: 1,
-      minZoomLevel: 0,
-      maxZoomLevel: 4,
-      minZoomImageRatio: 0,
-      tileSources:  {
-      Image: {
-          xmlns:    "http://schemas.microsoft.com/deepzoom/2008",
-          Url:      process.env.REACT_APP_BLOCK_SRC + String(props.block).padStart(5, '0') +"_files/",
-          Format:"jpeg", 
-          Overlap:"0" ,
-          TileSize:"128",
-          
-            Size: {
-                Width:"2048", 
-                Height:"2048"
-              },
-            MaxLevel: 4,
-            MinLevel: 0
-      }},
-      visibilityRatio: 1.0,
-      constrainDuringPan: true,
-      overlays: [],
-    });
-  }},[names, props.block]);
+      var  viewer = OpenSeaDragon({
+        id: "openseadragon1", //id + "osd",
+        showNavigationControl: false,
+        prefixUrl: "css/seadragon_images/",
+        defaultZoomLevel: 1,
+        minZoomLevel: 0,
+        maxZoomLevel: 4,
+        minZoomImageRatio: 0,
+        tileSources:  {
+        Image: {
+            xmlns:    "http://schemas.microsoft.com/deepzoom/2008",
+            Url:      process.env.REACT_APP_BLOCK_SRC + String(props.block).padStart(5, '0') +"_files/",
+            Format:"jpeg", 
+            Overlap:"0" ,
+            TileSize:"128",
+            
+              Size: {
+                  Width:"2048", 
+                  Height:"2048"
+                },
+              MaxLevel: 4,
+              MinLevel: 0
+        }},
+        visibilityRatio: 1.0,
+        constrainDuringPan: true,
+        overlays: [],
+      });
+    }},[names, props.block]);
 
  
  
@@ -59,6 +59,8 @@ function PopupBlock(props){
             <Toolbar>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
                 Block #{props.block}</Typography>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                {( props.block !== -1)? "Location:" + props.location:" " }</Typography>
             <IconButton
               edge="start"
               color="inherit"
@@ -77,7 +79,7 @@ function PopupBlock(props){
                 <div className="openseadragon" id="openseadragon1"></div>
                 <ul className="ocd-toolbar"></ul>
             </div>
-            <NamesList names={names} />
+            <NamesList names={names} config={props.config}/>
         </div>
     </div>
     );
