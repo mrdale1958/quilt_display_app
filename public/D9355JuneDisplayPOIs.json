@@ -2,7 +2,7 @@
     {
       "id": "Main Stage",
       "styles": {
-        "transform": "rotate(-2deg) translate(-39px, -7px)",
+        "transform": "rotate(352deg) translate(-10px, -7px)",
         "backgroundColor": "transparent",
         "border": "0"
       } , 
@@ -18,39 +18,20 @@
       } ,
       "image": "icons/volunteervillage.svg",
       "size": {"width":80,"height":80},
-      "location": {"lat":37.769860616470574,"lng":-122.4582241142064}
+      "location": {"lat":37.7700821796899,"lng":-122.45814901235399}
     },
      {
       "id": "Volunteer check-in",
       "styles": {
+        "transform": "rotate(318deg)",
         "backgroundColor": "transparent",
         "border": "0"
       } ,
       "image": "icons/volunteercheckin.svg",
       "size": {"width":60,"height":40},
-      "location": {"lat":37.769442930892836,"lng":-122.45874043944177}
+      "location": {"lat":37.76934009931005,"lng":-122.4586559498578}
     },
-     {
-      "id": "Info Booth1",
-      "styles": {
-        "backgroundColor": "transparent",
-        "border": "0"
-      },
-      "image": "icons/info.svg",
-      "size": {"width":30,"height":30},
-      "location": {"lat":37.76941748804035,"lng":-122.45829921605882}
-    },
-     {
-      "id": "Info Booth2",
-      "styles": {
-        "backgroundColor": "transparent",
-        "border": "0"
-      },
-      "image": "icons/info.svg",
-      "size": {"width":30,"height":30},
-      "location": {"lat":37.76974825937526,"lng":-122.45788626923004}
-    },
-    
+     
      {
       "id": "Medical Help",
       "styles": {
@@ -59,7 +40,7 @@
       },
       "image": "icons/medical.svg",
       "size": {"width":30,"height":30},
-      "location": {"lat":37.77025285712386,"lng":-122.45653700473603}
+      "location": {"lat":37.77048714041343,"lng":-122.45638948324022}
     },
      
      {
@@ -70,7 +51,7 @@
       },
       "image": "icons/panelmakingvillage.svg",
       "size": {"width":75,"height":75},
-      "location": {"lat":37.769803370363434,"lng":-122.4575388098031}
+      "location": {"lat":37.76984948528654,"lng":-122.45753210428056}
     },
      {
         "id": "Community Village",
@@ -80,8 +61,8 @@
         },
         "image": "icons/communityvillage.svg",
         "size": {"width":75,"height":75},
-        "location": {"lat":37.76987545804665,"lng":-122.4562969470292}
-      },
+        "location": {"lat":37.769803370363405,"lng":-122.45652225258645}
+},
      {
         "id": "Social Media Village",
         "styles": {
@@ -92,96 +73,7 @@
         "size": {"width":75,"height":75},
         "location": {"lat":37.77027193904851,"lng":-122.45607030036744}
       },
-     {
-        "id": "Info Booth3",
-        "styles": {
-          "backgroundColor": "transparent",
-          "border": "0"
-        },
-        "image": "icons/info.svg",
-        "size": {"width":30,"height":30},
-        "location": {"lat":37.77032282415685,"lng":-122.45643508079347}
-      },
-     {
-        "id": "Info Booth4",
-        "styles": {
-          "backgroundColor": "transparent",
-          "border": "0"
-        },
-        "image": "icons/info.svg",
-        "size": {"width":30,"height":30},
-        "location":{"lat":37.76988393894599,"lng":-122.45715123060045}
-      },
-     {
-        "id": "Info Booth5",
-        "styles": {
-          "backgroundColor": "transparent",
-          "border": "0"
-        },
-        "image": "icons/info.svg",
-        "size": {"width":30,"height":30},
-        "location": {"lat":37.76995390632805,"lng":-122.45610919239816}
-      },
-     {
-        "id": "Info Booth6",
-        "styles": {
-          "backgroundColor": "transparent",
-          "border": "0"
-        },
-        "image": "icons/info.svg",
-        "size": {"width":30,"height":30},
-        "location": {"lat":37.76958922712511,"lng":-122.45633583905992}
-      },
-     {
-        "id": "Info Booth7",
-        "styles": {
-          "backgroundColor": "transparent",
-          "border": "0"
-        },
-        "image": "icons/info.svg",
-        "size": {"width":30,"height":30},
-        "location": {"lat":37.76943020946767,"lng":-122.45659735443887}
-      },
-     {
-        "id": "Info Booth8",
-        "styles": {
-          "backgroundColor": "transparent",
-          "border": "0"
-        },
-        "image": "icons/info.svg",
-        "size": {"width":30,"height":30},
-        "location": {"lat":37.76884502154378,"lng":-122.45750796439943}
-      },
-     {
-        "id": "Info Booth9",
-        "styles": {
-          "backgroundColor": "transparent",
-          "border": "0"
-        },
-        "image": "icons/info.svg",
-        "size": {"width":30,"height":30},
-        "location": {"lat":37.76853122321342,"lng":-122.45867204311189}
-      },
-     {
-        "id": "Info Booth10",
-        "styles": {
-          "backgroundColor": "transparent",
-          "border": "0"
-        },
-        "image": "icons/info.svg",
-        "size": {"width":30,"height":30},
-        "location": {"lat":37.76920970441693,"lng":-122.45871629956063}
-      },
-     {
-        "id": "Info Booth11",
-        "styles": {
-          "backgroundColor": "transparent",
-          "border": "0"
-        },
-        "image": "icons/info.svg",
-        "size": {"width":30,"height":30},
-        "location": {"lat":37.76962527107991,"lng":-122.45786201598939}
-      },
+     
      {
       "id": "Restrooms 1",
       "styles": {
@@ -190,7 +82,7 @@
       },
       "image": "icons/restroom.svg",
       "size": {"width":30,"height":30},
-      "location": {"lat":37.76944717136744,"lng":-122.458873208788}
+      "location": {"lat":37.771135921033604,"lng":-122.45950621011552}
     },
      {
       "id": "Restrooms 2",
@@ -215,16 +107,18 @@
      {
       "id": "Sign Language",
       "styles": {
+        "transform": "rotate(318deg)",
         "backgroundColor": "transparent",
         "border": "0"
       },
       "image": "icons/signlanguage.svg",
       "size": {"width":30,"height":30},
-      "location": {"lat":37.76919274246271,"lng":-122.4585835302144}
+      "location": {"lat":37.76919592282941,"lng":-122.45866667869386}
     },
      {
       "id": "Merch Booth 1",
       "styles": {
+        "transform": "rotate(318deg)",
         "backgroundColor": "transparent",
         "border": "0"
       },
@@ -240,6 +134,17 @@
       },
       "image": "icons/merch.svg",
       "size": {"width":30,"height":30},
-      "location": {"lat":37.76942172851638,"lng":-122.45671403053102}
+      "location": {"lat":37.769538341511925,"lng":-122.45687496307191}
+    },
+    {
+     "id": "pride flag",
+     "styles": {
+      "transform": "rotate(45deg)",
+      "backgroundColor": "transparent",
+       "border": "0"
+     },
+     "image": "./gay-pride.jpeg",
+     "size": {"width":60,"height":30},
+     "location": {"lat":37.77057300876354,"lng":-122.45585706475076}
     }
   ]

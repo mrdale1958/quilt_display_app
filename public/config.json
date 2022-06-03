@@ -9,18 +9,29 @@
         "lat": 37.769600888406515,
         "lng": -122.45723706128892
     },
-    "zoom":19,
-    "options":{"maxZoom":28,
-            "minZoom":17,
-            "mapTypeControl": true,
-            "zoomControl": true,
-            "scaleControl": false,
-            "streetViewControl": false,
-            "rotateControl": false,
-            "fullscreenControl": false,
-            "gestureHandling": "greedy"
-          },
-
+    "zoom":18,
+    "options":{
+        "restriction" : {
+            "latLngBounds": {
+                "north": 37.77168292772164,
+                "east": -122.45414715650377,
+                "south": 37.76677880467741,
+                "west": -122.4600426519185
+            },
+            "strictBounds": false
+        },
+        "maxZoom":28,
+        "minZoom":17,
+        "mapTypeControl": true,
+        "zoomControl": true,
+        "scaleControl": false,
+        "streetViewControl": false,
+        "rotateControl": false,
+        "fullscreenControl": false,
+        "labels": false,
+        "gestureHandling": "greedy"
+        },
+    
     "origin" : {"lat":37.769021532519474,"lng":-122.45863315108117},
     "pitchright" : { "lat": 1.1e-4, "lng": 1.8e-4 },
     "pitchdown" : { "lat": -1.3e-4, "lng": 1.50e-4 },

@@ -41,7 +41,7 @@ function AQTDisplay(props) {
 
   const sortByBlockNumber = (a,b) => {
     //console.log("sorting", a.BlockNumber, b.BlockNumber);
-    return a.BlockNumber.localeCompare(b.BlockNumber) ||
+    return a.BlockNumber.substring(0,5).localeCompare(b.BlockNumber.substring(0,5)) ||
     a.PanelLast.localeCompare(b.PanelLast);
   }
   const addNamesToSearch = useCallback((blockID, location) => {
@@ -64,7 +64,7 @@ function AQTDisplay(props) {
     let names = getnames();
     //.then(names => {
       if (mounted && names.length > 0)  {
-        console.log("setting search list", names);
+        //console.log("setting search list", names);
         setSearchList(names);
       }
     //})
@@ -105,6 +105,16 @@ function AQTDisplay(props) {
       }
       );   
   }, [props.blocks, addNamesToSearch, searchDBLoaded, authorised]);
+  const panelItemColors = [
+    '#ffffff',
+    '#ff000080',
+    '#ff80008',
+    '#e1ff0080',
+    '#00ff2f80',
+    '#0000ff80',
+    '#aa00ff80',
+    '#00000080'
+  ]
   return (
     <div className="AQTDisplay">
     {  
@@ -116,10 +126,13 @@ function AQTDisplay(props) {
       
       groupBy={(option) => option.BlockNumber}
       getOptionLabel={(option) => option.PanelListing}
-      sx={{ width: "40vw" }}
+      sx={{ width: "90vw" }}
       renderOption={(props, option) => {
         return (
-          <li {...props} key={option.key}>
+          <li style={{
+            backgroundColor: panelItemColors[option.PanelID],
+            color: 'white',
+          }} {...props} key={option.key}>
             {option.PanelListing}
           </li>
         );
@@ -133,7 +146,7 @@ function AQTDisplay(props) {
         if ((newSelectedBlock !== "00000") && (newSelectedBlock !== ""))  setSelectedBlock(newSelectedBlock);
         // TODO clear the autocomplete
       }}
-      renderInput={(params) => <TextField {...params} label="Search the Quilt" />}
+      renderInput={(params) => <TextField {...params} label="Find a Panel" />}
     /> : null
     }
     { ( searchList.length > 352 ) ? <InteractiveQuiltmap 
@@ -148,7 +161,7 @@ function AQTDisplay(props) {
                         POIs={props.config.POIs}
       /> : null }
       <div  className={"reticule"}><img src={"https://upload.wikimedia.org/wikipedia/commons/6/64/Red_Ribbon.svg"} width={20}  /></div>
-
+      <div className={"logo"}><img src={"./logo.svg"} width={"100%"} /></div>
     </div>
   );
 }

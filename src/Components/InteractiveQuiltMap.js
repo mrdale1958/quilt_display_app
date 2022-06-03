@@ -470,7 +470,7 @@ const onClick = () => {
     */
 
     function labelLatLonFromGrid(gridPosition) {
-      const positionShift = { left: {lat: -0.2, lng: -1.3},
+      const positionShift = { left: {lat: 0.1, lng: -1.55},
       "right": {lat: -1.1, lng: -0.2},
       "top": {lat: -1.4, lng: -1.2},
       "bottom": {lat: -0.1, lng: -0.25}}
@@ -484,6 +484,12 @@ const onClick = () => {
       }
     }
   
+    const [streetsAndAves, setGrid] = useState(null);
+
+    useEffect(() => {
+
+    })
+    
   const buildBlocksOverlay = useCallback( (props, map) => {
     let inventory = props.blocks;
     let config = props.config;
@@ -554,8 +560,8 @@ const onClick = () => {
   function handleMapClick(event) {
      
     console.log("Map clicked: ", JSON.stringify(event.latLng.toJSON()));
-    const latLngInfoWindow = <InfoWindow position={event.latLng}><div >{JSON.stringify(event.latLng.toJSON())}</div></InfoWindow>
-    setInfoWindow(latLngInfoWindow) 
+    if (props.config.debugMode) {const latLngInfoWindow = <InfoWindow position={event.latLng}><div >{JSON.stringify(event.latLng.toJSON())}</div></InfoWindow>
+    setInfoWindow(latLngInfoWindow) }
     
   }
   
@@ -584,15 +590,34 @@ const onClick = () => {
     setBlockInCenter(block);
     setHovering(true);
   }
+  const fixZoomDependentLayers = (map) => {
+    if (map && map.getZoom()<18){
+      setGrid(null)
+    } else {
+      let streetLabels = Object.keys(streets).map((street, index) => {
+        return( <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} key={index + "_street"} position={labelLatLonFromGrid(streets[street].gridPosition)}>
+        <div className="street-label ggp-rotation super-block-rotation-c">{streets[street].label} </div></OverlayView>)
+      })
+      let aveLabels= Object.keys(aves).map((ave, index) => {
+          return( <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} key={index + "_ave"} position={labelLatLonFromGrid(aves[ave].gridPosition)}>
+          <div className="ave-label ggp-rotation super-block-rotation-c">{aves[ave].label} </div></OverlayView>)
+        }) 
+      setGrid(streetLabels.concat(aveLabels));  
+     
+        
+      }
+    }
+
   const scanForBlockInCenter = (map) => {
     //var blockInCenter = -1;
+    if (map && map.getZoom()>19){
     for (var block in blockBoundsForCenterBehavior.current) {
       // TODO take rotation into account
       if (blockBoundsForCenterBehavior.current[block].bounds.contains(map.center)) {
         enableBlockInfoPopUp(blockBoundsForCenterBehavior.current[block].block);
         return;
       }
-    }
+    }}
     //console.log("closing popup");
     setHovering(false);
     setBlockInCenter(-1);    
@@ -653,7 +678,8 @@ const onClick = () => {
     // to eg. setup options or create latLng object, it won't be available otherwise
     // feel free to render directly if you don't need that
     let mapOptions = props.config.options;
-    mapOptions['mapTypeId'] = window.google.maps.MapTypeId.ROADMAP;
+    //mapOptions['mapTypeId'] = window.google.maps.MapTypeId.ROADMAP;
+    mapOptions['mapTypeId'] = window.google.maps.MapTypeId.SATELLITE;
     mapOptions["mapTypeControlOptions"]= {
       "style": window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
       "position": window.google.maps.ControlPosition.TOP_RIGHT
@@ -679,27 +705,19 @@ const onClick = () => {
           setMap(map)
         }}
         onCenterChanged={map =>scanForBlockInCenter(myMap)}
+        onZoomChanged={map => fixZoomDependentLayers(myMap)}
       >
         { /* Child components, such as markers, info windows, etc. */}
         <PopupOnCenter open={blockInCenter!==-1} block={blockInCenter} intersection={getIntersection(blockInCenter)}/>
         {blocksOverlay}
-        { /*blockBoundsForCenterBehavior.current.map((block, index) => {
+        { props.config.debugMode ? blockBoundsForCenterBehavior.current.map((block, index) => {
             return <Rectangle 
                       bounds={block.bounds} 
                       key={index+"_BlockBox"} 
                       options={blockBorderOptions}/>    
-                }) */}
+                }) : null }
         {POIsOverlay}
-        {Object.keys(streets).map((street, index) => {
-          return( <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} key={index + "_street"} position={labelLatLonFromGrid(streets[street].gridPosition)}>
-          <div className="street-label ggp-rotation super-block-rotation-c">{streets[street].label} </div></OverlayView>)
-          
-        })}
-        {Object.keys(aves).map((ave, index) => {
-          return( <OverlayView mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET} key={index + "_ave"} position={labelLatLonFromGrid(aves[ave].gridPosition)}>
-          <div className="ave-label ggp-rotation super-block-rotation-c">{aves[ave].label} </div></OverlayView>)
-          
-        })}
+        {streetsAndAves}
         {infoWindow}
       </GoogleMap>
     );

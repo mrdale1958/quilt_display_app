@@ -100,7 +100,8 @@ export const addNamesOnBlock = (block_num, location) => {
                     namesByBlock[blockNum] = [newEntry];
                   }    
                 }
-                await addName({"BlockNumber": datum.fieldData["Panel Number"].substring(0,5),
+                await addName({"BlockNumber": blockNum + " Location:" + location, 
+                    "PanelID": datum.fieldData["Panel Number"].substring(6),
                     "PanelListing":datum.fieldData["Panel Listing"], key:"Search_"+insertionCount,
                     "PanelLast":datum.fieldData["Panel Last"],
                     "PanelFirst":datum.fieldData["Panel First"]})

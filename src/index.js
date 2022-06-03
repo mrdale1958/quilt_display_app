@@ -27,6 +27,7 @@ fetch('./latestNames.json')
 .then((json) => {
   config = json;
   config.latestNames = latestnames;
+  config.debugMode = (window.location.pathname === "/debug") ? true : false;
 })
 .then(() => {
   fetch('./D9355JuneDisplayPOIs.json')
