@@ -2,9 +2,22 @@ import React, { useState, useCallback, useEffect } from 'react';
 //import logo from './logo.svg';
 import './AQTDisplay.css';
 import { Autocomplete } from '@mui/material';
-import { TextField } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
+import ListItemButton from '@mui/material/ListItemButton';
+import Typography from '@mui/material/Typography';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import InboxIcon from '@mui/icons-material/Inbox';
+import SvgIcon from "@material-ui/core/SvgIcon";
+import ListItemText from '@mui/material/ListItemText';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import { TextField, ListSubheader } from '@mui/material';
 import  {getnames, setnames, addNamesOnBlock}  from '../Services/nameslist.js';
 import { loggedIn, logIn } from '../Services/quiltDB.js';
+import InfoButton from './InfoButton.js';
+import { ReactComponent as QuiltIcon } from './quilt.svg';
 
 import InteractiveQuiltmap from './InteractiveQuiltMap.js';
 
@@ -39,11 +52,13 @@ function AQTDisplay(props) {
         lng: props.config.origin.lng  + props.config.pitchdown.lng - props.config.gutterWidth.lng},
   ];
   let otherPOIs = null;
-
+  
   const sortByBlockNumber = (a,b) => {
     //console.log("sorting", a.BlockNumber, b.BlockNumber);
     if (a.BlockNumber.startsWith("Block 0") && b.BlockNumber.startsWith("Block 0")) 
       return a.BlockNumber.substring(6).localeCompare(b.BlockNumber.substring(6))
+    //if (a.BlockNumber === b.BlockNumber)
+    //  return b.PanelID - a.PanelID;
     return a.BlockNumber.substring(0,5).localeCompare(b.BlockNumber.substring(0,5)) ||
     a.PanelLast.localeCompare(b.PanelLast);
   }
@@ -130,45 +145,66 @@ function AQTDisplay(props) {
     const arrUniq = [...new Map(menuItems.map(v => [JSON.stringify([v.PanelListing,v.PanelID]), v])).values()]
     arrUniq.sort(sortByBlockNumber);
     //const deDupedData = menuItems.filter((v,i,a)=>a.findIndex(v2=>['PanelListing','PanelID'].every(k=>v2[k] ===v[k]))===i)
-    console.log("deduped", arrUniq);
+    console.log("deduped", JSON.stringify(arrUniq));
     return arrUniq;
           
   }
-  return (
-    <div className="AQTDisplay">
-    {  
-    (searchList.length > 352) ?
+  const groupTemplate = params => {
+    return [
+    <ListSubheader key={params.key} component="div" sx={{bgcolor:"lightBlue", padding:"5px"}}>
+      <Stack
+    direction="row"
+    spacing={1}
+    sx={{ mt: 2, justifyContent: { xs: 'space-between', sm: 'flex-start' }, top:"-10" }}
+  >
+        <ListItemIcon>
+        <SvgIcon component={QuiltIcon}  />
+      </ListItemIcon>
+      <ListItemText primary={params.group} />
+      </Stack>
+    </ListSubheader>,
+    params.children
+  ]};
     // TODO test for return, if list is len 1 then just select that item, else blink
-    <Autocomplete className="search-bar"
-      id="grouped-by-block"
-      options={searchList}
-      isOptionEqualToValue={(option, value) => option.BlockNumber === value.BlockNumber}
-      groupBy={(option) => option.BlockNumber}
-      getOptionLabel={(option) => option.PanelListing}
-      sx={{ width: "90vw" }}
-      renderOption={(props, option) => {
-        return (
-          <li style={{
-            backgroundColor: (panelItemColors !== undefined) ? panelItemColors[convertPanelIDToPanelIndex(option.PanelID)].bg : 0,
-            color: (panelItemColors !== undefined) ? panelItemColors[convertPanelIDToPanelIndex(option.PanelID)].fg : 'white',
-          }} {...props} key={option.key}>
-            {option.PanelListing}
-          </li>
-        );
-      }}
-      value={searchSelection}
-      onChange={(_event, selection) => {
-        console.log("updating search result to",selection);
-        if (selection === null) return;
-        setSearchSelection(selection);
-        const newSelectedBlock = (selection.BlockNumber.startsWith('Block 0')) ? selection.PanelListing.substring(0,5) : selection.BlockNumber; 
-        if ((newSelectedBlock !== "00000") && (newSelectedBlock !== ""))  setSelectedBlock(newSelectedBlock);
-        // TODO clear the autocomplete
-      }}
-      renderInput={(params) => <TextField {...params} label="Find a Panel" />}
-    /> : null
-    }
-    { ( searchList.length > 352 ) ? <InteractiveQuiltmap 
+    return (
+    <div className="AQTDisplay">
+      <AppBar sx={{ position: 'relative' }}>
+        <Toolbar>
+        {  
+          (searchList.length > 352) ?
+            <Autocomplete className="search-bar"
+                id="grouped-by-block"
+                options={searchList}
+                isOptionEqualToValue={(option, value) => option.BlockNumber === value.BlockNumber}
+                groupBy={(option) => option.BlockNumber}
+                clearOnBlur={true}
+                renderGroup={groupTemplate}
+                getOptionLabel={(option) => option.PanelListing}
+                sx={{ width: "90vw", "margin-left":0, bgcolor:"white" }}
+                renderOption={(props, option) => {
+                  return (
+                    <li {...props} key={option.key}>
+                      {option.PanelListing}
+                    </li>
+                  );
+                }}
+                value={searchSelection}
+                onChange={(_event, selection) => {
+                  console.log("updating search result to",selection);
+                  if (selection === null) return;
+                  setSearchSelection(selection);
+                  const newSelectedBlock = (selection.BlockNumber.startsWith('Block 0')) ? selection.PanelListing.substring(0,5) : selection.BlockNumber; 
+                  if ((newSelectedBlock !== "00000") && (newSelectedBlock !== ""))  setSelectedBlock(newSelectedBlock);
+                  // TODO clear the autocomplete
+                }}
+                renderInput={(params) => <TextField {...params} label="Find a Panel" />}
+              /> : null
+        } 
+      <InfoButton />
+    </Toolbar>
+  </AppBar>
+  { ( searchList.length > 352 ) ? 
+      <InteractiveQuiltmap 
                         config={props.config} 
                         blocks={props.blocks}
                         selectedBlock={selectedBlock}
@@ -203,7 +239,10 @@ export default AQTDisplay;
         })
       }
 
-
+style={{
+                      backgroundColor: (panelItemColors !== undefined) ? panelItemColors[convertPanelIDToPanelIndex(option.PanelID)].bg : 0,
+                      color: (panelItemColors !== undefined) ? panelItemColors[convertPanelIDToPanelIndex(option.PanelID)].fg : 'white',
+                    }} 
       {          
         props.blockList.filter(name => {
           if (query === "") {

@@ -1,0 +1,110 @@
+{
+    "id": "Info Booth1",
+    "styles": {
+      "backgroundColor": "transparent",
+      "border": "0"
+    },
+    "image": "icons/info.svg",
+    "size": {"width":30,"height":30},
+    "location": {"lat":37.76941748804035,"lng":-122.45829921605882}
+  },
+   {
+    "id": "Info Booth2",
+    "styles": {
+      "backgroundColor": "transparent",
+      "border": "0"
+    },
+    "image": "icons/info.svg",
+    "size": {"width":30,"height":30},
+    "location": {"lat":37.76974825937526,"lng":-122.45788626923004}
+  },
+  {
+    "id": "Info Booth3",
+    "styles": {
+      "backgroundColor": "transparent",
+      "border": "0"
+    },
+    "image": "icons/info.svg",
+    "size": {"width":30,"height":30},
+    "location": {"lat":37.77032282415685,"lng":-122.45643508079347}
+  },
+ {
+    "id": "Info Booth4",
+    "styles": {
+      "backgroundColor": "transparent",
+      "border": "0"
+    },
+    "image": "icons/info.svg",
+    "size": {"width":30,"height":30},
+    "location":{"lat":37.76988393894599,"lng":-122.45715123060045}
+  },
+ {
+    "id": "Info Booth5",
+    "styles": {
+      "backgroundColor": "transparent",
+      "border": "0"
+    },
+    "image": "icons/info.svg",
+    "size": {"width":30,"height":30},
+    "location": {"lat":37.76995390632805,"lng":-122.45610919239816}
+  },
+ {
+    "id": "Info Booth6",
+    "styles": {
+      "backgroundColor": "transparent",
+      "border": "0"
+    },
+    "image": "icons/info.svg",
+    "size": {"width":30,"height":30},
+    "location": {"lat":37.76958922712511,"lng":-122.45633583905992}
+  },
+ {
+    "id": "Info Booth7",
+    "styles": {
+      "backgroundColor": "transparent",
+      "border": "0"
+    },
+    "image": "icons/info.svg",
+    "size": {"width":30,"height":30},
+    "location": {"lat":37.76943020946767,"lng":-122.45659735443887}
+  },
+ {
+    "id": "Info Booth8",
+    "styles": {
+      "backgroundColor": "transparent",
+      "border": "0"
+    },
+    "image": "icons/info.svg",
+    "size": {"width":30,"height":30},
+    "location": {"lat":37.76884502154378,"lng":-122.45750796439943}
+  },
+ {
+    "id": "Info Booth9",
+    "styles": {
+      "backgroundColor": "transparent",
+      "border": "0"
+    },
+    "image": "icons/info.svg",
+    "size": {"width":30,"height":30},
+    "location": {"lat":37.76853122321342,"lng":-122.45867204311189}
+  },
+ {
+    "id": "Info Booth10",
+    "styles": {
+      "backgroundColor": "transparent",
+      "border": "0"
+    },
+    "image": "icons/info.svg",
+    "size": {"width":30,"height":30},
+    "location": {"lat":37.76920970441693,"lng":-122.45871629956063}
+  },
+ {
+    "id": "Info Booth11",
+    "styles": {
+      "backgroundColor": "transparent",
+      "border": "0"
+    },
+    "image": "icons/info.svg",
+    "size": {"width":30,"height":30},
+    "location": {"lat":37.76962527107991,"lng":-122.45786201598939}
+  }

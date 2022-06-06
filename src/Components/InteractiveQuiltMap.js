@@ -594,14 +594,18 @@ const onClick = () => {
 
   const scanForBlockInCenter = (map) => {
     //var blockInCenter = -1;
+    if (map)
+    console.log("center change", map.getCenter().toString());
+
     if (map && map.getZoom()>19){
-    for (var block in blockBoundsForCenterBehavior.current) {
-      // TODO take rotation into account
-      if (blockBoundsForCenterBehavior.current[block].bounds.contains(map.center)) {
-        enableBlockInfoPopUp(blockBoundsForCenterBehavior.current[block].block);
-        return;
-      }
-    }}
+
+      for (var block in blockBoundsForCenterBehavior.current) {
+        // TODO take rotation into account
+        if (blockBoundsForCenterBehavior.current[block].bounds.contains(map.center)) {
+          enableBlockInfoPopUp(blockBoundsForCenterBehavior.current[block].block);
+          return;
+        }
+      }}
     //console.log("closing popup");
     setHovering(false);
     setBlockInCenter(-1);    
@@ -613,11 +617,11 @@ const onClick = () => {
     
   useEffect(() => {
     if (selectedBlock !== props.selectedBlock) {
+      myMap.setZoom(props.config.zoom);
       setSelectedBlock(props.selectedBlock);
       const blockImage = blockBoundsForCenterBehavior.current.find(o => {return (o.block.padStart(5, '0') === props.selectedBlock.substring(0,5))})
       //myMap.setCenter(blockImage.bounds.getCenter());
       myMap.panTo(blockImage.bounds.getCenter());
-      //myMap.setZoom(props.config.zoom);
       console.log("selected Block:", props.selectedBlock, blockImage.bounds.getCenter().toString(), myMap.getCenter().toString());
   }
   }, [ selectedBlock, myMap,   props.selectedBlock, props.config.zoom]);

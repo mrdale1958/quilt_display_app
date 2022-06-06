@@ -1,9 +1,9 @@
 import React, { useState, useRef , useEffect} from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 import { motion, useCycle } from 'framer-motion';
 
 function PopupOnCenter(props){
