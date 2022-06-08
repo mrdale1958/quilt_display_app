@@ -145,17 +145,17 @@ function AQTDisplay(props) {
     const arrUniq = [...new Map(menuItems.map(v => [JSON.stringify([v.PanelListing,v.PanelID]), v])).values()]
     arrUniq.sort(sortByBlockNumber);
     //const deDupedData = menuItems.filter((v,i,a)=>a.findIndex(v2=>['PanelListing','PanelID'].every(k=>v2[k] ===v[k]))===i)
-    console.log("deduped", JSON.stringify(arrUniq));
+    //console.log("deduped", JSON.stringify(arrUniq));
     return arrUniq;
           
   }
   const groupTemplate = params => {
     return [
-    <ListSubheader key={params.key} component="div" sx={{bgcolor:"lightBlue", padding:"5px"}}>
+    <ListSubheader key={params.key} component="div" sx={{bgcolor:"lightBlue", padding:"5px", top:"-10px"}}>
       <Stack
     direction="row"
     spacing={1}
-    sx={{ mt: 2, justifyContent: { xs: 'space-between', sm: 'flex-start' }, top:"-10" }}
+    sx={{ mt: 2, justifyContent: { xs: 'space-between', sm: 'flex-start' }, top:"-10px", position:"relative" }}
   >
         <ListItemIcon>
         <SvgIcon component={QuiltIcon}  />
@@ -178,9 +178,10 @@ function AQTDisplay(props) {
                 isOptionEqualToValue={(option, value) => option.BlockNumber === value.BlockNumber}
                 groupBy={(option) => option.BlockNumber}
                 clearOnBlur={true}
+                blurOnSelect={true}
                 renderGroup={groupTemplate}
                 getOptionLabel={(option) => option.PanelListing}
-                sx={{ width: "90vw", "margin-left":0, bgcolor:"white" }}
+                sx={{ width: "90vw", marginLeft:0, bgcolor:"white" }}
                 renderOption={(props, option) => {
                   return (
                     <li {...props} key={option.key}>
@@ -188,7 +189,6 @@ function AQTDisplay(props) {
                     </li>
                   );
                 }}
-                value={searchSelection}
                 onChange={(_event, selection) => {
                   console.log("updating search result to",selection);
                   if (selection === null) return;
@@ -215,9 +215,8 @@ function AQTDisplay(props) {
                         refreshMenu={refreshMenu}
                         POIs={props.config.POIs}
       /> : null }
-      <div  className={"reticule"}><img src={"https://upload.wikimedia.org/wikipedia/commons/6/64/Red_Ribbon.svg"} width={20}  /></div>
       <div className={"logo"}><img src={"./logo.svg"} width={"100%"} /></div>
-    </div>
+  </div>
   );
 }
 

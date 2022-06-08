@@ -111,10 +111,14 @@
   transform: rotate(270deg) rotate(var(--ggp-rotation));
 }
 
+.map-holder {
+  height:100%;
+  position:relative;
+}
 
 .modal {
   position: fixed;
-  z-index: 100;
+  z-index: 1200;
   right: 0;
   top: 0px;
   width: 100%;
@@ -215,7 +219,16 @@
   padding-right: 3vw;
   opacity: 0.8;
 }
-
+.billboard {
+  padding-left: 3vw;
+  position: absolute;
+  height: 100%;
+  color: white;
+  padding-top: 8vh;
+  line-height: 1.5;
+  padding-right: 3vw;
+  opacity: 0.8;
+}
 .logo {
   right: 0;
   bottom: 1.5vh;

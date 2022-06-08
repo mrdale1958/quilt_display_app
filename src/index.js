@@ -11,7 +11,7 @@ import { readCSVfile }  from './Services/csvreader.js';
 
 var config = {}; 
 var latestnames = [];
-
+console.log(window.innerWidth, window.innerHeight)
 fetch('./latestNames.json')
 .then((response) => {
   return response.json()

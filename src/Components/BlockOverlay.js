@@ -27,8 +27,10 @@ function BlockOverlay(props) {
   }, [props.row, props.col, props.position]
   );
     
-  const toggleSeen = () => { 
+  const toggleSeen = (e) => { 
     console.log("toggling block");
+    if (e!==undefined)  e.stopPropagation();
+
     setSeen(!seen);
   };
 

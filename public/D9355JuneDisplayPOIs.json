@@ -7,7 +7,7 @@
         "border": "0"
       } , 
       "image": "icons/mainstage.svg",
-      "size": {"width":80,"height":80},
+      "size": {"width":60,"height":60},
       "location": {"lat":37.76885774306966,"lng":-122.45861035230455}
     },
      {
@@ -72,68 +72,6 @@
         "image": "icons/socialmediavillage.svg",
         "size": {"width":75,"height":75},
         "location": {"lat":37.77027193904851,"lng":-122.45607030036744}
-      },
-     
-     {
-      "id": "Restrooms 1",
-      "styles": {
-        "backgroundColor": "transparent",
-        "border": "0"
-      },
-      "image": "icons/restroom.svg",
-      "size": {"width":30,"height":30},
-      "location": {"lat":37.771135921033604,"lng":-122.45950621011552}
-    },
-     {
-      "id": "Restrooms 2",
-      "styles": {
-        "backgroundColor": "transparent",
-        "border": "0"
-      },
-      "image": "icons/restroom.svg",
-      "size": {"width":30,"height":30},
-      "location": {"lat":37.76890862915117,"lng":-122.45737921836671}
-    },
-     {
-      "id": "Restrooms 3",
-      "styles": {
-        "backgroundColor": "transparent",
-        "border": "0"
-      },
-      "image": "icons/restroom.svg",
-      "size": {"width":30,"height":30},
-      "location": {"lat":37.7694196082784,"lng":-122.45645653846559}
-    },
-     {
-      "id": "Sign Language",
-      "styles": {
-        "transform": "rotate(318deg)",
-        "backgroundColor": "transparent",
-        "border": "0"
-      },
-      "image": "icons/signlanguage.svg",
-      "size": {"width":30,"height":30},
-      "location": {"lat":37.76919592282941,"lng":-122.45866667869386}
-    },
-     {
-      "id": "Merch Booth 1",
-      "styles": {
-        "transform": "rotate(318deg)",
-        "backgroundColor": "transparent",
-        "border": "0"
-      },
-      "image": "icons/merch.svg",
-      "size": {"width":30,"height":30},
-      "location": {"lat":37.769440810655496,"lng":-122.45847892406282}
-    },
-     {
-      "id": "Merch Booth 2",
-      "styles": {
-        "backgroundColor": "transparent",
-        "border": "0"
-      },
-      "image": "icons/merch.svg",
-      "size": {"width":30,"height":30},
-      "location": {"lat":37.769538341511925,"lng":-122.45687496307191}
-    }
+      }
+      
   ]

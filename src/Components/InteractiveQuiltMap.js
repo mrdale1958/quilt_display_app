@@ -445,6 +445,7 @@ const onClick = () => {
         west:dut.location.lng -  dut.size.width*FEET_TO_DEGREES_LNG
       }
       const image = ( dut.image )? dut.image : null; 
+      const text = ( dut.text )? dut.text : null; 
       POIOverlays.push(
         <OtherPOIOverlay 
         id={dut.id}
@@ -454,6 +455,7 @@ const onClick = () => {
         boxStyle={dut.styles}
         mapPaneName={OtherPOIOverlay.MAP_PANE} 
         image={image}
+        text={text}
         />
        
         );
@@ -678,9 +680,9 @@ const onClick = () => {
     
 
     // TODO enable higher zoom levels in satellite mode
-    // TODO add row and column labels
     // TODO 
     return (
+      <div className={"map-holder"}>
       <GoogleMap
         mapContainerStyle={props.config.mapContainerStyle}
         center={props.config.center}
@@ -708,6 +710,8 @@ const onClick = () => {
         {streetsAndAves}
         {infoWindow}
       </GoogleMap>
+      <div  className={"reticule"}><img src={"https://upload.wikimedia.org/wikipedia/commons/6/64/Red_Ribbon.svg"} width={20}  /></div>
+</div>
     );
   }
   

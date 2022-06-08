@@ -188,6 +188,7 @@ export class OtherPOIOverlay extends PureComponent {
       visibility: "visible",
       bounds: props.bounds,
       image: props.image,
+      text: props.text,
       placement: {
         left: "0px",
         top: "0px",
@@ -209,6 +210,7 @@ export class OtherPOIOverlay extends PureComponent {
     this.overlayView = overlayView
     this.bounds = props.bounds;
     this.image = props.image;
+    this.text = props.text;
   }
 
   componentDidMount() {
@@ -251,6 +253,9 @@ export class OtherPOIOverlay extends PureComponent {
             <div className={"poi"} style={this.props.boxStyle}>
             { 
               this.image ? <img alt={""} src={this.image} width={"100%"} height={"100%"} position="absolute"/> : null
+            }
+            {  
+              this.text ? <div position="absolute" className={"billboard"}>{this.text} </div>: null
             }
             </div>
             
